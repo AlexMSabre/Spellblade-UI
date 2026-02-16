@@ -17,10 +17,11 @@ import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, Controller } from "react-hook-form";
 import z from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, PlusIcon } from "lucide-react";
 import { ButtonGroup } from "@/components/ui/button-group";
+import useCharacterSave from "@/hooks/useCharacterSave";
 
 const formSchema = z.object({
   title: z
@@ -42,18 +43,40 @@ export default function characterForm() {
     },
   })
 
+  const [characterData, setCharacterData] = useState({
+    name: "",
+    specialty1: 0,
+    specialty2: 0,
+    aspectLevel: 0,
+    aspects1: 0,
+    aspects2: 0,
+    ancestryName: "",
+    ancestryTrait: 0,
+    baseFitness: 0,
+    baseTechnique: 0,
+    baseFocus: 0,
+    baseSense: 0,
+    gold: 0,
+    silver: 0,
+    copper: 0
+  })
+
   const [ancestorOther, setAncestorOther] = useState(false);
   const [fitness, setFitness] = useState(0);
   const [technique, setTechnique] = useState(0);
   const [focus, setFocus] = useState(0);
   const [sense, setSense] = useState(0);
 
+  useEffect(()=>{
+    
+  }, [characterData]);
+
 
   const specialtyList = (<SelectContent>
     <SelectGroup>
       <SelectLabel>Specialties</SelectLabel>
-      <SelectItem value="Witch">Witch</SelectItem>
-      <SelectItem value="Wayfarer">Wayfarer</SelectItem>
+      <SelectItem value="1">Witch</SelectItem>
+      <SelectItem value="2">Wayfarer</SelectItem>
     </SelectGroup>
   </SelectContent>);
 
@@ -63,6 +86,26 @@ export default function characterForm() {
     } else {
       setAncestorOther(false);
     }
+  }
+
+  const transferFormData = (e: any) =>{
+   setCharacterData({
+    name: e.get('name'),
+    specialty1: e.get('specialty1'),
+    specialty2: e.get('specialty2'),
+    aspectLevel: 0,
+    aspects1: 0,
+    aspects2: 0,
+    ancestryName: e.get('ancestryName'),
+    ancestryTrait: e.get('ancestryTrait'),
+    baseFitness: e.get('fitness'),
+    baseTechnique: e.get('technique'),
+    baseFocus: e.get('focus'),
+    baseSense: e.get('sense'),
+    gold: 0,
+    silver: 0,
+    copper: 0
+   })
   }
 
   return (
@@ -78,12 +121,13 @@ export default function characterForm() {
             control={form.control}
             render={({ field, fieldState }) => (
               <div className="Character Creator">
-                <form>
+                <form action={transferFormData}>
                   <Field data-invalid={fieldState.invalid}>
                     <FieldLabel htmlFor={field.name}>Character Name</FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
+                      name="name"
                       aria-invalid={fieldState.invalid}
                       placeholder="E.G. Timmy Dragon-Slayer"
                       autoComplete="off"
@@ -96,7 +140,7 @@ export default function characterForm() {
                   <div className="flex flex-row gap-7">
                     <Field data-invalid={fieldState.invalid}>
                       <FieldLabel htmlFor={field.name}>Specialty One</FieldLabel> 
-                      <Select>
+                      <Select name="specialty1">
                         <SelectTrigger className="w-full max-w-48">
                           <SelectValue placeholder="Select a Specialty" />
                         </SelectTrigger>
@@ -108,7 +152,7 @@ export default function characterForm() {
                     </Field>
                     <Field>
                       <FieldLabel htmlFor={field.name}>Specialty Two</FieldLabel>
-                      <Select>
+                      <Select name="specialty2">
                         <SelectTrigger className="w-full max-w-48">
                           <SelectValue placeholder="Select a Specialty" />
                         </SelectTrigger>
@@ -124,7 +168,7 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 1" /> <Label htmlFor={field.name}>Aspect 1</Label>
+                          <Switch id="aspect 1" name="aspect1-1"/> <Label htmlFor={field.name}>Aspect 1</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -132,25 +176,7 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 1" /> <Label htmlFor={field.name}>Aspect 1</Label>
-                        </div>
-                        <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
-                      </Field>
-                    </Card>
-                  </div>
-                  <div className="flex flex-row gap-4">
-                    <Card>
-                      <Field>
-                        <div className="flex flex-row gap-1">
-                          <Switch id="aspect 2" /> <Label htmlFor={field.name}>Aspect 2</Label>
-                        </div>
-                        <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
-                      </Field>
-                    </Card>
-                    <Card>
-                      <Field>
-                        <div className="flex flex-row gap-1">
-                          <Switch id="aspect 2" /> <Label htmlFor={field.name}>Aspect 2</Label>
+                          <Switch id="aspect 1" name="aspect2-1"/> <Label htmlFor={field.name}>Aspect 1</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -160,7 +186,7 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 3" /> <Label htmlFor={field.name}>Aspect 3</Label>
+                          <Switch id="aspect 2" name="aspect1-2"/> <Label htmlFor={field.name}>Aspect 2</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -168,7 +194,7 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 3" /> <Label htmlFor={field.name}>Aspect 3</Label>
+                          <Switch id="aspect 2" name="aspect2-2"/> <Label htmlFor={field.name}>Aspect 2</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -178,7 +204,7 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 4" /> <Label htmlFor={field.name}>Aspect 4</Label>
+                          <Switch id="aspect 3" name="aspect1-3"/> <Label htmlFor={field.name}>Aspect 3</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -186,7 +212,25 @@ export default function characterForm() {
                     <Card>
                       <Field>
                         <div className="flex flex-row gap-1">
-                          <Switch id="aspect 4" /> <Label htmlFor={field.name}>Aspect 4</Label>
+                          <Switch id="aspect 3" name="aspect2-3"/> <Label htmlFor={field.name}>Aspect 3</Label>
+                        </div>
+                        <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
+                      </Field>
+                    </Card>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    <Card>
+                      <Field>
+                        <div className="flex flex-row gap-1">
+                          <Switch id="aspect 4" name="aspect1-4"/> <Label htmlFor={field.name}>Aspect 4</Label>
+                        </div>
+                        <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
+                      </Field>
+                    </Card>
+                    <Card>
+                      <Field>
+                        <div className="flex flex-row gap-1">
+                          <Switch id="aspect 4" name="aspect2-4"/> <Label htmlFor={field.name}>Aspect 4</Label>
                         </div>
                         <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
                       </Field>
@@ -194,7 +238,7 @@ export default function characterForm() {
                   </div>
                 <Separator/>
                 <h2>ancestry</h2>
-                <Select onValueChange={handleAncestryChange}>
+                <Select onValueChange={handleAncestryChange} name="ancestrySelect">
                     <SelectTrigger className="w-full max-w-48">
                       <SelectValue placeholder="Select an ancestry" />
                     </SelectTrigger>
@@ -208,11 +252,11 @@ export default function characterForm() {
                     <div className="flex flex-row gap-1">
                       <Field>
                         <FieldLabel>Other Ancestor Name</FieldLabel>
-                        <Input placeholder="E.g. Orc, Goblin, Troll"/>
+                        <Input placeholder="E.g. Orc, Goblin, Troll" name="ancestryName"/>
                       </Field>
                       <Field>
                         <FieldLabel>Ancestry Creature Trait</FieldLabel>
-                        <Select>
+                        <Select name="creatureTrait">
                           <SelectTrigger className="w-full max-w-48">
                             <SelectValue placeholder="Select a creature trait" />
                           </SelectTrigger>
@@ -272,11 +316,12 @@ export default function characterForm() {
                     <Input readOnly/>
                   </div>
                   <div className="flex flex-row gap-16">
-                    <Input readOnly/>
-                    <Input readOnly/>
-                    <Input readOnly/>
-                    <Input readOnly/>
+                    <Input readOnly name="fitness"/>
+                    <Input readOnly name="technique"/>
+                    <Input readOnly name="focus"/>
+                    <Input readOnly name="sense"/>
                   </div>
+                  <Button size="default" variant="outline">Submit</Button>
                 </form>
               </div>
             )}
