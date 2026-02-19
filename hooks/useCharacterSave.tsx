@@ -6,7 +6,7 @@ export const useCharacterSave = async (character: Character) => {
         method: 'post',
         url: "http://localhost:8080/graphql",
         data: {
-            query: 'query Query($character: inputCharacter) { createCharacter(character: $character) { name aspectLevel aspects1 aspects2 specialty1 specialty2 ancestryTrait ancestryName accountId baseFitness baseTechnique baseFocus baseSense gold silver copper}}',
+            query: 'query Query($character: inputCharacterDAO) { createCharacter(characterDAO: $character) { id name aspectLevel aspects1 aspects2 specialty1 specialty2 ancestryTrait ancestryName accountId baseFitness baseTechnique baseFocus baseSense gold silver copper}}',
             variables: {
                 character
             }
@@ -17,5 +17,5 @@ export const useCharacterSave = async (character: Character) => {
     return data;
     });
 
-    return data
+    return data.data
 }

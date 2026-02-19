@@ -32,12 +32,10 @@ export default function characterForm() {
     },
   })
 
-  console.log("Page load");
-
   const [characterData, setCharacterData] = useState<Character>({
     id: null,
     name: "",
-    accountId: "",
+    accountId: "6995e6db04874e9b6ba233a4",
     specialty1: 0,
     specialty2: 0,
     aspectLevel: 0,
@@ -55,16 +53,14 @@ export default function characterForm() {
   })
 
   const apiTrigger = async ()=>{
-    let data = await useCharacterSave(characterData)
+    await useCharacterSave(characterData).then(data=>{
+    console.log(data);
     setCharacterData((prev)=>({
         ...prev,
-        id: data?.character?.id.toString()
+        id: data?.createCharacter?.id
     }))
+  })
   };
-
-  useEffect(()=>{
-    console.log(characterData);
-  },[characterData]);
 
   return (
     <div className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -82,9 +78,9 @@ export default function characterForm() {
               <TabsTrigger value="equipment">Equipment</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
             </TabsList>
-            <TabsContent value="specialties">{Specialties()}</TabsContent>
+            <TabsContent value="specialties">{Specialties(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="start">{Start(characterData, setCharacterData)}</TabsContent>
-            <TabsContent value="skills">{Skills()}</TabsContent>
+            <TabsContent value="skills">{Skills(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="equipment">Equipment</TabsContent>
             <TabsContent value="background">Background</TabsContent>
           </Tabs>

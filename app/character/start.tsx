@@ -39,10 +39,13 @@ export default function Start(characterData: Character, setCharacterData: Functi
   }
 
   const transferSelectData = (e: any) => {
+    let newLevel = parseInt(e)> characterData.aspectLevel;
     setCharacterData((prev: any) => ({
       ...prev,
       aspectLevel: parseInt(e),
-    }))
+      aspects1: newLevel ? prev.aspects1 : 0,
+      aspects2: newLevel ? prev.aspects2 : 0,
+    }));
   }
 
   return (
