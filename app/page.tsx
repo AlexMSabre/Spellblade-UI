@@ -10,9 +10,23 @@ export default function Home() {
             Welcome to the Spell Blade landing page!
           </h1>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            to create a character, click 
+            to create a character, click  
             <Link
               href="/character"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              here
+            </Link>{" "}<br/>
+            to login, click 
+            <Link
+              href="/login"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              here
+            </Link>{" "}<br/>
+            to select a character, click 
+            <Link
+              href="/character/select"
               className="font-medium text-zinc-950 dark:text-zinc-50"
             >
               here

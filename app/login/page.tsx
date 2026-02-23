@@ -5,22 +5,36 @@ import { Field, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { useLoginApi } from "@/hooks/useLoginApi"
 import { redirect, RedirectType } from "next/navigation"
+import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated"
 import useSignIn from "react-auth-kit/hooks/useSignIn"
 
 export default function loginForm() {
     const signIn = useSignIn();
+    const isAuth = useIsAuthenticated();
 
     const handleLogin = (formData: FormData) => {
         useLoginApi(formData).then((data) => {
-            signIn({
+            let user = data.data.createOrLoginUser;
+            
+            console.log(signIn({
                 auth: {
-                    token: data.data.createOrLoginUser.id,
+                    token: user.id,
                     type: 'Bearer'
+                },
+                userState:{
+                    name: user.name,
+                    uid: user.id,
+                    email: user.email
                 }
-            })
-            redirect("/character", RedirectType.replace);
+            }))
+            console.log(user);
+            // redirect("/character/select", RedirectType.replace);
         })
     }
+
+    const handleIsAuth = () =>{
+            console.log(isAuth);
+        }
 
     return (
         <div>
@@ -32,6 +46,8 @@ export default function loginForm() {
                 </Field>
                 <Button>submit</Button>
             </form>
+
+            <Button onClick={handleIsAuth}>isAuth?</Button>
         </div>
     )
 }
