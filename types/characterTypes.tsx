@@ -1,8 +1,8 @@
 export default interface Character {
     [key: string]: string | number | null,
     id: string | null,
+    userId: string,
     name: string,
-    accountId: string,
     specialty1: number,
     specialty2: number,
     aspectLevel: number,

@@ -1,28 +1,26 @@
-"use client"
+"use client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCharacterByAccId } from "@/hooks/useCharacterByAccId";
 import Character from "@/types/characterTypes";
+import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import { useEffect, useState } from "react";
-import useAuthUser from "react-auth-kit/hooks/useAuthUser"
-import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated"
 
 export default function characterSelect() {
 
     const [characterList, setCharacterList] = useState<Character[]>([]);
-    const user = useAuthUser();
-        console.log(useIsAuthenticated());
+    const { user, loading } = useAuth({ ensureSignedIn: true });
 
     useEffect(() => {
-        useCharacterByAccId(user.id).then((result)=>{
-            console.log(result);
-            setCharacterList(result.charactersByAccId);
-        });
+        if (user) {
+            useCharacterByAccId(user.id).then((result) => {
+                setCharacterList(result.charactersByAccId);
+            });
+        }
 
     })
 
 
     return (
-
         <div className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black">
             <Table>
                 <TableHeader>
@@ -39,7 +37,7 @@ export default function characterSelect() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {characterList.map((character)=>(
+                    {characterList.map((character) => (
                         <TableRow key={character.name}>
                             <TableCell>{character.name}</TableCell>
                             <TableCell>{character.aspectLevel}</TableCell>
@@ -52,7 +50,7 @@ export default function characterSelect() {
                             <TableCell>{character.baseSense}</TableCell>
                         </TableRow>
                     ))}
-                    
+
                 </TableBody>
 
             </Table>
