@@ -1,3 +1,4 @@
+import { signOut } from "@workos-inc/authkit-nextjs";
 import Link from "next/link";
 
 export default function Home() {
@@ -31,6 +32,15 @@ export default function Home() {
             >
               here
             </Link>{" "}
+
+            <form
+        action={async () => {
+          'use server';
+          await signOut();
+        }}
+      >
+        <button type="submit">Sign out</button>
+      </form>
           </p>
         </div>
       </main>

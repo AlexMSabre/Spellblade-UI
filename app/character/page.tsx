@@ -10,6 +10,7 @@ import Specialties from "./specialties";
 import {useForm } from "react-hook-form";
 import Skills from "./skills";
 import Start from "./start";
+import { useAuth } from "@workos-inc/authkit-nextjs/components";
 
 const formSchema = z.object({
   title: z
@@ -32,10 +33,12 @@ export default function characterForm() {
     },
   })
 
+  const {user} = useAuth();
+
   const [characterData, setCharacterData] = useState<Character>({
     id: null,
+    userId: user?.id || "",
     name: "",
-    accountId: "6995e6db04874e9b6ba233a4",
     specialty1: 0,
     specialty2: 0,
     aspectLevel: 0,
