@@ -32,6 +32,7 @@ export default function Home() {
             >
               here
             </Link>{" "}
+          </p>
 
             <form
         action={async () => {
@@ -41,7 +42,6 @@ export default function Home() {
       >
         <button type="submit">Sign out</button>
       </form>
-          </p>
         </div>
       </main>
     </div>
