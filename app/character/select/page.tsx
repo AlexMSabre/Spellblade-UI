@@ -8,8 +8,11 @@ import { useEffect, useState } from "react";
 export default function characterSelect() {
 
     const [characterList, setCharacterList] = useState<Character[]>([]);
+    //gets the user data, bounces them if they aren't signed in
     const { user, loading } = useAuth({ ensureSignedIn: true });
 
+
+    //gets all the characters associated with the user
     useEffect(() => {
         if (user) {
             useCharacterByAccId(user.id).then((result) => {
@@ -37,6 +40,7 @@ export default function characterSelect() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
+                    {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
                     {characterList.map((character) => (
                         <TableRow key={character.name}>
                             <TableCell>{character.name}</TableCell>

@@ -1,6 +1,6 @@
-import Character from "@/types/characterTypes";
 import axios from "axios";
 
+//calls the endpoint to get all of the characters associated with the current user.
 export const useCharacterByAccId = async (userId: String) => {
     const data = await axios({
         method: 'post',
@@ -11,10 +11,6 @@ export const useCharacterByAccId = async (userId: String) => {
                 userId
             }
         }
-    }).then(response => {
-    const {data} = response;
-
-    return data;
     });
 
     return data.data

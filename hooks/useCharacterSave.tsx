@@ -1,6 +1,7 @@
 import Character from "@/types/characterTypes";
 import axios from "axios";
 
+//calls the endpoint to save the character
 export const useCharacterSave = async (character: Character) => {
 
     const data = await axios({
@@ -12,10 +13,6 @@ export const useCharacterSave = async (character: Character) => {
                 character
             }
         }
-    }).then(response => {
-    const {data} = response;
-
-    return data;
     });
 
     return data.data

@@ -30,6 +30,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
     },
   })
 
+  //checks counts the number of true bits in aspect flag number
   const flagCounter = (aspect: number) => {
     let total = 0;
     for (let i = 0; i < 4; i++)
@@ -38,8 +39,9 @@ export default function Specialties(characterData: Character, setCharacterData: 
 
     return total;
   }
-
+  //a four-state variable that determines what aspects are disabled
   const [aspectDisable, setAspectDisable] = useState(0);
+  //converts the aspect flag numbers into readable booleans
   const [aspectsChecked, setAspectsChecked] = useState(() => {
     let result = [];
     for (let i = 0; i < 4; i++) {
@@ -49,12 +51,17 @@ export default function Specialties(characterData: Character, setCharacterData: 
     return result;
   })
 
+  //when character data is updated, do the calculations to see if any side needs to be disabled
   useEffect(() => {
     const count1 = flagCounter(characterData.aspects1);
     const count2 = flagCounter(characterData.aspects2);
 
     const aspectTotal = count1 + count2;
     const aspectDiff = count1 - count2;
+    //if the aspect level is equal to the total number of aspects, disable all
+    //else if the aspect difference is greater than 2 disable spec 1 aspects
+    //else if the aspect difference is less than -2 disable spec 2 aspects 
+    //else, disable none
     if (aspectTotal >= characterData.aspectLevel) {
       setAspectDisable(3);
     } else if (aspectDiff >= 2) {
@@ -64,7 +71,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
     } else {
       setAspectDisable(0);
     }
-
+    //make sure corrects aspects are checked
     setAspectsChecked(() => {
       let result = [];
       for (let i = 0; i < 4; i++) {
@@ -75,6 +82,8 @@ export default function Specialties(characterData: Character, setCharacterData: 
     })
   }, [characterData]);
 
+
+  //sets aspect names and values in dropdowns
   const specialtyList = (<SelectContent>
     <SelectGroup>
       <SelectLabel>Specialties</SelectLabel>
@@ -83,18 +92,18 @@ export default function Specialties(characterData: Character, setCharacterData: 
     </SelectGroup>
   </SelectContent>);
 
+//sets character data to reflect newly changed specialties and ancestries
   const transferInputData = (e: any) => {
     let name = e.name;
     let value = e.value;
 
     if (name.includes)
-
       setCharacterData((prev: any) => ({
         ...prev,
         [name]: value,
       }))
   }
-
+  //when specialty 1 is changed, set it in character data and wipe aspects
   const transferSpec1Data = (e: string) => {
     setCharacterData((prev: any) => ({
       ...prev,
@@ -102,7 +111,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
       aspects1: 0
     }))
   }
-
+  //when spec 2 is changed, set it in character data and wipe aspects
   const transferSpec2Data = (e: string) => {
     setCharacterData((prev: any) => ({
       ...prev,
@@ -116,7 +125,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
     <Controller
       name="title"
       control={form.control}
-      render={({ field, fieldState }) => (
+      render={({ field}) => (
         <div>
           <h2>Specialities</h2>
           <p>Choose your Specialites.</p>
@@ -150,9 +159,13 @@ export default function Specialties(characterData: Character, setCharacterData: 
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
+                  {/* each switch does the same checks, with different references TODO: setup dynamic aspect names*/}
                   <Switch id="aspect 1" name="aspects1-1"
+                    //is this aspect checked?
                     checked={aspectsChecked[0]}
-                    disabled={[1, 3].includes(aspectDisable) && !(1 & characterData.aspects1)}
+                    //if this aspect is not checked, disable it if aspectDisable is in state 1 or 3
+                    disabled={[1, 3].includes(aspectDisable) && !aspectsChecked[0]}
+                    //when the switch changes state, flip the appropriate bit
                     onCheckedChange={() => { transferInputData({ name: "aspects1", value: (1 ^ characterData.aspects1) }) }} /> <Label>Aspect 1</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
@@ -163,7 +176,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 1" name="aspects2-1"
                     checked={aspectsChecked[1]}
-                    disabled={[2, 3].includes(aspectDisable) && !(1 & characterData.aspects2)}
+                    disabled={[2, 3].includes(aspectDisable) && !aspectsChecked[1]}
                     onCheckedChange={() => { transferInputData({ name: "aspects2", value: (1 ^ characterData.aspects2) }) }} />
                   <Label htmlFor={field.name}>Aspect 1</Label>
                 </div>
@@ -177,7 +190,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 2" name="aspects1-2"
                     checked={aspectsChecked[2]}
-                    disabled={[1, 3].includes(aspectDisable) && !(2 & characterData.aspects1)}
+                    disabled={[1, 3].includes(aspectDisable) && !aspectsChecked[2]}
                     onCheckedChange={() => { transferInputData({ name: "aspects1", value: (2 ^ characterData.aspects1) }) }} />
                   <Label htmlFor={field.name}>Aspect 2</Label>
                 </div>
@@ -189,7 +202,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 2" name="aspects2-2"
                     checked={aspectsChecked[3]}
-                    disabled={[2, 3].includes(aspectDisable) && !(2 & characterData.aspects2)}
+                    disabled={[2, 3].includes(aspectDisable) && !aspectsChecked[3]}
                     onCheckedChange={() => { transferInputData({ name: "aspects2", value: (2 ^ characterData.aspects2) }) }} />
                   <Label htmlFor={field.name}>Aspect 2</Label>
                 </div>
@@ -203,7 +216,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 3" name="aspects1-3"
                     checked={aspectsChecked[4]}
-                    disabled={[1, 3].includes(aspectDisable) && !(4 & characterData.aspects1)}
+                    disabled={[1, 3].includes(aspectDisable) && !aspectsChecked[4]}
                     onCheckedChange={() => { transferInputData({ name: "aspects1", value: (4 ^ characterData.aspects1) }) }} />
                   <Label htmlFor={field.name}>Aspect 3</Label>
                 </div>
@@ -215,7 +228,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 3" name="aspects2-3"
                     checked={aspectsChecked[5]}
-                    disabled={[2, 3].includes(aspectDisable) && !(4 & characterData.aspects2)}
+                    disabled={[2, 3].includes(aspectDisable) && !aspectsChecked[5]}
                     onCheckedChange={() => { transferInputData({ name: "aspects2", value: (4 ^ characterData.aspects2) }) }} />
                   <Label htmlFor={field.name}>Aspect 3</Label>
                 </div>
@@ -229,7 +242,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 4" name="aspects1-4"
                     checked={aspectsChecked[6]}
-                    disabled={[1, 3].includes(aspectDisable) && !(8 & characterData.aspects1)}
+                    disabled={[1, 3].includes(aspectDisable) && !aspectsChecked[6]}
                     onCheckedChange={() => { transferInputData({ name: "aspects1", value: (8 ^ characterData.aspects1) }) }} />
                   <Label>Aspect 4</Label>
                 </div>
@@ -241,7 +254,7 @@ export default function Specialties(characterData: Character, setCharacterData: 
                 <div className="flex flex-row gap-1">
                   <Switch id="aspect 4" name="aspects2-4"
                     checked={aspectsChecked[7]}
-                    disabled={[2, 3].includes(aspectDisable) && !(8 & characterData.aspects2)}
+                    disabled={[2, 3].includes(aspectDisable) && !aspectsChecked[7]}
                     onCheckedChange={() => { transferInputData({ name: "aspects2", value: (8 ^ characterData.aspects2) }) }} />
                   <Label>Aspect 4</Label>
                 </div>

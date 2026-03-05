@@ -23,8 +23,11 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 })
 
+//this page is the basic tab container system for the character creation menu.  
+// all the character creation details are on the otherfiles in this folder
 export default function characterForm() {
 
+  //currently unused, but can be used to enforce restrictions on forms
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,10 +36,13 @@ export default function characterForm() {
     },
   })
 
+  //get the logged in user, if available
   const {user} = useAuth();
 
+  //create an empty character, for now.   this will be the master data that everything will update or reference
   const [characterData, setCharacterData] = useState<Character>({
     id: null,
+    //gets the user id if there is one, blank other wise. 
     userId: user?.id || "",
     name: "",
     specialty1: 0,
@@ -55,6 +61,7 @@ export default function characterForm() {
     copper: 0
   })
 
+  //triggers when someone presses the submit button. just a simple API call to save the character and get the new character ID.
   const apiTrigger = async ()=>{
     await useCharacterSave(characterData).then(data=>{
     console.log(data);
@@ -73,6 +80,7 @@ export default function characterForm() {
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             Welcome to the Spell Blade character creator!
           </h1>
+          {/*sets up the tabs menu.  the tabs are just simple calls to other files that render on click */}
           <Tabs defaultValue="start" orientation="vertical">
             <TabsList>
               <TabsTrigger value="start">Start</TabsTrigger>
@@ -81,6 +89,7 @@ export default function characterForm() {
               <TabsTrigger value="equipment">Equipment</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
             </TabsList>
+            {/*all the functions take the character data and its set function so they can update it */}
             <TabsContent value="specialties">{Specialties(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="start">{Start(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="skills">{Skills(characterData, setCharacterData)}</TabsContent>
