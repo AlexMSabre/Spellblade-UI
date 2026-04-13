@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
-import Character from "@/types/characterTypes";
+import {Character} from "@/types/characterTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
@@ -18,6 +18,7 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 })
 
+//the initial state for any landing on the /character screen.  contains the name and aspect level fields
 export default function Start(characterData: Character, setCharacterData: Function) {
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -28,6 +29,7 @@ export default function Start(characterData: Character, setCharacterData: Functi
     },
   })
 
+  //update character name.  this is the default update handler for anything without special requirements
   const transferInputData = (e: any) => {
     let name = e.currentTarget.name;
     let value = e.currentTarget.value;
@@ -38,7 +40,9 @@ export default function Start(characterData: Character, setCharacterData: Functi
     }))
   }
 
+  //set the aspect level
   const transferSelectData = (e: any) => {
+    //if the new aspect level is Less than it used to be, wipe the aspects of both specialties
     let newLevel = parseInt(e)> characterData.aspectLevel;
     setCharacterData((prev: any) => ({
       ...prev,

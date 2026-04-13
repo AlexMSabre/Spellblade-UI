@@ -1,7 +1,7 @@
 "use client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCharacterByAccId } from "@/hooks/useCharacterByAccId";
-import Character from "@/types/characterTypes";
+import { Character } from "@/types/characterTypes";
 import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import { useEffect, useState } from "react";
 
@@ -10,17 +10,26 @@ export default function characterSelect() {
     const [characterList, setCharacterList] = useState<Character[]>([]);
     //gets the user data, bounces them if they aren't signed in
     const { user, loading } = useAuth({ ensureSignedIn: true });
+    const [characterLoad, setCharacterLoad] = useState(false);
 
 
     //gets all the characters associated with the user
     useEffect(() => {
         if (user) {
             useCharacterByAccId(user.id).then((result) => {
-                setCharacterList(result.charactersByAccId);
+                setCharacterList(result.data.charactersByUserId);
+                console.log(result);
             });
         }
 
-    })
+    }, [user]);
+
+    useEffect(() => {
+        setCharacterLoad(true);
+        console.log(characterList);
+    }, [characterList]);
+
+    if (!characterLoad) { return (<p>Is loading</p>) };
 
 
     return (
@@ -41,9 +50,9 @@ export default function characterSelect() {
                 </TableHeader>
                 <TableBody>
                     {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
-                    {characterList.map((character) => (
+                    {characterLoad && characterList?.map((character) => (
                         <TableRow key={character.name}>
-                            <TableCell>{character.name}</TableCell>
+                            <TableCell><a href={"localhost:3000/character/sheet?id="+character.userId}>{character.name}</a></TableCell>
                             <TableCell>{character.aspectLevel}</TableCell>
                             <TableCell>{character.specialty1}</TableCell>
                             <TableCell>{character.specialty2}</TableCell>

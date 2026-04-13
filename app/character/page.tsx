@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import z from "zod";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import  Character  from "@/types/characterTypes";
+import  {Character}  from "@/types/characterTypes";
 import { useCharacterSave } from "@/hooks/useCharacterSave";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Specialties from "./specialties";
@@ -11,6 +11,8 @@ import {useForm } from "react-hook-form";
 import Skills from "./skills";
 import Start from "./start";
 import { useAuth } from "@workos-inc/authkit-nextjs/components";
+import Equipment from "./equipment";
+import { Inventory, InventoryDAO, Item } from "@/types/itemTypes";
 
 const formSchema = z.object({
   title: z
@@ -39,6 +41,8 @@ export default function characterForm() {
   //get the logged in user, if available
   const {user} = useAuth();
 
+  const [inventoryData, setInventoryData] = useState<InventoryDAO[]>([]);
+
   //create an empty character, for now.   this will be the master data that everything will update or reference
   const [characterData, setCharacterData] = useState<Character>({
     id: null,
@@ -56,19 +60,21 @@ export default function characterForm() {
     baseTechnique: 0,
     baseFocus: 0,
     baseSense: 0,
+    proficiencies: "null,null,null",
     gold: 0,
     silver: 0,
     copper: 0
   })
 
   //triggers when someone presses the submit button. just a simple API call to save the character and get the new character ID.
-  const apiTrigger = async ()=>{
-    await useCharacterSave(characterData).then(data=>{
-    console.log(data);
+  const apiTrigger = ()=>{
+    useCharacterSave(characterData, inventoryData).then((data)=>{
+    let updates = data.data.data.saveCharacter;
     setCharacterData((prev)=>({
         ...prev,
-        id: data?.createCharacter?.id
-    }))
+        id: updates?.character.id
+    }));
+    setInventoryData(updates?.inventory);
   })
   };
 
@@ -93,7 +99,7 @@ export default function characterForm() {
             <TabsContent value="specialties">{Specialties(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="start">{Start(characterData, setCharacterData)}</TabsContent>
             <TabsContent value="skills">{Skills(characterData, setCharacterData)}</TabsContent>
-            <TabsContent value="equipment">Equipment</TabsContent>
+            <TabsContent value="equipment">{Equipment(characterData, setCharacterData, inventoryData, setInventoryData)}</TabsContent>
             <TabsContent value="background">Background</TabsContent>
           </Tabs>
         </div>

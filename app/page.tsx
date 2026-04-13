@@ -1,8 +1,13 @@
 import { signOut } from "@workos-inc/authkit-nextjs";
 import Link from "next/link";
+//this is the base landing page.  (/) right now it is just links and signin/out.  
+// you can put whatever you want in the Home function as long as it returns a "JSX" element - basically just HTML5 formatting
 
+//the basic app layout for any NEXT.js project is that folders/packages are the URL routes, and then page.tsx files determine what goes at those routes.
+//route.tsx files are for simple redirects
 export default function Home() {
   return (
+    //there is some css styling done by the classnames here. i forgot what this is called, but it can be a good alternative to .css files for every element.
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         

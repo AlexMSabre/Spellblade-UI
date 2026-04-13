@@ -3,11 +3,11 @@ import { ButtonGroup } from "@/components/ui/button-group";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import Character from "@/types/characterTypes";
+import {Character} from "@/types/characterTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Minus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import z from "zod";
 
 const formSchema = z.object({
@@ -31,8 +31,11 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     },
   })
 
+  //this controls the dynamic fields for "Other" Ancestry
   const [ancestorOther, setAncestorOther] = useState(false);
+  //these log the various skill bonus associated with the character and then combine them into "total bonuses" 
   //the order is always fitness, technique, focus, sense
+  //this is empty for now but will be updated later
   const [ancestorBonus, setAncestorBonus] = useState<number[]>([0, 0, 0, 0]);
   const [specBonuses, setSpecBonuses] = useState<number[]>([0, 0, 0, 0]);
   const [totalBonuses, setTotalBonuses] = useState<number[]>([
@@ -41,6 +44,8 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     ancestorBonus[2] + specBonuses[2],
     ancestorBonus[3] + specBonuses[3]
   ]);
+
+  //this calculates the number of points alloted to each skill 
   const [skillPointAllocation, setSkillPointAllocation] = useState<number[]>([
     Math.max(characterData.baseFitness - totalBonuses[0], 0),
     Math.max(characterData.baseTechnique - totalBonuses[1], 0),
@@ -56,11 +61,14 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     }
   }
 
+  //keeps point totals up to date and within bounds
   const handleSkillChanges = (e: any) => {
+    //parses field names
     let name = e.currentTarget.name.split("-");
     let oldValue = characterData["base" + name[0]];
     let direction = name[1].includes("up");
     let validChange = false;
+    //checks to see if the newly proposed value is valid
     if (typeof oldValue == "number") {
       let newValue = direction ? oldValue + 1 : oldValue - 1;
       switch (name[0]) {
@@ -77,6 +85,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
           validChange = (direction && newValue - totalBonuses[3] <= 6) || (!direction && newValue >= totalBonuses[3]);
           break;
       }
+      //if valid, update, otherwise dont change
       if (validChange) {
         setCharacterData((prev: any) => ({
           ...prev,
@@ -86,6 +95,8 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     }
   }
 
+  //when the character data changes, make sure the point allotment is also updated
+  //done separately to reduce logic and chances for bugs
   useEffect(() => {
     setSkillPointAllocation([
       Math.max(characterData.baseFitness - totalBonuses[0], 0),

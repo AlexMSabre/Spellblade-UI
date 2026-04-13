@@ -3,7 +3,7 @@ import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import Character from "@/types/characterTypes";
+import {Character} from "@/types/characterTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
