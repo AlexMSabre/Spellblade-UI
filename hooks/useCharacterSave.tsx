@@ -17,7 +17,7 @@ export const useCharacterSave = async (character: Character, inventoryData: Inve
             'Content-Type': 'application/json'
         },
         data: {
-            query: `query Query($characterDAO: inputCharacterDAO) {saveCharacter(characterDAO: $characterDAO) {character {id userId name aspectLevel  aspects1 aspects2 specialty1 specialty2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
+            query: `query Query($characterDAO: inputCharacterDAO) {saveCharacter(characterDAO: $characterDAO) {character {id userId name aspectLevel  aspects1 aspects2 talent1 talent2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
     inventory { inventory {id characterId itemId equipped proficiency quantity} item {id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectId baseCost rarity}}}}`,
             variables: {characterDAO}
         }

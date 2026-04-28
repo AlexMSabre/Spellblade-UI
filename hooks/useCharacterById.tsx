@@ -4,13 +4,14 @@ import axios from "axios";
 export const useCharacterById = async (characterId: String) => {
     let data = JSON.stringify({
         query: `query Query($characterId: String) {
-   characterById(characterId: $characterId) {
-    character {id userId name aspectLevel  aspects1 aspects2 specialty1 specialty2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
-    inventory { inventory {id characterId itemId equipped proficiency quantity} item {id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectId baseCost rarity}
-    }
-  }
-}`,
-        variables: { "characterId": "69dbcd6128827027b2ab8b40" }
+            fullCharacterById(characterId: $characterId) {
+                character {name aspectLevel talent1 talent2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
+                inventory { inventory {equipped proficiency quantity} item {name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String baseCost rarity}}
+                aspects { name talentName flag description }
+                talents { name abilities description hpBonus prioritySkills role complexity keystone capstone}
+                }
+            }`,
+        variables: { "characterId": characterId }
     });
 
     let config = {

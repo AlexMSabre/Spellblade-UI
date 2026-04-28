@@ -26,7 +26,6 @@ export default function characterSelect() {
 
     useEffect(() => {
         setCharacterLoad(true);
-        console.log(characterList);
     }, [characterList]);
 
     if (!characterLoad) { return (<p>Is loading</p>) };
@@ -39,8 +38,8 @@ export default function characterSelect() {
                     <TableRow>
                         <TableHead>Name</TableHead>
                         <TableHead>Aspect Level</TableHead>
-                        <TableHead>Specialty 1</TableHead>
-                        <TableHead>Specialty 2</TableHead>
+                        <TableHead>talent 1</TableHead>
+                        <TableHead>talent 2</TableHead>
                         <TableHead>Ancestry Name</TableHead>
                         <TableHead>Fitness</TableHead>
                         <TableHead>Tech</TableHead>
@@ -52,10 +51,10 @@ export default function characterSelect() {
                     {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
                     {characterLoad && characterList?.map((character) => (
                         <TableRow key={character.name}>
-                            <TableCell><a href={"localhost:3000/character/sheet?id="+character.userId}>{character.name}</a></TableCell>
+                            <TableCell><a href={"http://localhost:3000/character/sheet?id="+character.id}>{character.name}</a></TableCell>
                             <TableCell>{character.aspectLevel}</TableCell>
-                            <TableCell>{character.specialty1}</TableCell>
-                            <TableCell>{character.specialty2}</TableCell>
+                            <TableCell>{character.talent1}</TableCell>
+                            <TableCell>{character.talent2}</TableCell>
                             <TableCell>{character.ancestryName}</TableCell>
                             <TableCell>{character.baseFitness}</TableCell>
                             <TableCell>{character.baseTechnique}</TableCell>

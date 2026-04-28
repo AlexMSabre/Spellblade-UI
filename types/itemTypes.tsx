@@ -29,3 +29,8 @@ export interface InventoryDAO {
     inventory: Inventory
     item: Item
 }
+
+export interface proficiencyDAO {
+    item: Item
+    mastery: boolean
+}

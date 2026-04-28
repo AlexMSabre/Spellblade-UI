@@ -19,7 +19,7 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 })
 
-export default function Specialties() {
+export default function talents() {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -29,9 +29,9 @@ export default function Specialties() {
     },
   })
 
-  const specialtyList = (<SelectContent>
+  const talentList = (<SelectContent>
     <SelectGroup>
-      <SelectLabel>Specialties</SelectLabel>
+      <SelectLabel>talents</SelectLabel>
       <SelectItem value="1">Witch</SelectItem>
       <SelectItem value="2">Wayfarer</SelectItem>
     </SelectGroup>
@@ -59,25 +59,25 @@ export default function Specialties() {
           <p>Choose your Specialites.</p>
           <div className="flex flex-row gap-7">
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor={field.name}>Specialty One</FieldLabel>
-              <Select name="specialty1">
+              <FieldLabel htmlFor={field.name}>talent One</FieldLabel>
+              <Select name="talent1">
                 <SelectTrigger className="w-full max-w-48">
-                  <SelectValue placeholder="Select a Specialty" />
+                  <SelectValue placeholder="Select a talent" />
                 </SelectTrigger>
                 <SelectContent>
-                  {specialtyList}
+                  {talentList}
                 </SelectContent>
               </Select>
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
             <Field>
-              <FieldLabel htmlFor={field.name}>Specialty Two</FieldLabel>
-              <Select name="specialty2">
+              <FieldLabel htmlFor={field.name}>talent Two</FieldLabel>
+              <Select name="talent2">
                 <SelectTrigger className="w-full max-w-48">
-                  <SelectValue placeholder="Select a Specialty" />
+                  <SelectValue placeholder="Select a talent" />
                 </SelectTrigger>
                 <SelectContent>
-                  {specialtyList}
+                  {talentList}
                 </SelectContent>
               </Select>
             </Field>

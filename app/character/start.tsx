@@ -42,7 +42,7 @@ export default function Start(characterData: Character, setCharacterData: Functi
 
   //set the aspect level
   const transferSelectData = (e: any) => {
-    //if the new aspect level is Less than it used to be, wipe the aspects of both specialties
+    //if the new aspect level is Less than it used to be, wipe the aspects of both talents
     let newLevel = parseInt(e)> characterData.aspectLevel;
     setCharacterData((prev: any) => ({
       ...prev,

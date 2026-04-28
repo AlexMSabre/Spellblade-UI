@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
+import "./globals.css";
 import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
 
 //this is the "Root Layout" file.  it determines what wraps around the entire application and all other layout files will source from this one
