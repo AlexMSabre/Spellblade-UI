@@ -1,4 +1,3 @@
-import Character from "@/types/characterTypes";
 import axios from "axios";
 
 //calls the endpoint to save the character
@@ -8,7 +7,7 @@ export const useWeaponList = async () => {
     let data = JSON.stringify({
         query: `query Query {
    getWeaponList {
-    id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectId baseCost rarity
+    id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectName baseCost rarity
   }
 }`,
         variables: {}

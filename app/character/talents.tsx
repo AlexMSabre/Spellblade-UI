@@ -1,16 +1,17 @@
-import { Card, CardHeader } from "@/components/ui/card";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
+import { Card } from "@/components/ui/card";
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Character } from "@/types/characterTypes";
+import { Character, CharacterState } from "@/types/characterTypes";
 import { Aspect, Talent, TalentDAO } from "@/types/talentTypes";
 import { useTalentAndAspectsData } from "@/hooks/useTalentAndAspectsData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
-import { getTalentsList } from "@/hooks/getTalentsList";
+import { getTalentsList } from "@/hooks/useGetTalentsList";
+import { capstoneEffectList, keystoneEffectList } from "@/types/Enums";
 
 const formSchema = z.object({
   title: z
@@ -23,7 +24,7 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 })
 
-export default function Talents(characterData: Character, setCharacterData: Function) {
+export default function Talents(characterData: Character, setCharacterData: Function, characterState: CharacterState, setCharacterState: Function) {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,9 +47,14 @@ export default function Talents(characterData: Character, setCharacterData: Func
   const [aspectDisable, setAspectDisable] = useState(0);
   //stores the generic data from the talents you have currently
   const [talentData, setTalentData] = useState<TalentDAO[]>([]);
+  const [dirtyTalents, setDirtyTalents] = useState<boolean>(false);
   //stores the list of names of ALL talents as a dropdown menu selection
-  const [talentList] = useState(getTalentsList().then((result) => {
-    return (
+  const [talentList, setTalentList] = useState(<SelectGroup>
+        <SelectLabel>talents</SelectLabel>
+      </SelectGroup>)
+  
+  useEffect(()=> {getTalentsList().then((result) => {
+    setTalentList(
       <SelectGroup>
         <SelectLabel>talents</SelectLabel>
         {result.data.data.getTalentsList.map((talent: string) => (
@@ -56,7 +62,7 @@ export default function Talents(characterData: Character, setCharacterData: Func
         ))}
       </SelectGroup>
     );
-  }));
+  })}, []);
 
   //when character data is updated, make sure everything else is updated
   useEffect(() => {
@@ -78,11 +84,29 @@ export default function Talents(characterData: Character, setCharacterData: Func
     } else {
       setAspectDisable(0);
     }
+    let activeEffects = characterState.activeEffects
+    let talent1 = characterData.talent1
+    let talent2 = characterData.talent2
+    //if each talent has enough aspects, check to see if the key/capstone is already present, and if the stone exists at all, add it.
+    activeEffects += count1 >= 2 && !activeEffects.includes(talent1 + " Keystone") && keystoneEffectList.includes(talent1) ? talent1 + " Keystone,": "";
+    activeEffects += count1 == 4 && !activeEffects.includes(talent1 + " Capstone") && capstoneEffectList.includes(talent1) ? talent1 + " Capstone," : "";
+
+    activeEffects += count2 >= 2 && !activeEffects.includes(talent2 + " Keystone") && keystoneEffectList.includes(talent2) ? talent2 + " Keystone," : "";
+    activeEffects += count2 == 4 && !activeEffects.includes(talent2 + " Capstone") && capstoneEffectList.includes(talent2) ? talent2 + " Capstone," : "";
+
+    setCharacterState((prev:any)=>({
+      ...prev,
+      activeEffects: activeEffects
+    }))
 
     //gets the data for the currently selected talents
-    useTalentAndAspectsData(characterData.talent1, characterData.talent2).then((result) => {
-      setTalentData(result.data.data.getTalentAndAspectsData);
-    });
+    if (dirtyTalents) {
+      useTalentAndAspectsData(characterData.talent1, characterData.talent2).then((result) => {
+        setTalentData(result.data.data.getTalentAndAspectsData);
+      });
+
+      setDirtyTalents(false);
+    }
   }, [characterData]);
 
 
@@ -97,21 +121,40 @@ export default function Talents(characterData: Character, setCharacterData: Func
         [name]: value,
       }))
   }
-  //when talent 1 is changed, set it in character data and wipe aspects
+
+  //when talent 1 is changed, set it in character data and wipe aspects and remove effects
   const transferSpec1Data = (e: string) => {
+    let activeRemoved = characterState.activeEffects.split(",")
+      .filter(x => !x.includes(characterData.talent1) && x!='').join(",")
+    activeRemoved += activeRemoved != "" ? "," + e + "," : e + ","
+    
+    console.log(activeRemoved);
+    setCharacterState((prev: any) => ({
+      ...prev,
+      activeEffects: activeRemoved,
+    }))
     setCharacterData((prev: any) => ({
       ...prev,
       talent1: e,
       aspects1: 0
     }))
+    setDirtyTalents(true);
   }
   //when talent 2 is changed, set it in character data and wipe aspects
-  const transferSpec2Data = (e: string) => {
+  const transferSpec2Data = (e: string) => {let activeRemoved = characterState.activeEffects.split(",")
+      .filter(x => !x.includes(characterData.talent2) && x!='').join(",")
+    activeRemoved += activeRemoved != "" ? "," + e + "," : e + ","
+    console.log(activeRemoved);
+    setCharacterState((prev: any) => ({
+      ...prev,
+      activeEffects: activeRemoved
+    }))
     setCharacterData((prev: any) => ({
       ...prev,
       talent2: e,
       aspects2: 0
     }))
+    setDirtyTalents(true);
 
   }
 
@@ -155,7 +198,7 @@ export default function Talents(characterData: Character, setCharacterData: Func
             <div className="grid grid-cols-1">
               {/**Start by Filtering talentData by talent name, using talent1 in the CharacterData object
                * Then get the list of aspects from the first(and only) result */}
-              {talentData.filter((dao) => dao.talent?.name == characterData.talent1)[0]?.aspects?.map((aspect: Aspect) => (
+              {talentData?.filter((dao) => dao.talent?.name == characterData.talent1)[0]?.aspects?.map((aspect: Aspect) => (
                 <Card key={aspect.name}>
                   <Field>
                     {/**log base 2 of the aspect.flag will give us an aspect number of 0-3 which we use as a name and key
@@ -179,7 +222,7 @@ export default function Talents(characterData: Character, setCharacterData: Func
 
             </div>
             <div className="grid grid-cols-1">
-              {talentData.filter((dao) => dao.talent?.name == characterData.talent2)[0]?.aspects?.map((aspect: Aspect) => (
+              {talentData?.filter((dao) => dao.talent?.name == characterData.talent2)[0]?.aspects?.map((aspect: Aspect) => (
                 <Card key={aspect.name}>
                   <Field>
                     <Switch id={"aspect " + Math.log2(aspect.flag)} name={"aspects2-" + Math.log2(aspect.flag)}

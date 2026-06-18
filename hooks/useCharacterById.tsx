@@ -6,7 +6,7 @@ export const useCharacterById = async (characterId: String) => {
         query: `query Query($characterId: String) {
             fullCharacterById(characterId: $characterId) {
                 character {name aspectLevel talent1 talent2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
-                inventory { inventory {equipped proficiency quantity} item {name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String baseCost rarity}}
+                inventory { inventory {equipped proficiency quantity} item {name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectName baseCost rarity}}
                 aspects { name talentName flag description }
                 talents { name abilities description hpBonus prioritySkills role complexity keystone capstone}
                 }

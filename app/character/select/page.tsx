@@ -17,8 +17,8 @@ export default function characterSelect() {
     useEffect(() => {
         if (user) {
             useCharacterByAccId(user.id).then((result) => {
-                setCharacterList(result.data.charactersByUserId);
                 console.log(result);
+                setCharacterList(result.data.charactersByUserId);
             });
         }
 

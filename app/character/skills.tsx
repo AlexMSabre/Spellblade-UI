@@ -2,13 +2,17 @@ import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import {Character} from "@/types/characterTypes";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useCalculateState } from "@/hooks/useCalculateState";
+import { useGetAncestryList } from "@/hooks/UseGetAncestryList";
+import { Ancestry, CalculatedState, Character, CharacterState, emptyCalculatedState } from "@/types/characterTypes";
+import { Item } from "@/types/itemTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Minus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
+import { effect } from "zod/v3";
 
 const formSchema = z.object({
   title: z
@@ -21,7 +25,7 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 })
 
-export default function Skills(characterData: Character, setCharacterData: Function) {
+export default function Skills(characterData: Character, setCharacterData: Function, characterState: CharacterState, setCharacterState: Function) {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,27 +35,44 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     },
   })
 
+
+  const [calculatedState, setCalculatedState] = useState<CalculatedState>(emptyCalculatedState);
+
   //this controls the dynamic fields for "Other" Ancestry
   const [ancestorOther, setAncestorOther] = useState(false);
-  //these log the various skill bonus associated with the character and then combine them into "total bonuses" 
-  //the order is always fitness, technique, focus, sense
-  //this is empty for now but will be updated later
-  const [ancestorBonus, setAncestorBonus] = useState<number[]>([0, 0, 0, 0]);
-  const [specBonuses, setSpecBonuses] = useState<number[]>([0, 0, 0, 0]);
-  const [totalBonuses, setTotalBonuses] = useState<number[]>([
-    ancestorBonus[0] + specBonuses[0],
-    ancestorBonus[1] + specBonuses[1],
-    ancestorBonus[2] + specBonuses[2],
-    ancestorBonus[3] + specBonuses[3]
+  const [ancestryList, setAncestryList] = useState(<SelectContent></SelectContent>);
+  const [effectMods, setEffectMods] = useState<number[]>([
+    Math.max(calculatedState?.fitness - characterData.baseFitness, 0),
+    Math.max(calculatedState?.technique - characterData.baseTechnique, 0),
+    Math.max(calculatedState?.focus - characterData.baseFocus, 0),
+    Math.max(calculatedState?.sense - characterData.baseSense, 0)
   ]);
 
-  //this calculates the number of points alloted to each skill 
-  const [skillPointAllocation, setSkillPointAllocation] = useState<number[]>([
-    Math.max(characterData.baseFitness - totalBonuses[0], 0),
-    Math.max(characterData.baseTechnique - totalBonuses[1], 0),
-    Math.max(characterData.baseFocus - totalBonuses[2], 0),
-    Math.max(characterData.baseSense - totalBonuses[3], 0)
-  ]);
+  useEffect(() => {
+    useCalculateState(characterState, characterData).then((data) => {
+      let newCalc = data.data.data.calculateState
+      setCalculatedState(newCalc);
+      setEffectMods([
+        Math.max(newCalc?.fitness - characterData.baseFitness, 0),
+        Math.max(newCalc?.technique - characterData.baseTechnique, 0),
+        Math.max(newCalc?.focus - characterData.baseFocus, 0),
+        Math.max(newCalc?.sense - characterData.baseSense, 0)
+      ]);
+    });
+  }, [characterState]);
+
+  useEffect(() => {
+    useGetAncestryList().then((ancestries) => {
+      setAncestryList(
+        <SelectContent>
+          <SelectGroup>
+            {ancestries.data.data.getAncestryList.map((ancestry: Ancestry) => (
+              <SelectItem key={ancestry.name.toString()} value={ancestry.name.toString()}>{ancestry.name}</SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>);
+    });
+  }, [])
 
   const handleAncestryChange = (value: string) => {
     if (value === "other") {
@@ -59,6 +80,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     } else {
       setAncestorOther(false);
     }
+    //TODO: Ancestry
   }
 
   //keeps point totals up to date and within bounds
@@ -71,20 +93,8 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     //checks to see if the newly proposed value is valid
     if (typeof oldValue == "number") {
       let newValue = direction ? oldValue + 1 : oldValue - 1;
-      switch (name[0]) {
-        case "Fitness":
-          validChange = (direction && newValue - totalBonuses[0] <= 6) || (!direction && newValue >= totalBonuses[0]);
-          break;
-        case "Technique":
-          validChange = (direction && newValue - totalBonuses[1] <= 6) || (!direction && newValue >= totalBonuses[1]);
-          break;
-        case "Focus":
-          validChange = (direction && newValue - totalBonuses[2] <= 6) || (!direction && newValue >= totalBonuses[2]);
-          break;
-        case "Sense":
-          validChange = (direction && newValue - totalBonuses[3] <= 6) || (!direction && newValue >= totalBonuses[3]);
-          break;
-      }
+      validChange = (direction && newValue <= 6) || (!direction && newValue >= 0);
+
       //if valid, update, otherwise dont change
       if (validChange) {
         setCharacterData((prev: any) => ({
@@ -95,17 +105,6 @@ export default function Skills(characterData: Character, setCharacterData: Funct
     }
   }
 
-  //when the character data changes, make sure the point allotment is also updated
-  //done separately to reduce logic and chances for bugs
-  useEffect(() => {
-    setSkillPointAllocation([
-      Math.max(characterData.baseFitness - totalBonuses[0], 0),
-      Math.max(characterData.baseTechnique - totalBonuses[1], 0),
-      Math.max(characterData.baseFocus - totalBonuses[2], 0),
-      Math.max(characterData.baseSense - totalBonuses[3], 0)
-    ]);
-  }, [characterData])
-
   return (
     <div>
       <h2>ancestry</h2>
@@ -113,10 +112,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
         <SelectTrigger className="w-full max-w-48">
           <SelectValue placeholder="Select an ancestry" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="elf">Elf</SelectItem>
-          <SelectItem value="other">Other</SelectItem>
-        </SelectContent>
+        {ancestryList}
       </Select>
       {ancestorOther && (
         <div>
@@ -147,7 +143,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
           <FieldLabel>Fitness</FieldLabel>
           <ButtonGroup>
             <Button size="icon" variant="outline" type="button" aria-label="Fitness-up" name="Fitness-up" onClick={handleSkillChanges}><Plus /></Button>
-            <Input value={characterData?.baseFitness} readOnly></Input>
+            <Input value={characterData?.baseFitness + effectMods[0]} readOnly></Input>
             <Button size="icon" variant="outline" type="button" name="Fitness-down" onClick={handleSkillChanges}><Minus /></Button>
           </ButtonGroup>
         </Field>
@@ -155,7 +151,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
           <FieldLabel>Technique</FieldLabel>
           <ButtonGroup>
             <Button size="icon" variant="outline" type="button" name="Technique-up" onClick={handleSkillChanges}><Plus /></Button>
-            <Input value={characterData?.baseTechnique} readOnly></Input>
+            <Input value={characterData?.baseTechnique + effectMods[1]} readOnly></Input>
             <Button size="icon" variant="outline" type="button" name="Technique-down" onClick={handleSkillChanges}><Minus /></Button>
           </ButtonGroup>
         </Field>
@@ -163,7 +159,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
           <FieldLabel>Focus</FieldLabel>
           <ButtonGroup>
             <Button size="icon" variant="outline" type="button" name="Focus-up" onClick={handleSkillChanges}><Plus /></Button>
-            <Input value={characterData?.baseFocus} readOnly></Input>
+            <Input value={characterData?.baseFocus + effectMods[2]} readOnly></Input>
             <Button size="icon" variant="outline" type="button" name="Focus-down" onClick={handleSkillChanges}><Minus /></Button>
           </ButtonGroup>
         </Field>
@@ -173,7 +169,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
             <ButtonGroup orientation="vertical">
               <ButtonGroup>
                 <Button size="icon" variant="outline" type="button" name="Sense-up" onClick={handleSkillChanges}><Plus /></Button>
-                <Input value={characterData?.baseSense} readOnly></Input>
+                <Input value={characterData?.baseSense + effectMods[3]} readOnly></Input>
                 <Button size="icon" variant="outline" type="button" name="Sense-down" onClick={handleSkillChanges}><Minus /></Button>
               </ButtonGroup>
             </ButtonGroup>
@@ -181,16 +177,16 @@ export default function Skills(characterData: Character, setCharacterData: Funct
         </Field>
       </div>
       <div className="flex flex-row gap-16">
-        <Input value={"+" + skillPointAllocation[0]} aria-label="fit-points" readOnly />
-        <Input value={"+" + skillPointAllocation[1]} aria-label="fit-points" readOnly />
-        <Input value={"+" + skillPointAllocation[2]} aria-label="fit-points" readOnly />
-        <Input value={"+" + skillPointAllocation[3]} aria-label="fit-points" readOnly />
+        <Input value={characterData.baseFitness} aria-label="fit-points" readOnly />
+        <Input value={characterData.baseTechnique} aria-label="fit-points" readOnly />
+        <Input value={characterData.baseFocus} aria-label="fit-points" readOnly />
+        <Input value={characterData.baseSense} aria-label="fit-points" readOnly />
       </div>
       <div className="flex flex-row gap-16">
-        <Input readOnly defaultValue="0" name="fitness" />
-        <Input readOnly defaultValue="0" name="technique" />
-        <Input readOnly defaultValue="0" name="focus" />
-        <Input readOnly defaultValue="0" name="sense" />
+        <Input readOnly value={"+" + effectMods[0]} name="fitness" />
+        <Input readOnly value={"+" + effectMods[1]} name="technique" />
+        <Input readOnly value={"+" + effectMods[2]} name="focus" />
+        <Input readOnly value={"+" + effectMods[3]} name="sense" />
       </div>
     </div>
   );

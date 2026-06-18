@@ -1,10 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Field } from "@/components/ui/field";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useWeaponList } from "@/hooks/useWeaponList";
 import { Character } from "@/types/characterTypes";
-import { Inventory, InventoryDAO, Item } from "@/types/itemTypes";
+import { InventoryDAO, Item } from "@/types/itemTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";

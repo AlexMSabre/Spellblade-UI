@@ -1,13 +1,14 @@
-import { Character } from "@/types/characterTypes";
+import { Character, CharacterState } from "@/types/characterTypes";
 import { InventoryDAO } from "@/types/itemTypes";
 import axios from "axios";
 
 //calls the endpoint to save the character
-export const useCharacterSave = async (character: Character, inventoryData: InventoryDAO[]) => {
+export const useCharacterSave = async (character: Character, inventoryData: InventoryDAO[], characterState: CharacterState) => {
 
     const characterDAO = {
         character: character,
-        inventory: inventoryData
+        inventory: inventoryData,
+        characterState: characterState
     }
 
     let result = await axios({
@@ -17,8 +18,8 @@ export const useCharacterSave = async (character: Character, inventoryData: Inve
             'Content-Type': 'application/json'
         },
         data: {
-            query: `query Query($characterDAO: inputCharacterDAO) {saveCharacter(characterDAO: $characterDAO) {character {id userId name aspectLevel  aspects1 aspects2 talent1 talent2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies gold silver copper}
-    inventory { inventory {id characterId itemId equipped proficiency quantity} item {id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectId baseCost rarity}}}}`,
+            query: `query Query($characterDAO: inputCharacterDAO) {saveCharacter(characterDAO: $characterDAO) {character {id userId name aspectLevel size aspects1 aspects2 talent1 talent2 ancestryTrait ancestryName baseFitness baseTechnique baseFocus baseSense proficiencies}
+    inventory { inventory {id characterId itemId equipped proficiency quantity} item {id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectName baseCost rarity}}}}`,
             variables: {characterDAO}
         }
     });

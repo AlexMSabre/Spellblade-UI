@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import z from "zod";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import  {Character, emptyCharacter}  from "@/types/characterTypes";
+import  {Character, emptyCharacter, CharacterState}  from "@/types/characterTypes";
 import { useCharacterSave } from "@/hooks/useCharacterSave";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Talents from "./talents";
@@ -12,7 +12,7 @@ import Skills from "./skills";
 import Start from "./start";
 import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import Equipment from "./equipment";
-import { Inventory, InventoryDAO, Item } from "@/types/itemTypes";
+import { InventoryDAO } from "@/types/itemTypes";
 
 const formSchema = z.object({
   title: z
@@ -44,17 +44,26 @@ export default function characterForm() {
   const [inventoryData, setInventoryData] = useState<InventoryDAO[]>([]);
 
   //create an empty character, for now.   this will be the master data that everything will update or reference
-  const [characterData, setCharacterData] = useState<Character>(emptyCharacter)
+  const [characterData, setCharacterData] = useState<Character>(emptyCharacter);
+  const [characterState, setCharacterState] = useState<CharacterState>({
+    id: "",
+    characterId:"",
+    hitPoints: 40,
+    armor: 0,
+    manaPoints: 0,
+    activeEffects: "",
+    inactiveEffects: ""
+  });
 
   //triggers when someone presses the submit button. just a simple API call to save the character and get the new character ID.
   const apiTrigger = ()=>{
-    useCharacterSave(characterData, inventoryData).then((data)=>{
-      console.log(data);
+    useCharacterSave(characterData, inventoryData, characterState).then((data)=>{
     let updates = data.data.data.saveCharacter;
     setCharacterData((prev)=>({
         ...prev,
         id: updates?.character.id,
     }));
+    setCharacterState(updates?.characterState)
     setInventoryData(updates?.inventory);
   })
   };
@@ -66,7 +75,6 @@ export default function characterForm() {
           userId: user.id
       }));
     }
-    console.log(user);
   }, [user])
 
   return (
@@ -81,15 +89,15 @@ export default function characterForm() {
           <Tabs defaultValue="start" orientation="vertical">
             <TabsList>
               <TabsTrigger value="start">Start</TabsTrigger>
-              <TabsTrigger value="talents">talents</TabsTrigger>
+              <TabsTrigger value="talents">Talents</TabsTrigger>
               <TabsTrigger value="skills">Skills</TabsTrigger>
               <TabsTrigger value="equipment">Equipment</TabsTrigger>
               <TabsTrigger value="background">Background</TabsTrigger>
             </TabsList>
             {/*all the functions take the character data and its set function so they can update it */}
-            <TabsContent value="talents">{Talents(characterData, setCharacterData)}</TabsContent>
+            <TabsContent value="talents">{Talents(characterData, setCharacterData, characterState, setCharacterState)}</TabsContent>
             <TabsContent value="start">{Start(characterData, setCharacterData)}</TabsContent>
-            <TabsContent value="skills">{Skills(characterData, setCharacterData)}</TabsContent>
+            <TabsContent value="skills">{Skills(characterData, setCharacterData, characterState, setCharacterState)}</TabsContent>
             <TabsContent value="equipment">{Equipment(characterData, setCharacterData, inventoryData, setInventoryData)}</TabsContent>
             <TabsContent value="background">Background</TabsContent>
           </Tabs>
