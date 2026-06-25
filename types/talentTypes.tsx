@@ -10,7 +10,8 @@ export interface Aspect {
 export interface Talent { 
     id: string
     name: string
-    abilities: string
+    ability1: string
+    ability2: string
     description: string
     hpBonus: number
     prioritySkills: string
@@ -18,11 +19,10 @@ export interface Talent {
     complexity: number
     keystone: string
     capstone: string
-    effectId: string
-    keystoneEffectId: string
+    caster: boolean
 }
 
 export interface TalentDAO {
     talent: Talent
-    aspects: Aspect[]
+    attributes: Aspect[]
 }

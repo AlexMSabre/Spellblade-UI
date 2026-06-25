@@ -5,12 +5,10 @@ export interface Item {
     equippable: boolean
     size: string
     weight: number
-    description1: string
-    description2: string
-    description3: string
+    description: string
+    properties: string
     attack1String: string
     attack2String: string
-    attack3String: string
     effectName: string
     baseCost: number
     rarity: string
@@ -22,7 +20,6 @@ export interface Inventory {
     characterId: string | null
     itemId: string
     equipped: boolean
-    proficiency: number
     quantity: number
 }
 

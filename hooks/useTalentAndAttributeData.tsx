@@ -1,12 +1,12 @@
 import axios from "axios";
 
 //calls the endpoint to get all of the characters associated with the current user.
-export const useTalentAndAspectsData = async (talent1Name: String, talent2Name: String) => {
+export const useTalentAndAttributeData = async (talent1Name: String, talent2Name: String) => {
     let data = JSON.stringify({
         query: `query Query($talent1Name: String, $talent2Name: String) {
-   getTalentAndAspectsData(talent1Name: $talent1Name, talent2Name: $talent2Name) {
-    talent { name abilities description hpBonus prioritySkills role complexity keystone capstone}
-    aspects { name talentName flag description }
+   getTalentAndAttributeData(talent1Name: $talent1Name, talent2Name: $talent2Name) {
+    talent { name ability1 ability2 description hpBonus prioritySkills role complexity keystone capstone}
+    attributes { name talentName flag description }
   }
 }`,
         variables: { "talent1Name": talent1Name, "talent2Name": talent2Name }

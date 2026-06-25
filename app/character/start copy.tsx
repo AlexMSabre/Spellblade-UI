@@ -82,13 +82,13 @@ export default function talents() {
               </Select>
             </Field>
           </div>
-          <h3>Aspects</h3>
-          <p> please choose your aspects.  we will make this menu dynamic and collapsible later</p>
+          <h3>Attributes</h3>
+          <p> please choose your attributes.  we will make this menu dynamic and collapsible later</p>
           <div className="flex flex-row gap-4">
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 1" name="aspect1-1" /> <Label htmlFor={field.name}>Aspect 1</Label>
+                  <Switch id="aspect 1" name="attribute1-1" /> <Label htmlFor={field.name}>Aspect 1</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>
@@ -96,7 +96,7 @@ export default function talents() {
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 1" name="aspect2-1" /> <Label htmlFor={field.name}>Aspect 1</Label>
+                  <Switch id="aspect 1" name="attribute2-1" /> <Label htmlFor={field.name}>Aspect 1</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>
@@ -106,7 +106,7 @@ export default function talents() {
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 2" name="aspect1-2" /> <Label htmlFor={field.name}>Aspect 2</Label>
+                  <Switch id="aspect 2" name="attribute1-2" /> <Label htmlFor={field.name}>Aspect 2</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>
@@ -114,25 +114,7 @@ export default function talents() {
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 2" name="aspect2-2" /> <Label htmlFor={field.name}>Aspect 2</Label>
-                </div>
-                <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
-              </Field>
-            </Card>
-          </div>
-          <div className="flex flex-row gap-4">
-            <Card>
-              <Field>
-                <div className="flex flex-row gap-1">
-                  <Switch id="aspect 3" name="aspect1-3" /> <Label htmlFor={field.name}>Aspect 3</Label>
-                </div>
-                <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
-              </Field>
-            </Card>
-            <Card>
-              <Field>
-                <div className="flex flex-row gap-1">
-                  <Switch id="aspect 3" name="aspect2-3" /> <Label htmlFor={field.name}>Aspect 3</Label>
+                  <Switch id="aspect 2" name="attribute2-2" /> <Label htmlFor={field.name}>Aspect 2</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>
@@ -142,7 +124,7 @@ export default function talents() {
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 4" name="aspect1-4" /> <Label htmlFor={field.name}>Aspect 4</Label>
+                  <Switch id="aspect 3" name="attribute1-3" /> <Label htmlFor={field.name}>Aspect 3</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>
@@ -150,7 +132,25 @@ export default function talents() {
             <Card>
               <Field>
                 <div className="flex flex-row gap-1">
-                  <Switch id="aspect 4" name="aspect2-4" /> <Label htmlFor={field.name}>Aspect 4</Label>
+                  <Switch id="aspect 3" name="attribute2-3" /> <Label htmlFor={field.name}>Aspect 3</Label>
+                </div>
+                <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
+              </Field>
+            </Card>
+          </div>
+          <div className="flex flex-row gap-4">
+            <Card>
+              <Field>
+                <div className="flex flex-row gap-1">
+                  <Switch id="aspect 4" name="attribute1-4" /> <Label htmlFor={field.name}>Aspect 4</Label>
+                </div>
+                <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
+              </Field>
+            </Card>
+            <Card>
+              <Field>
+                <div className="flex flex-row gap-1">
+                  <Switch id="aspect 4" name="attribute2-4" /> <Label htmlFor={field.name}>Aspect 4</Label>
                 </div>
                 <FieldDescription>This is a very long aspect description that we are enjoying the reading of, hippie yippeee hooray</FieldDescription>
               </Field>

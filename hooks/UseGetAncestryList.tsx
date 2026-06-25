@@ -4,7 +4,7 @@ export const useGetAncestryList = async ()=>{
 let data = JSON.stringify({
   query: `query Query {
    getAncestryList {
-    id name description
+    id name trait size source
    }
 }`,
   variables: {}

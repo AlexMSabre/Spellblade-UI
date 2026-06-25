@@ -41,13 +41,13 @@ export default function Start(characterData: Character, setCharacterData: Functi
 
   //set the aspect level
   const transferSelectData = (e: any) => {
-    //if the new aspect level is Less than it used to be, wipe the aspects of both talents
-    let newLevel = parseInt(e)> characterData.aspectLevel;
+    //if the new aspect level is Less than it used to be, wipe the attributes of both talents
+    let newLevel = parseInt(e)> characterData.attributeLevel;
     setCharacterData((prev: any) => ({
       ...prev,
-      aspectLevel: parseInt(e),
-      aspects1: newLevel ? prev.aspects1 : 0,
-      aspects2: newLevel ? prev.aspects2 : 0,
+      attributeLevel: parseInt(e),
+      attribute1: newLevel ? prev.attribute1 : 0,
+      attribute2: newLevel ? prev.attribute2 : 0,
     }));
   }
 
@@ -68,14 +68,14 @@ export default function Start(characterData: Character, setCharacterData: Functi
       <div className="flex-shrink">
         <Field>
           <FieldLabel>Aspect Level</FieldLabel>
-          <Select name="aspectLevel" value={characterData?.aspectLevel?.toString()} 
+          <Select name="attributeLevel" value={characterData?.attributeLevel?.toString()} 
               onValueChange={transferSelectData}>
             <SelectTrigger className="w-full max-w-48">
               <SelectValue placeholder="Select aspect level" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Aspect Level</SelectLabel>
+                <SelectLabel>Attribute Level</SelectLabel>
                 <SelectItem value="0">0</SelectItem>
                 <SelectItem value="1">1</SelectItem>
                 <SelectItem value="2">2</SelectItem>

@@ -22,7 +22,7 @@ export default function characterSelect() {
     const [inventoryData, setInventoryData] = useState<InventoryDAO[]>([]);
     const [characterState, setCharacterState] = useState<CharacterState>(emptyCharacterState);
     const [calculatedState, setCalculatedState] = useState<CalculatedState>(emptyCalculatedState);
-    const [allData, setAllData] = useState({ aspects: [{ talentName: loading, name: loading, description: loading }], talents: [{ name: loading, description: loading, hpBonus: 2 }, { name: loading, description: loading, hpBonus: 2 }] });
+    const [allData, setAllData] = useState({ attributes: [{ talentName: loading, name: loading, description: loading }], talents: [{ name: loading, description: loading, hpBonus: 2 }, { name: loading, description: loading, hpBonus: 2 }] });
 
     const searchParams = useSearchParams();
     const searchId = searchParams.get('id')
@@ -125,11 +125,11 @@ export default function characterSelect() {
                     <h1>{allData.talents[0].name}</h1>
                     <p>{allData.talents[0].description}</p>
                     <div className="grid grid-cols-4 gap-7">
-                        {characterLoad && allData.aspects.filter((aspect) => aspect.talentName == allData.talents[0].name)
-                            .map((aspect) => (
-                                <Card key={aspect.name}>
-                                    <CardHeader>{aspect.name}</CardHeader>
-                                    {aspect.description}
+                        {characterLoad && allData.attributes.filter((attribute) => attribute.talentName == allData.talents[0].name)
+                            .map((attribute) => (
+                                <Card key={attribute.name}>
+                                    <CardHeader>{attribute.name}</CardHeader>
+                                    {attribute.description}
                                 </Card>
                             ))}
                     </div>
@@ -141,7 +141,7 @@ export default function characterSelect() {
                     <h1>{allData.talents[1].name}</h1>
                     <p>{allData.talents[1].description}</p>
                     <div className="grid grid-cols-4 gap-7">
-                        {characterLoad && allData.aspects.filter((aspect) => aspect.talentName == allData.talents[1].name)
+                        {characterLoad && allData.attributes.filter((aspect) => aspect.talentName == allData.talents[1].name)
                             .map((aspect) => (
                                 <Card key={aspect.name}>
                                     <CardHeader>{aspect.name}</CardHeader>

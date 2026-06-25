@@ -63,7 +63,8 @@ export default function characterForm() {
         ...prev,
         id: updates?.character.id,
     }));
-    setCharacterState(updates?.characterState)
+    if(updates?.characterState)
+      setCharacterState(updates?.characterState);
     setInventoryData(updates?.inventory);
   })
   };

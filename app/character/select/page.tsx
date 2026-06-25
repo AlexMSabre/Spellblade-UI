@@ -52,7 +52,7 @@ export default function characterSelect() {
                     {characterLoad && characterList?.map((character) => (
                         <TableRow key={character.name}>
                             <TableCell><a href={"http://localhost:3000/character/sheet?id="+character.id}>{character.name}</a></TableCell>
-                            <TableCell>{character.aspectLevel}</TableCell>
+                            <TableCell>{character.attributeLevel}</TableCell>
                             <TableCell>{character.talent1}</TableCell>
                             <TableCell>{character.talent2}</TableCell>
                             <TableCell>{character.ancestryName}</TableCell>

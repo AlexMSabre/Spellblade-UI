@@ -7,7 +7,7 @@ export const useWeaponList = async () => {
     let data = JSON.stringify({
         query: `query Query {
    getWeaponList {
-    id name itemType size equippable size weight description1 description2 description3 attack1String attack2String attack3String effectName baseCost rarity
+    id name itemType size equippable size weight description properties attack1String attack2String effectName baseCost rarity
   }
 }`,
         variables: {}

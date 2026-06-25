@@ -6,13 +6,11 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { useCalculateState } from "@/hooks/useCalculateState";
 import { useGetAncestryList } from "@/hooks/UseGetAncestryList";
 import { Ancestry, CalculatedState, Character, CharacterState, emptyCalculatedState } from "@/types/characterTypes";
-import { Item } from "@/types/itemTypes";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus, Minus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import { effect } from "zod/v3";
 
 const formSchema = z.object({
   title: z
