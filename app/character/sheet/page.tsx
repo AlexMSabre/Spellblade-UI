@@ -13,7 +13,12 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { check } from "zod";
 
-export default function characterSelect() {
+export default async function characterSelect({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+
     //gets the user data, bounces them if they aren't signed in
     // const { user } = useAuth();
     const loading = "Loading...."
@@ -24,8 +29,9 @@ export default function characterSelect() {
     const [calculatedState, setCalculatedState] = useState<CalculatedState>(emptyCalculatedState);
     const [allData, setAllData] = useState({ attributes: [{ talentName: loading, name: loading, description: loading }], talents: [{ name: loading, description: loading, hpBonus: 2 }, { name: loading, description: loading, hpBonus: 2 }] });
 
-    const searchParams = useSearchParams();
-    const searchId = searchParams.get('id')
+    const searchId = (await searchParams).id 
+
+
 
     const appendProficiencies = (profs: proficiencyDAO[]) => {
         let result = "";
@@ -39,7 +45,7 @@ export default function characterSelect() {
     }
 
     useEffect(() => {
-        if (searchId) {
+        if (typeof searchId == "string") {
             useFullCharacterById(searchId).then((result: any) => {
                 let data = result.data.data.fullCharacterById
                 let character = data.character;
