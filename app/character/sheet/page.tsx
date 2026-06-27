@@ -10,7 +10,7 @@ import { useFullCharacterById } from "@/hooks/useFullCharacterById";
 import { CalculatedState, Character, CharacterState, emptyCalculatedState, emptyCharacter, emptyCharacterState } from "@/types/characterTypes";
 import { InventoryDAO, proficiencyDAO } from "@/types/itemTypes";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { check } from "zod";
 
 export default function characterSelect() {
@@ -91,7 +91,7 @@ export default function characterSelect() {
 
 
     return (
-        <div>
+        <Suspense>
             <h1> Character Stats</h1>
             <div className="grid grid-cols-4 gap-7">
                 {characterLoad && Object.keys(characterData).map((key: string) => (
@@ -180,6 +180,6 @@ export default function characterSelect() {
                     ))}
                 </TableBody>
             </Table>
-        </div>
+        </Suspense>
     )
 }
