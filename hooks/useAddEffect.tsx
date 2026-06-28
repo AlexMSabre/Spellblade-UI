@@ -15,7 +15,7 @@ let data = JSON.stringify({
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
-  url: 'http://localhost:8080/graphql',
+  url: process.env.BACKEND_URI + '/graphql',
   headers: { 
     'Content-Type': 'application/json'
   },

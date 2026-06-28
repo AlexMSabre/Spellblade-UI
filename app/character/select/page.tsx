@@ -51,7 +51,7 @@ export default function characterSelect() {
                     {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
                     {characterLoad && characterList?.map((character) => (
                         <TableRow key={character.name}>
-                            <TableCell><a href={"http://localhost:3000/character/sheet?id="+character.id}>{character.name}</a></TableCell>
+                            <TableCell><a href={"/character/sheet?id="+character.id}>{character.name}</a></TableCell>
                             <TableCell>{character.attributeLevel}</TableCell>
                             <TableCell>{character.talent1}</TableCell>
                             <TableCell>{character.talent2}</TableCell>
