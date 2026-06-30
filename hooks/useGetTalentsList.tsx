@@ -14,7 +14,7 @@ export const getTalentsList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: '3.21.168.246:8080/graphql',
+        url: 'http://3.21.168.246:8080/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
