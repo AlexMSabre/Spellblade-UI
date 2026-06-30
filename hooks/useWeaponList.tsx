@@ -16,7 +16,7 @@ export const useWeaponList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'ec2-18-226-97-249.us-east-2.compute.amazonaws.com:8080/graphql',
+        url: 'https://ec2-18-226-97-249.us-east-2.compute.amazonaws.com:8080/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
