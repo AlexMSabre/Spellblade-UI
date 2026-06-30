@@ -14,7 +14,7 @@ export const getTalentsList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://ec2-18-226-97-249.us-east-2.compute.amazonaws.com/graphql',
+        url: 'https://ec2-18-226-97-249.us-east-2.compute.amazonaws.com:8443/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
