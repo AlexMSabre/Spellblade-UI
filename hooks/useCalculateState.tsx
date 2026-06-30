@@ -14,7 +14,7 @@ export const useCalculateState = async (state: CharacterState, character: Charac
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'ec2-13-59-16-57.us-east-2.compute.amazonaws.com:8080/graphql',
+        url: '18.226.97.249:8080/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
