@@ -13,7 +13,7 @@ let data = JSON.stringify({
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
-  url: 'ec2-13-59-16-57.us-east-2.compute.amazonaws.com:8080/graphql',
+  url: 'http://ec2-3-21-168-246.us-east-2.compute.amazonaws.com:8443/graphql',
   headers: { 
     'Content-Type': 'application/json'
   },
