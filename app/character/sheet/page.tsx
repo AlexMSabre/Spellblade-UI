@@ -11,9 +11,8 @@ import { CalculatedState, Character, CharacterState, emptyCalculatedState, empty
 import { InventoryDAO, proficiencyDAO } from "@/types/itemTypes";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import { check } from "zod";
 
-export default async function characterSelect({
+export default function characterSelect({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -29,20 +28,18 @@ export default async function characterSelect({
     const [calculatedState, setCalculatedState] = useState<CalculatedState>(emptyCalculatedState);
     const [allData, setAllData] = useState({ attributes: [{ talentName: loading, name: loading, description: loading }], talents: [{ name: loading, description: loading, hpBonus: 2 }, { name: loading, description: loading, hpBonus: 2 }] });
 
-    const searchId = (await searchParams).id 
+    const searchId = useSearchParams().get('id');
 
-
-
-    const appendProficiencies = (profs: proficiencyDAO[]) => {
-        let result = "";
-        let first = true;
-        profs.forEach((prof) => {
-            let mastery = prof.mastery ? " (Mastered)" : ""
-            result += (first ? "" : ", ") + prof.item.name + mastery;
-            first = false;
-        })
-        return result;
-    }
+    // const appendProficiencies = (profs: proficiencyDAO[]) => {
+    //     let result = "";
+    //     let first = true;
+    //     profs.forEach((prof) => {
+    //         let mastery = prof.mastery ? " (Mastered)" : ""
+    //         result += (first ? "" : ", ") + prof.item.name + mastery;
+    //         first = false;
+    //     })
+    //     return result;
+    // }
 
     useEffect(() => {
         if (typeof searchId == "string") {
