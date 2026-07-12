@@ -1,6 +1,8 @@
 import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-export default authkitMiddleware();
+export default authkitMiddleware({
+    redirectUri: 'https://spellbladettrpg.app'
+});
 
 // Match against pages that require authentication
 // update this for each route that you plan on a asking for the user on
