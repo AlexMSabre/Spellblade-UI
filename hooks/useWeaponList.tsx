@@ -16,7 +16,7 @@ export const useWeaponList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://spellblade-load-balancers-1960527954.us-east-2.elb.amazonaws.com:443/graphql',
+        url: 'https://api.spellbladettrpg.app:443/graphql',
         headers: {
             'Content-Type': 'application/json'
         },

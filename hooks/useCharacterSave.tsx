@@ -13,7 +13,7 @@ export const useCharacterSave = async (character: Character, inventoryData: Inve
 
     let result = await axios({
         method: 'post',
-        url: 'https://spellblade-load-balancers-1960527954.us-east-2.elb.amazonaws.com:443/graphql',
+        url: 'https://api.spellbladettrpg.app:443/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
