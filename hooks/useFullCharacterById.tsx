@@ -20,7 +20,7 @@ export const useFullCharacterById = async (characterId: String) => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://ec2-3-21-168-246.us-east-2.compute.amazonaws.com:8443/graphql',
+        url: 'https://spellblade-load-balancers-1960527954.us-east-2.elb.amazonaws.com:443/graphql',
         headers: {
             'Content-Type': 'application/json'
         },
