@@ -16,7 +16,7 @@ export const useWeaponList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: process.env.BACKEND_URI,
+        url: process.env.NEXT_PUBLIC_BACKEND_URI,
         headers: {
             'Content-Type': 'application/json'
         },

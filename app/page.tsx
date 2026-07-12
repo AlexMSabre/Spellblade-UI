@@ -6,6 +6,8 @@ import Link from "next/link";
 //the basic app layout for any NEXT.js project is that folders/packages are the URL routes, and then page.tsx files determine what goes at those routes.
 //route.tsx files are for simple redirects
 export default function Home() {
+
+  console.log(process.env.NEXT_PUBLIC_BACKEND_URI);
   return (
     //there is some css styling done by the classnames here. i forgot what this is called, but it can be a good alternative to .css files for every element.
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">

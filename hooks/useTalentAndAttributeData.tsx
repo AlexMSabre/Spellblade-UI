@@ -15,7 +15,7 @@ export const useTalentAndAttributeData = async (talent1Name: String, talent2Name
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://spellblade-load-balancers-1960527954.us-east-2.elb.amazonaws.com:443/graphql',
+        url: process.env.NEXT_PUBLIC_BACKEND_URI,
         headers: {
             'Content-Type': 'application/json'
         },
