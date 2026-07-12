@@ -16,7 +16,7 @@ export const useWeaponList = async () => {
     let config = {
         method: 'post',
         maxBodyLength: Infinity,
-        url: 'https://api.spellbladettrpg.app:443/graphql',
+        url: process.env.BACKEND_URI,
         headers: {
             'Content-Type': 'application/json'
         },
