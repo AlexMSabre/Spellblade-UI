@@ -68,7 +68,7 @@ export default function characterForm() {
     setInventoryData(updates?.inventory);
   })
   };
-
+  
   useEffect(()=>{
     if(user){
       setCharacterData((prev)=>({

@@ -5,7 +5,7 @@ export const useGetCharacterStateById = async (characterId: String) => {
     let data = JSON.stringify({
         query: `query Query($id: String){
     getCharacterStateById(id: $id){
-        id characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints evasionBonus hexResistBonus movementBonus encumbrance fitnessBonus techniqueBonus focusBonus senseBonus inactiveEffects activeEffects
+        id characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints spellCapacity dexterity celerity subtlety awareness evasion tenacity movementBonus encumbrance fitnessBonus precisionBonus focusBonus senseBonus inactiveEffects activeEffects
     }
 }`,
         variables: { "characterId": characterId }

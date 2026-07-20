@@ -41,7 +41,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
   const [ancestryList, setAncestryList] = useState(<SelectContent></SelectContent>);
   const [effectMods, setEffectMods] = useState<number[]>([
     Math.max(calculatedState?.fitness - characterData.baseFitness, 0),
-    Math.max(calculatedState?.technique - characterData.baseTechnique, 0),
+    Math.max(calculatedState?.precision - characterData.basePrecision, 0),
     Math.max(calculatedState?.focus - characterData.baseFocus, 0),
     Math.max(calculatedState?.sense - characterData.baseSense, 0)
   ]);
@@ -52,7 +52,7 @@ export default function Skills(characterData: Character, setCharacterData: Funct
       setCalculatedState(newCalc);
       setEffectMods([
         Math.max(newCalc?.fitness - characterData.baseFitness, 0),
-        Math.max(newCalc?.technique - characterData.baseTechnique, 0),
+        Math.max(newCalc?.precision - characterData.basePrecision, 0),
         Math.max(newCalc?.focus - characterData.baseFocus, 0),
         Math.max(newCalc?.sense - characterData.baseSense, 0)
       ]);
@@ -146,11 +146,11 @@ export default function Skills(characterData: Character, setCharacterData: Funct
           </ButtonGroup>
         </Field>
         <Field>
-          <FieldLabel>Technique</FieldLabel>
+          <FieldLabel>Precision</FieldLabel>
           <ButtonGroup>
-            <Button size="icon" variant="outline" type="button" name="Technique-up" onClick={handleSkillChanges}><Plus /></Button>
-            <Input value={characterData?.baseTechnique + effectMods[1]} readOnly></Input>
-            <Button size="icon" variant="outline" type="button" name="Technique-down" onClick={handleSkillChanges}><Minus /></Button>
+            <Button size="icon" variant="outline" type="button" name="Precision-up" onClick={handleSkillChanges}><Plus /></Button>
+            <Input value={characterData?.basePrecision + effectMods[1]} readOnly></Input>
+            <Button size="icon" variant="outline" type="button" name="Precision-down" onClick={handleSkillChanges}><Minus /></Button>
           </ButtonGroup>
         </Field>
         <Field>
@@ -176,13 +176,13 @@ export default function Skills(characterData: Character, setCharacterData: Funct
       </div>
       <div className="flex flex-row gap-16">
         <Input value={characterData.baseFitness} aria-label="fit-points" readOnly />
-        <Input value={characterData.baseTechnique} aria-label="fit-points" readOnly />
+        <Input value={characterData.basePrecision} aria-label="fit-points" readOnly />
         <Input value={characterData.baseFocus} aria-label="fit-points" readOnly />
         <Input value={characterData.baseSense} aria-label="fit-points" readOnly />
       </div>
       <div className="flex flex-row gap-16">
         <Input readOnly value={"+" + effectMods[0]} name="fitness" />
-        <Input readOnly value={"+" + effectMods[1]} name="technique" />
+        <Input readOnly value={"+" + effectMods[1]} name="precision" />
         <Input readOnly value={"+" + effectMods[2]} name="focus" />
         <Input readOnly value={"+" + effectMods[3]} name="sense" />
       </div>

@@ -57,7 +57,7 @@ export default function characterSelect() {
                             <TableCell>{character.talent2}</TableCell>
                             <TableCell>{character.ancestryName}</TableCell>
                             <TableCell>{character.baseFitness}</TableCell>
-                            <TableCell>{character.baseTechnique}</TableCell>
+                            <TableCell>{character.basePrecision}</TableCell>
                             <TableCell>{character.baseFocus}</TableCell>
                             <TableCell>{character.baseSense}</TableCell>
                         </TableRow>

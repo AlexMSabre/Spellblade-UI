@@ -5,7 +5,7 @@ export const useCalculateState = async (state: CharacterState, character: Charac
     let data = JSON.stringify({
         query: `query Query($state: inputCharacterState, $character: inputCharacterObject){
     calculateState(state: $state, character: $character){
-        characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints evasion hexResist movement encumbrance fitness technique focus sense wounds woundsMax 
+        characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints spellCapacity dexterity celerity subtlety awareness evasion tenacity movement encumbrance fitness precision focus sense wounds woundsMax 
     }
 }`,
         variables: {"state": state, "character": character}

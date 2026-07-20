@@ -6,7 +6,7 @@ let data = JSON.stringify({
   query: `query Query($CharacterState: inputCharacterState, $effectName: String){
     addEffect(effectName: $effectName, state: $CharacterState){
         characterState { id characterId hitPoints armor manaPoints inactiveEffects activeEffects}
-        calculatedState {characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints evasion hexResist movement encumbrance fitness technique focus sense wounds woundsMax }
+        calculatedState {characterId hitPointsMax hitPoints armorMax armorMin armor manaMax manaPoints spellCapacity dexterity celerity subtlety awareness evasion tenacity movement encumbrance fitness precision focus sense wounds woundsMax }
     }
 }`,
   variables: {"CharacterState": state, "effectName":effectName}
