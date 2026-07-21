@@ -67,6 +67,12 @@ export interface Ancestry {
     description: string
 }
 
+export interface SpellCharacter {
+    id: string
+    characterId: string
+    spellId: string
+}
+
 export var emptyCharacter = {
     id: null, 
     userId: "",
