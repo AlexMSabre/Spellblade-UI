@@ -128,7 +128,6 @@ export default function Talents(characterData: Character, setCharacterData: Func
       .filter(x => !x.includes(characterData.talent1) && x!='').join(",")
     activeRemoved += activeRemoved != "" ? "," + e + "," : e + ","
     
-    console.log(activeRemoved);
     setCharacterState((prev: any) => ({
       ...prev,
       activeEffects: activeRemoved,
@@ -144,7 +143,7 @@ export default function Talents(characterData: Character, setCharacterData: Func
   const transferSpec2Data = (e: string) => {let activeRemoved = characterState.activeEffects.split(",")
       .filter(x => !x.includes(characterData.talent2) && x!='').join(",")
     activeRemoved += activeRemoved != "" ? "," + e + "," : e + ","
-    console.log(activeRemoved);
+
     setCharacterState((prev: any) => ({
       ...prev,
       activeEffects: activeRemoved

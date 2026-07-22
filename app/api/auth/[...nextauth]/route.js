@@ -30,7 +30,7 @@ export const authOptions = {
             else if (new URL(url).origin === process.env.NEXT_PUBLIC_COGNITO_REDIRECT) return url
             return baseUrl
         },
-        async jwt({ token, user, account, profile }) {
+        async jwt({ token, profile }) {
             if (profile) {
                 token.id = profile.sub;
                 token.name = profile['cognito:username'] || profile.username;
@@ -45,7 +45,7 @@ export const authOptions = {
             session.user.email = token.email;
             return session;
         },
-    }
+    },
 }
 const handler = NextAuth(authOptions)
 

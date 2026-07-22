@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import SignOutButton from "@/components/signoutButton";
 
 //this is the base landing page.  (/) right now it is just links and signin/out.  
@@ -11,8 +11,6 @@ import SignOutButton from "@/components/signoutButton";
 export default function Home() {
 
   const { data: session, status } = useSession();
-
-  console.log(status);
 
   return (
     //there is some css styling done by the classnames here. i forgot what this is called, but it can be a good alternative to .css files for every element.

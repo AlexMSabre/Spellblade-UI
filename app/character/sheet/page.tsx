@@ -51,7 +51,6 @@ export default function characterSelect({
                 setCalculatedState(data.calculatedState);
                 setCharacterState(data.characterState);
                 setAllData(data);
-                console.log(data);
             });
             setCharacterLoad(true);
         }
@@ -59,7 +58,6 @@ export default function characterSelect({
 
     const handleEquipChange = (item: InventoryDAO, checked: boolean | string) => {
         let value = false;
-        console.log(checked);
         switch(typeof checked){
             case "string": value = checked == "true";
             case "boolean": value = checked == true
@@ -69,7 +67,6 @@ export default function characterSelect({
                 if (a.inventory.itemId === item.item.id)
                     a.inventory.equipped = value;
             })
-            console.log(prev);
             return prev;
         });
 
