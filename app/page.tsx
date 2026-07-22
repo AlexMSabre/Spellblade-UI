@@ -1,6 +1,7 @@
 'use client';
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import SignOutButton from "@/components/signoutButton";
 
 //this is the base landing page.  (/) right now it is just links and signin/out.  
 // you can put whatever you want in the Home function as long as it returns a "JSX" element - basically just HTML5 formatting
@@ -9,14 +10,10 @@ import { signIn, signOut, useSession } from "next-auth/react";
 //route.tsx files are for simple redirects
 export default function Home() {
 
-  // const signOutRedirect = () => {
-  //   const clientId = "jhgpm6hmht2bqvm7cse8v94fu";
-  //   const logoutUri = "<logout uri>";
-  //   const cognitoDomain = "https://us-east-2ccqhm8cil.auth.us-east-2.amazoncognito.com";
-  //   window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
-  // };
+  const { data: session, status } = useSession();
 
-  console.log(process.env.NEXT_PUBLIC_WORKOS_REDIRECT_URI);
+  console.log(status);
+
   return (
     //there is some css styling done by the classnames here. i forgot what this is called, but it can be a good alternative to .css files for every element.
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -44,7 +41,11 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <button onClick={() => signIn("cognito")}>Sign in</button>
+          {status === "authenticated" && (<p>signed in as {session?.user?.email}</p>)}
+        </div>
+        <div>
+          <button onClick={() => signIn("cognito")}>Sign in</button> <br/>
+          <SignOutButton/>
         </div>
       </main>
     </div>

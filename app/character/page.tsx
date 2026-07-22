@@ -10,9 +10,9 @@ import Talents from "./talents";
 import {useForm } from "react-hook-form";
 import Skills from "./skills";
 import Start from "./start";
-import { useAuth } from "@workos-inc/authkit-nextjs/components";
 import Equipment from "./equipment";
 import { InventoryDAO } from "@/types/itemTypes";
+import { useSession } from "next-auth/react";
 
 const formSchema = z.object({
   title: z
@@ -39,7 +39,8 @@ export default function characterForm() {
   })
 
   //get the logged in user, if available
-  const {user} = useAuth();
+  
+  const { data: session, status } = useSession({required:true});
 
   const [inventoryData, setInventoryData] = useState<InventoryDAO[]>([]);
 
@@ -70,13 +71,14 @@ export default function characterForm() {
   };
   
   useEffect(()=>{
+    var user = session?.user;
     if(user){
       setCharacterData((prev)=>({
           ...prev,
-          userId: user.id
+          userId: user? user.id : "notlogged"
       }));
     }
-  }, [user])
+  }, [session])
 
   return (
     <div className="flex items-center justify-center bg-zinc-50 font-sans dark:bg-black">

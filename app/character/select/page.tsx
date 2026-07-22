@@ -2,19 +2,24 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCharacterByAccId } from "@/hooks/useCharacterByAccId";
 import { Character } from "@/types/characterTypes";
-import { useAuth } from "@workos-inc/authkit-nextjs/components";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
 export default function characterSelect() {
 
     const [characterList, setCharacterList] = useState<Character[]>([]);
+    const [Authorized, setAuthorized] = useState(false);
     //gets the user data, bounces them if they aren't signed in
-    const { user, loading } = useAuth({ ensureSignedIn: true });
+    
+    const { data: session, status } = useSession({required:true});
     const [characterLoad, setCharacterLoad] = useState(false);
+    
 
 
     //gets all the characters associated with the user
     useEffect(() => {
+        let user = session?.user
+
         if (user) {
             useCharacterByAccId(user.id).then((result) => {
                 console.log(result);
@@ -22,13 +27,13 @@ export default function characterSelect() {
             });
         }
 
-    }, [user]);
+    }, [session]);
 
     useEffect(() => {
         setCharacterLoad(true);
     }, [characterList]);
 
-    if (!characterLoad) { return (<p>Is loading</p>) };
+    if (status != "authenticated") { return (<p>Is loading</p>) };
 
 
     return (
@@ -42,7 +47,7 @@ export default function characterSelect() {
                         <TableHead>talent 2</TableHead>
                         <TableHead>Ancestry Name</TableHead>
                         <TableHead>Fitness</TableHead>
-                        <TableHead>Tech</TableHead>
+                        <TableHead>Precision</TableHead>
                         <TableHead>Focus</TableHead>
                         <TableHead>Sense</TableHead>
                     </TableRow>
