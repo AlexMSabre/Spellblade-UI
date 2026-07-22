@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import SignOutButton from "@/components/signoutButton";
 
 //this is the base landing page.  (/) right now it is just links and signin/out.  
