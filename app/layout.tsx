@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthKitProvider } from '@workos-inc/authkit-nextjs/components';
+import { Providers } from "./providers";
+import ConfigureAmplfyClientSide from "./amplify-cognito-config";
 
 //this is the "Root Layout" file.  it determines what wraps around the entire application and all other layout files will source from this one
 //next.js is a Single Page Application library, meaning that despite going to different URLs you are still on the same page, just with different visuals
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
 
 //returns the wrapper for the app with the basic 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -34,9 +35,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <AuthKitProvider>
+          <Providers>
             {children}
-          </AuthKitProvider>
+          </Providers>
         </body>
       </html>
   );
