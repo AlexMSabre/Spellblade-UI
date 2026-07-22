@@ -14,7 +14,6 @@ export async function federatedLogout() {
       return;
     }
   } catch (error) {
-    console.log(error);
     window.location.href = "/";
   }
 }

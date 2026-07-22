@@ -45,7 +45,7 @@ export const authOptions = {
             session.user.email = token.email;
             return session;
         },
-    }
+    },
 }
 const handler = NextAuth(authOptions)
 

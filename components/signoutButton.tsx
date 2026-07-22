@@ -7,7 +7,6 @@ export default function SignOutButton() {
     const logoutUri = process.env.NEXT_PUBLIC_SIGNOUT_URL as string;
     const cognitoDomain = process.env.NEXT_PUBLIC_COGNITO_REDIRECT;
     const cognitoLogoutUrl = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
-    console.log(cognitoLogoutUrl);
     // 4. Sign out locally in NextAuth, then redirect straight to Cognito
     await signOut({
       callbackUrl: cognitoLogoutUrl,
