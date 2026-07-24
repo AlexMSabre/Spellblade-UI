@@ -5,12 +5,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table"
 import { useState } from "react";
 import { emptyItem, Item } from "@/types/itemTypes";
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
 
 
 const alchemistPack = [];
@@ -35,24 +29,6 @@ grapplingHook.itemType = "Tool";
 grapplingHook.description = "A tool used to climb up to 8m.";
 
 const itemList = [healthPotion, torch, rope, grapplingHook];
-
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-}
- 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  })
-}
-
 
 export default function equipment() {
 
@@ -310,17 +286,6 @@ export default function equipment() {
             <div>
                 Item Search
             </div>
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[200px] text-center">Item Name</TableHead>
-                        <TableHead className="w-[50px] text-center">Qty</TableHead>
-                        <TableHead className="text-center">Item Type</TableHead>
-                        <TableHead className="text-center">Description</TableHead>
-                        <TableHead className="text-center">Weight</TableHead>
-                    </TableRow>
-                </TableHeader>
-            </Table>
         </div>
     </div>
 )

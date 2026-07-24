@@ -27,7 +27,7 @@ export var emptyItem = {
     attack2String: "string",
     effectName: "string",
     baseCost: 0,
-    rarity: "string"    
+    rarity: "string"
 }
 
 export interface Inventory {

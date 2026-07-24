@@ -1,4 +1,4 @@
-import { Character } from "@/types/characterTypes"
+import { Character } from "@/types/characterTypes";
 import { useState } from "react";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
