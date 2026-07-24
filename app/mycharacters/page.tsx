@@ -7,25 +7,12 @@ export default function Home() {
         <div className="headerBar">
           
           <ul>
-            <li><a href="#Home">Spellblade TTRPG</a></li>
+            <li><a href="/">Spellblade TTRPG</a></li>
             <li><a href="/mycharacters">My Characters</a></li>
             <li><a href="/mygames">My Games</a></li>
             <li><a href="/rules">Rules</a></li>
           </ul>
         </div>
-
-        <div className="login">
-          <a href="#login">Log In</a>
-        </div>
-
-        <div className="create">
-          <a href="/character">Create a Character</a>
-        </div>
-
-        <div className="play">
-          <a href="/character">Play the Game</a>
-        </div>
-      
       </main>
     </div>
   );

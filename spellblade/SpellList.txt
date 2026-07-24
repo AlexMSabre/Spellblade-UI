@@ -1,0 +1,287 @@
+﻿Coventant Spell,Patronic Power,Hex,Free Action,1 Mana,Self,Instant,"Imbue your current spell cast with your Patron's power. That spell deals your Patron's damage type instead of its normal damage, increased by 2d4.
+
+This spell may replace an elemental spell's form to be appropriate for your Patron.",2d4,,Patron,SpellRider
+Coventant Spell,Smite,Hex,Free Action,1 Mana,Touch,Instant,"Imbue your current Dexterity attack with your Patron's power, dealing an additional 2d4 + Focus of your Patron's damage type on hit.","2d4,Focus",,Patron,WeaponRider
+Coventant Spell,Soul Rend,Projection,2 Actions,2 Mana,9m,Instant,Deal 4d12 + Focus of your Patron's damage type to a creature.,"4d12,Focus",,Patron,Attack
+Coventant Spell,Commune with Patron,Hex,3 Actions,1 Mana,Self,Instant,"Make a prayer or request to your Patron for guidance or assistance. Your Patron may choose to answer directly, subtly, or remain silent based on the request.",,,,
+Coventant Spell,Invoke,Hex,2 Actions,2 Mana,9m,Instant,Invoke your Patron's power in a dramatic demonstration. Creatures that can see or hear you-other than those you specify-receive 3d12 + Focus of your Patron's damage type.,"3d12,Focus",,Patron,Attack
+Cleric Spell,Guidance,Hex,Free Action,1 Mana,9m,Instant,"As part of you or an ally creature making a skill roll make a silent, subtle prayer to your Patron for assistance. Increase the result of the skill roll by 1d4 + half your Sense score (rounded up). This spell does not require incantations.",,,,
+Cleric Spell,Cure Wounds,Hex,2 Actions,2 Mana,Touch,Instant,"Target creature is healed for 4d4 + Focus hit points, increased by 2d4 if the target is wounded.","4d4,Focus",2d4,Heal,
+Cleric Spell,Revive,Hex,3 Actions,3 Mana,30m,Instant,"Target creature that has died in the past hour is restored with zero hit points and no wounds, and is converted into a different creature type chosen by your Patron. A creature may only benefit from this spell once.",,,,
+Cleric Spell,Silence,Hex,2 Actions,2 Mana,9m,Concentration,"Target creature is unable to make or receive audible noise, including verbal incantations.",,,,
+Cleric Spell,Dissuade,Area,2 Actions,3 Mana,3m,Concentration,Channel your Patron's presence to ward off hostile creatures. Creatures of low intelligence you specify become unable to enter within 3m of you. Intelligent creatures have half movement within the radius.,,,,
+Paladin Spell,Soul Armor,Hex,1 Action,2 Mana,Touch,1 Minute,Target creature recieves 2 magical armor. That creature's armor additionally aborbs soul damage for one minute. This spell cannot be cast multiple times on the same creature.,,,,
+Paladin Spell,Taunting Presence,Hex,1 Action,2 Mana,Self,1 Minute,Focus you patron’s power to appear more powerful. Other creatures you choose gain an advantage to the evade reaction.,,,,
+Paladin Spell,Fortify Mind,Hex,Free Action,1 Mana,6m,Instant,Give you or an ally advantage to a current Tenacity roll.,,,,
+Paladin Spell,Rebuke,Hex,1 Action,2 Mana,Touch,Concentration,Enchant a creature or its armor to deal 1d4 of your Patron's damage type to creatures that deal damage to it.,1d4,,Patron,OnDmg
+Paladin Spell,Resiliance,Hex,1 Action,3 Mana,Self,1 Minute,Gain magical armor equal to your current number of wounds. This spell cannot be cast again until the magical armor is depleted.,,,,
+Warlock Spell,Light/Extinguish,Enchantment,Free Action,1 Mana,30m,Instant,"Immediately Light or Extinguish any number of torches, lanterns, magic bulbs, or other simple light sources within 30m of you.",,,,
+Warlock Spell,Hallow/Desecrate,Area,2 Actions,2 Mana,9m,Concentration,All creatures in a target 3m radius become weak to your chosen soul damageif it is not already immune to it and take 3d4 of your chosen soul damage while inside its radius.,3d4,Weak,Patron,Attack
+Warlock Spell,Essence Transfer,Hex,1 Action,1 Mana,Touch,Instant,Sacrifice up to 20 hit points to heal target creature by the same amount. Doing this cannot bring you below zero hit points.,,,,
+Warlock Spell,Weaken Soul,Hex,1 Action,2 Mana,9m,Concentration,Target creature recieves an additional wound when it recieves more than 10 damage of your chosen soul damage type in one turn.,,,,
+Warlock Spell,Drain,Hex,1 Action,1 Mana,3m,Instant,Decrease target creature's mana points by your Sense score (minimum 1).,,,,
+Justiciar Spell,Holy Weapon,Enchantment,Free Action,2 Mana,Touch,1 Minute,Bless a weapon you touch to deal your Patron's damage type instead of its normal damage type for up to one minute.,,,,
+Justiciar Spell,Summon Creature,Summon,2 Actions,3 Mana,6m,Instant,Petition your Patron to summon a creature you request that you may control. That creature assists you for up to one hour.,,,,
+Justiciar Spell,Divine Warning,Hex,1 Action,2 Mana,Self,8 Hours,"For the next 8 hours, your deity warns of you of imminent danger, and you will be immediately awoken if a hostile creature moves within 20m of you.",,,,
+Justiciar Spell,Zealotry,Hex,1 Action,1 Mana,Self,Concentration,Become immune to your Patron's damage type.,,,,
+Justiciar Spell,Persecute,Hex,1 Action,2 Mana,3m,Concentration,Target creature becomes weak to your Patron's damage type if it is not currently immune to it.,,,,
+Elemental Spell,Express Element,Hex,Free Action,0 Mana,Self,Instant,"Your current Directed, AOE, or Enchantment spell cast uses your Casting Material and deals the Casting Material's damage type. That spell originates from you (if the material is summoned) or from a source of your Casting Material within 8m of you.",,,,SpellRider
+Elemental Spell,Impel,Projection,2 Actions,2 Mana,8m,Instant,"Propel your casting material up to 8m at a target, dealing 3d6 + Focus of the material's damage type.","3d6,Focus",,Element,Attack
+Elemental Spell,Shape Element,Enchantment,2 Actions,1 Mana,8m,Instant,"Harmlessly reshape or move your casting material into your desired form. This may be up to 100kg of existing material, or up to 5kg of summoned material. This spell may also be used to render all instances of your Casting Material to be harmless within your range.",,,,
+Elemental Spell,Sense Material,Hex,1 Action,1 Mana,Self,Concentration,Gain a magical understanding of the quantity and shape of any quantity and location of your casting material within 100m.,,,,
+Elemental Spell,Alternate Element,Hex,1 Action,2 Mana,Self,Instant,Change your Casting Material and its damage type to a different form. This spell may be cast without its mana cost during each long rest.,,,,
+Oppresser Spell,Compress,Enchantment,1 Action,3 Mana,4m,Concentration,Compress your casting material into concentrated shape. Your next spell using that material deals an additional 4d6 of your casting material's damage type. This spell may be casted multiple times on the same material.,4d6,,Element,SpellRider
+Oppresser Spell,Tether,Projection,2 Actions,2 Mana,8m,Concentration,"Create a tether to target creature out of your material, grappling the hit creature and dealing 1d6 + Focus of your casting material's damage type. As a free action each turn, you may deal this damage to the creature again. The tether can be destroyed by a spell or magical weapon.","1d6,Focus",,Element,Attack
+Oppresser Spell,Detonate,Area,Free Action,3 Mana,16m,Instant,"Instantly explode your material, dealing 4d6 + Focus of your casting material's damage to creatures within a 1m radius.","4d6,Focus",,Element,Attack
+Oppresser Spell,Overwhelm,Hex,Free Action,2 Mana,Self,Instant,"As part of a spell using your Casting Material, the hit creature is stunned if it recieves damage.",,,,AttackRider
+Oppresser Spell,Suffocate,Hex,2 Actions,3 Mana,4m,Concentration,Form your casting material around the head of a large size or smaller creature to prevent it from breathing. The target creature must succeed a DC 10 Fitness skill roll at the beginning of its turn to end the spell or take one necrotic wound each turn until the spell ends.,,,,Attack
+Impairer Spell,Bind,Projection,1 Action,1 Mana,8m,1 Minute,"Slow a creature's movement by 2m using your casting material. This spell may be applied multiple times to the same target. When the target creature's movement is reduced to zero by this spell, it becomes restrained as well. A DC 15 Dexterity skill roll is needed to break the bind.",,,,Attack
+Impairer Spell,Push,Projection,1 Action,2 Mana,8m,Instant,"Move a medium or smaller creature up to 3m in any direction. If the creature is willing, the creature can be moved up to 6m instead. 
+-This spell requires an additional Action and two Mana Points for each size above a medium sized target.",,,,Attack
+Impairer Spell,Pinpoint Strike,Projection,1 Action,1 Mana,8m,Instant,"Propel a small amount of material at a creature, choosing one of the following effects:
+-Prevent the creature from speaking.
+-Give the creature disadvantage to its next attack or skill roll.
+-Inhibit a sense of that creature of your choice.",,,,Attack
+Impairer Spell,Restore,Hex,1 Action,2 Mana,4m,Instant,"Infuse your casting material into a creature, restoring up to 4d4 + Focus hit points. This spell has no effect if its target is not at least partially composed of your casting material.","4d4,Focus",,Heal,
+Impairer Spell,Extract,Hex,1 Action,1 Mana,8m,Instant,"Attempt to draw out your casting material from a creature, dealing 3d4 + Focus necrotic damage. You take half damage from this spell if you target yourself. This spell has no effect if its target is not at least partially composed of your casting material.","3d4,Focus",,Necrotic,
+Shaper Spell,Shape Weapon,Enchantment,1 Action,1 Mana,Touch,Concentration,"Your casting material takes the shape of a weapon of your choice. Attacks made with that weapon expend Mana Points equal to the Action Cost of the attack, dealing 2d6 for each MP expended + Focus of your casting material's damage type the target .",,,,"Attack,Linger"
+Shaper Spell,Material Ammunition,Enchantment,Free Action,1 Mana,Touch,Instant,"As part of a ranged weapon attack, use your Casting Material in place of its normal ammunition. The attack's damage is that of your Casting Material's damage type, increased by 2d6.",2d6,,Element,LoadedRider
+Shaper Spell,Infuse Object,Enchantment,1 Action,2 Mana,2m,1 Hour,"Infuse an inanimate object with your casting material. Under a condition you choose, the object deals 4d6 of your casting material's damage type to a creature within 1m (other than its wielder) as a directed spell attack. This spell may be applied multiple times, and ends when triggered.",3d6,,Element,
+Shaper Spell,Protective Barrier,Hex,Free Action,2 Mana,8m,Instant,"As part of you or an ally's Wistand reaction, increase its armor roll by 2d6.",2d6,,MagicArmor,WithstandRider
+Shaper Spell,Slide,Hex,Free Action,2 Mana,Self,Instant,"As part of a movement action, use your Casting Material to move an additioanl 2m.",,,,MovementRider
+Controller Spell,Scatter,Enchantment,Free Action,1 Mana,8m,Instant,Harmlessly disperse your material in up to an 8m wide cone. Your Elemental spells may be casted anywhere within the region as a source of your material.,,,,
+Controller Spell,Hazardous Terrain,Area,2 Actions,3 Mana,8m,1 Hour,Create a 3m by 3m (or smaller region that you choose) region of hazardous terrain. Creatures affected by the terrain are dealt 4d6 + Focus of your Casting Materials damage and are immobilized until the end of its turn.,"4d6,Focus",,,Terrain
+Controller Spell,Barrage,Area,2 Actions,3 Mana,8m,Concentration,"Begin a barrage of your Casting Material at targets within a 2m radius. Hit targets inside are dealt 4d6 + Focus of your Casting Material's damage type.
+
+At the beginning of each turn, you must expend your Action to continue this spell.","4d6,Focus",,Element,Attack
+Controller Spell,Wall,Enchantment,3 Actions,3 Mana,8m,Instant,"Create a 2m high, 3m wide wall with 100 hit points using your casting material. The wall prevents all creature movement and projectiles from passing through.",,,,
+Controller Spell,Cloud,Area,1 Action,1 Mana,8m,Concentration,Lift your Casting Material into up to a 3m radius area that prevents creatures from seeing inside the area.,,,,
+Fabrication Spell,Enchant Equipment,Enchantment,Free Action,1 Mana,Touch,Concentration,"As part of casting a 1 MP spells, you may target a piece of equipment to enchant with that spell (cannot be this spell). Creatures that use that equipment may expend 1 Mana Point to cast the spell as its caster as a Free Action.",,,,SpellRider
+Fabrication Spell,Chromatic Spark,Enchantment,Free Action,1 Mana,Touch,Instant,"As part of a weapon attack, increase the attack's damage by 2d6 elemental damage (of type chosen when this spell is first casted).",,,,WeaponRider
+Fabrication Spell,Mend,Enchantment,1 Action,1 Mana,Touch,Instant,"Repair or reconstruct a non-magical tool, weapon, or object using crafting material you possess. If casted on an Automaton, repair it for 3d4 + Focus hit points.",,,,
+Fabrication Spell,Weld,Enchantment,1 Action,1 Mana,12m,Instant,Create a strong bond between two inanimate objects that are in contact. Requires a DC 15 Fitness skill roll to break.,,,,
+Fabrication Spell,Absorb Energy,Enchantment,Free Action,3 Mana,Self,Concentration,"When you receive damage as part of the withstand reaction, record the amount of damage prevented by your armor roll. You may increase a melee weapon attack by that amount in burn or shock damage.",,,,
+Craftsman Spell,Craft Artifacts,Enchantment,1 Action,3 Mana,Touch,Instant,Create an uncommon or lesser type magical or mechanical artifact using crafting material. You may have a maximum of five of these artifacts at one time.,,,,
+Craftsman Spell,Quick Craft,Enchantment,1 Action,1 Mana,Touch,Instant,"Using crafting material you possess, rapidly craft one small tool, ten arrows, or four bullets.",,,,
+Craftsman Spell,Shred Armor,Hex,Free Action,1 Mana,Self,Instant,"As part of any attack that deals physical damage, the attack reduces the hit creature's armor by an additional three.",,,,AttackRider
+Craftsman Spell,Deconstruct,Projection,2 Actions,2 Mana,12m,Instant,"Target inanimate object of less than 50kg is deconstructed into smaller pieces.
+ If this spell is casted on a construct, it deals 5d12 + Focus shatter damage to it instead.","5d12,Focus",,Shatter,Attack
+Craftsman Spell,Reinforce,Hex,2 Actions,3 Mana,Touch,1 Minute,Target creature recieves 3 magical armor.,3,,MagicArmor,
+Architect Spell,Imbue Automaton,Hex,3 Actions,1 Mana,Touch,Instant,Imbue non-creature material you specify into a functioning Automaton you control. This spell may only be used on one Automaton at a time. The Automaton may be up to large size.,,,,
+Architect Spell,Summon Automaton,Summon,2 Actions,3 Mana,8m,Instant,"Summon an Automaton you control to an unoccupied space within 5m of you. If the Automaton is a vehicle, you may summon it so you or another creature become inside the vehicle.",,,,
+Architect Spell,Command: Attack,Hex,Free Action,1 Mana,12m,Instant,Target Automaton begins an attack action against a target you specify.,,,,
+Architect Spell,Command: Protect,Hex,Free Action,1 Mana,12m,Instant,"Target Automaton intercepts an attack made on a creature it can move to, taking the withstand action in its place.",,,,
+Architect Spell,Command: Reset,Hex,1 Action,1 Mana,12m,Instant,"Target Automaton become stunned for two Actions, and removes all hex effects you do not specify.",,,,
+Weaponsmith Spell,Fling,Projection,2 Actions,1 Mana,12m,Instant,"Choose an object or in your possession or in your control. Magically propel the object at a target, dealing 3d6 + Focus physical damage. Melee weapons or ammunition used by this spell apply effects as if made with a weapon attack.","3d6,Focus",,Physical,Attack
+Weaponsmith Spell,Summon Object,Summon,Free Action,1 Mana,8m,Instant,Choose an object you have ownership that is less than 50kg and summon it within 5m or into a creature's possession. You may allow the object to return to its original location at the end of your turn. Summoned objects may be suspended in the air until the end of your next turn.,,,,
+Weaponsmith Spell,Instant Reload,Enchantment,Free Action,1 Mana,12m,Instant,Instantly reload ammunition you have in your posession into a weapon that uses it. Bows and crossbows benefit from this effect by hasting its current attack.,,,,
+Weaponsmith Spell,Ricochet,Projection,Free Action,1 Mana,12m,Instant,"As a reaction to a projectile hitting an object, redirect the attack to a new target within 5m, dealing that projectile's damage again. (The new attack is rolled as a directed spell made by you).",,,,Attack
+Weaponsmith Spell,Heat/Cool,Projection,2 Actions,2 Mana,Touch,Instant,"Change the temperature of an object by 100 degrees C for one turn. If this object is in contact with a creature, it deals 4d6 + Focus burn or freeze damage. The affected creature may instead choose drop or remove the object if it is easily removable to avoid the damage.","4d6,Focus",,Elemental,Attack
+Runecarver Spell,Engrave Rune,Enchantment,1 Minute,3 Mana,Touch,24 Hours,"Take one minute to engrave a basic spell into a rune on a small object. That rune may be activated one time based on a condition you set, or by you at any time if it is in your possession. You may also specify how the rune targets creatures with its effects.",,,,
+Runecarver Spell,Magic Absorb Rune,Enchantment,1 Minute,3 Mana,Touch,24 Hours,Take one minute to engrave a rune onto an object that absorbs magical energy. The next spell that targets the object (or a creature that has it in its posession). The rune is destroyed after use.,,,,
+Runecarver Spell,Teleportation Rune,Enchantment,1 Minute,3 Mana,4m,24 Hours,"Take one minute to engrave a teleportation rune onto an object. As a free action, you may teleport to the rune's location, destroying it.",,,,
+Runecarver Spell,Alter Substance,Enchantment,1 Action,2 Mana,4m,24 Hours,Minorly change up to 50kg of a non-magical substance’s physical properties for up to 24 hours.,,,,
+Runecarver Spell,Modify Enchantment,Enchantment,3 Actions,3 Mana,4m,Instant,"Choose an enchantment on a material within 5m. You can make a minor change to the effects of that enchantment, such as the targeting of the enchantment.",,,,
+Occult Spell,Summon Familiar,Summon,2 Actions,2 Mana,8m,Instant,"Summon a creature of small or tiny size with one appiration trait, five hit points and an evasion of +5. The familiar is intelligent and can follow commands you give it.
+
+
+Ordinary Reagent: The familiar gains one additional apparition trait.",,,,
+Occult Spell,Enchant Object,Enchantment,2 Actions,2 Mana,Touch,Concentration,"Give an inanimate object animate properties. You are able to command the object, and it move itself by flying.
+
+Ordinary Reagent: The object can carry a medium creature or make a 2 Action melee attack that deals 2d6 + your Focus physical damage.",,,,
+Occult Spell,Seeing,Hex,3 Actions,1 Mana,4m,Concentration,"Choose an object, creature, or spirit. You can see from that object or share the vision of that creature or spirit. 
+
+Common Reagent: If the creature is your familiar, you may command the familiar at any distance while this spell is active.",,,,
+Occult Spell,Magic Missile,Projection,2 Actions,2 Mana,16m,Instant,"Launch a magical projectile at a target creature, dealing 3d4 + Focus Shatter damage to the target.
+
+Common Reagents: You may expend any amount of common reagents upon casting this spell to launch that many additional missiles that may take new targets.","3d4,Focus",,Shatter,Attack
+Occult Spell,Spectral Form,Hex,2 Actions,3 Mana,Self,Concentration,"Gain one appirition trait (Ethereal, Magic Speech, Flight, Intangible, Inperceptible, Elemental, Soulborn).
+
+Uncommon reagent: Apply this effect to a different creature instead as a touch spell.
+",,,,
+Occult Spell,Pocket Space,Enchantment,2 Actions,2 Mana,8m,10 Minutes,"Summon a portal to a 20m-by-20m space that you can enter and store items in. If casted while inside the space, the exit portal is created in the same space as the entrance portal was made last.
+
+Rare Reagent: Make an additional portal to the space that lasts 24H instead.",,,,
+Conjurer Spell,Ilumination,Enchantment,1 Action,1 Mana,16m,1 Turn,"Create a source of illumination that lingers until the beginning of your next turn. It emits light in a radius of 8m.
+
+Ordinary Reagent: The light source remains for 24 hours, and you may increase its brightness up to 24m.",,,,
+Conjurer Spell,Concoct Poison,Hex,1 Action,1 Mana,1m,Instant,"Imbue a single dose of poison into a liquid, container, ammunition, or weapon. The poison deals 3d6 Poison damage to creatures.
+
+Common Reagent: This spell may be cast as a free action.",3d6,,Poison,
+Conjurer Spell,Magic Barrier,Enchantment,3 Actions,2 Mana,8m,Concentration,"Create a translucent magical barrier up to 10m wide and 3m high that blocks all non-magical attacks. All creatures can freely move through the wall.
+
+Uncommon Reagent: You may cause this spell to stop creatures from passing through the barrier.",,,,
+Conjurer Spell,Summon Spirit,Summon,1 Action,2 Mana,8m,Instant,"Summon a lessor spirit that you can control the movement of. When you cast a spell, you may use the spirit as the source of the spell.
+
+Legendary Reagent: You may summon a greater spirit and petition it to cast any spell you know of.",,,,
+Conjurer Spell,Hex Potion,Hex,1 Action,1 Mana,16m,Instant,"Use a potion in your possession as a Reagent, and apply the effects of the potion as a hex spell against a creature.",,,,Attack
+Conjurer Spell,Mist Walk,Hex,2 Actions,2 Mana,32m,Instant,"Teleport to a spirit you control, or within 1m of creature you can see.
+
+Rare Reagent: Additionally teleport another creature with you.",,,,
+Magus Spell,Shield,Hex,Free Action,2 Mana,Self,Instant,"As part of a withstand reaction, increase your armor by 2d6.
+
+Common Reagent: you can cast this spell on a creature being attacked within 10m.",2d6,,MagicArmor,WithstandRider
+Magus Spell,Elemental Touch,Hex,Free Action,2 Mana,Self,Instant,"As part of an unarmed attack, the attack deals an additional 1d6 + Focus elemental damage of your choice.
+
+Ordinary Reagent: Increase the damage of this spell by 1d6.","1d6,Focus",1d6,Elemental,AttackRider
+Magus Spell,Magic Weapon,Hex,1 Action,1 Mana,Self,1 Minute,"You gain mastery in a weapon you are holding, and use your Focus modifier for attack rolls and for damage.
+
+Common Reagent: This spell may be cast as a free action.",,,,
+Magus Spell,Enchain,Projection,2 Actions,2 Mana,16m,Concentration,"Summon magical bonds that immobilize its target. The chain can only be destroyed by a spell or magical weapon. 
+
+Common Reagents: Cast a number of additional chains at a new targets for each common reagent spent.",,,,Attack
+Magus Spell,Blood Magic,Hex,Free Action,1 Mana,Self,Instant,"As part of a spell cast that has an ordinary or uncommon reagent cost, sacrifice six hit points to use in place of the reagent cost.
+
+Uncommon Reagent: Instead, sacrifice two hit points per mana point to pay instead of the MP cost of the cast spell.",,,,SpellRider
+Magus Spell,Fireball,Area,2 Actions,3 Mana,24m,Instant,"Launch a volatile fireball that deal creatures take 3d12 + Focus Burn damage to creatures in a 2m radius.
+
+Uncommon Reagents: you may expend any amount of uncommon reagents to increase the damage by 1d12 and radius by 1m for each reagent spent.",3d12,1d12,Burn,Attack
+Metamagic Spell,Dispel,Enchantment,2 Actions,2 Mana,16m,Instant,"End a basic magical enchantment you can percieve.
+
+Uncommon Reagent: This spell may be cast as a parry action to instantly dispel the casted spell.",,,,ParryRider
+Metamagic Spell,Detect Magic,Hex,1 Action,1 Mana,Self,Instant,"You detect the presence of any magic within 16m, including the location of invisible and magically hidden creatures and objects.
+
+Ordinary Reagent: You may continue the effect of this spell as a concentration.",,,,
+Metamagic Spell,Magic Circle,Enchantment,10M,3 Mana,Touch,1  Year,"Inscribe a 2m radius magic circle on an open, flat surface. The circle persists until it is destroyed.
+
+Common Reagent: You may target the inside of the circle with a spell as if it were 5m away, as long as the circle is intact and on the same plane as you.",,,,
+Metamagic Spell,Enscribe Secrets,Hex,3 Actions,3 Mana,Touch,Instant,"Choose an object or location you touch while using a piece of parchment that can be written on. Information about the object is written onto the parchment. The information is always accurate, but may not be thorough.
+
+Legendary Reagent: You may specify what information you want about the object, even if speculative (such as how to undo a specific enchantment), and specify objects or creatures regardless of distance.",,,,
+Metamagic Spell,Magic Ward,Hex,3 Actions,3 Mana,Touch,24 Hours,"Create a magical ward for a creature that prevents the creature from being teleported or detected by magic.
+
+Legendary Reagent: This ward prevents all magical effects from applying to the creature.",,,,
+Metamagic Spell,Open/Close,Enchantment,1 Action,1 Mana,16m,Instant,"Magically lock, unlock, open, or close any number of doors or other openings within 24m of you, unless the door is magically sealed.
+
+Uncommon Reagent: You may remove or place a magical lock by touching it.",,,,
+Psychic Spell,Mental Link,Hex,1 Action,1 Mana,Touch,Concentration,"Create a mental link with a creature, allowing you and that creature to voluntarily communicate telepathically. You do not need to share a language with that creature to understand eachother.",,,,
+Psychic Spell,Investigate Creature,Hex,Free Action,1 Mana,15m,Instant,"Learn the full properties of a creature, including its creature type, hit points, mana points, conditions, and any hex effects applied to it.",,,,
+Psychic Spell,Mark,Hex,1 Action,1 Mana,15m,10 Minutes,"Mark a creature. You know its exact location for ten minutes. Each time it takes damage from any source, it takes an additional 1d4 psychic damage.",1d4,,Psychic,Attack
+Psychic Spell,Sense Thought,Hex,2 Actions,1 Mana,Self,Concentration,"You know the exact location of any living, thinking creatures within 15m or general location within 50m unless that creature is magically concealed.",,,,
+Psychic Spell,Mind Spike,Hex,Free Action,1 Mana,Self,Instant,Deal an additional 3d4 + Focus Psychic damage as part of a successful Hex spell attack on a creature.,"3d4,Focus",,Psychic,SpellRider
+Telepath Spell,Mind Sliver,Hex,1 Action,2 Mana,5m,1 Minute,Target creature takes 5d4 + Focus psychic damage and gains a disadvantage to its next skill or tenacity roll made within one minute.,"5d4,Focus",,Psychic,Attack
+Telepath Spell,Read Mind,Hex,2 Actions,3 Mana,15m,Concentration,Choose a creature to read the mind of at a surface level and know it's planned actions for its next turn. The creature is aware if a spell was casted on it only if the spell fails.,,,,
+Telepath Spell,Compel Action,Hex,2 Actions,3 Mana,5m,Concentration,Target creature gains a strong compulsion you define. The creature gains an increase to its tenacity based on how unlikely it is to normally perform the action.,,,,
+Telepath Spell,Trance,Hex,2 Actions,3 Mana,5m,Concentration,"Target creature is stunned for two actions. At the beginning of your turn, this spell's attack must be remade. This spell ends immediately if the creature recieves damage from any source.",,,,
+Telepath Spell,Alter Memory,Hex,3 Actions,3 Mana,5m,1 Hour,"Modify a creature's memory in a way you define. The creature gains an increase to its tenacity based on how significant the change in its memory is. If its memory is challenged, it may make a DC 15 Focus skill roll to discover it is under the effect of a spell.",,,,
+Telekinetic Spell,Throw,Projection,2 Actions,2 Mana,15m,Instant,"Move a medium size inanimate object up at high speed at a target, dealing 3d6 + Focus physical damage","3d6,Focus",,Physical,Attack
+Telekinetic Spell,Move Objects,Enchantment,3 Actions,2 Mana,15m,Concentration,Harmlessly move one or more objects up to 500kg in any direction within range.,,,,
+Telekinetic Spell,Telekinetic Barrier,Hex,Free Action,3 Mana,5m,Instant,"As part of you or an ally's withstand action, increase its armor roll by 3d6.",3d6,,MagicArmor,WithstandRider
+Telekinetic Spell,Immolate,Hex,2 Actions,1 Mana,5m,Instant,"Engulf a creature in flame, dealing 2d6 + Focus burn damage.","2d6,Focus",,Burn,Attack
+Telekinetic Spell,Crush,Hex,1 Action,2 Mana,15m,Concentration,Deal 1d4 + Focus Shatter damage to a target. This spell may target inanimate objects as well. Creatures fully affected by the spell become prone. Creatures that succeed against the spell still take its damage. This spell my be continued using one action per turn to reapply the damage to the target.,"1d4,Focus",,Shatter,Attack
+Illusionist Spell,Feign,Hex,1 Action,2 Mana,5m,Concentration,"Target creature's appearance is minorly adjusted how you specify. The creature's general size and shape remains the same, but may look or sound different. If challenged, a creature can discover the illusion with a DC 15 Sense skill roll.",,,,
+Illusionist Spell,Shared Illusion,Hex,2 Actions,2 Mana,15m,Concentration,Create visible and audible illusion you specify of no bigger than huge size. The illusion is intangible and performs ,,,,
+Illusionist Spell,Hallucinate,Hex,1 Action,2 Mana,15m,Concentration,"Target creature experiences a hallucination that you specify. The creature gains an increase to its tenacity based on the potency of the hallucination. If the hallucination is challenged, it may make a DC 15 Focus skill roll to discover it is under the effect of a spell.",,,,
+Illusionist Spell,Conceal Presence,Hex,2 Actions,3 Mana,5m,Concentration,"Choose a sense. You and up to four other creatures you choose become nearly undetectable to that sense, and automatically succeed possible stealth checks. Concealed creatures lose this effect when casting a spell or making an attack.",,,,
+Illusionist Spell,Programmed Spell,Hex,Free Action,2 Mana,Self,Instant,"As part of a spell cast, imbue that spell you cast with a degree of intelligence and knowledge how you define. The spell may react to its surroundings indepedently of you.",,,,SpellRider
+Healer Spell,Regenerative Heal,Hex,1 Action,2 Mana,5m,Instant,Heal a creature for 2d4 + Focus hit points.,"2d4,Focus",,Heal,
+Healer Spell,Heighten Sense,Hex,1 Action,1 Mana,5m,Concentration,"Give a creature a specified magical sense or enhance an existing sense, increasing its Sense skill rolls by three.",,,,
+Healer Spell,Soul Link,Hex,2 Actions,2 Mana,Touch,1 Minute,"Link the souls of two creatures you touch at the same time (one can be you). When one of the creatures recieves damage or a hex effect, that creature may choose to redirect a portion of the damage or the hex effect to the other linked creature.",,,,
+Healer Spell,Grant Resistance,Hex,1 Action,1 Mana,5m,1 Minute,"Give a creature resistance to an elemental damage type for up to one minute. If that creature has resistance to that damage type, it becomes immune to it instead.",,,,
+Healer Spell,Restoration,Hex,2 Actions,3 Mana,5m,Instant,Remove any non-permanent hexes or conditions you specify from a creature other than wounds.,,,,
+Somatic Spell,Swift Strike,Hex,Free Action,2 Mana,Self,Instant,"As part of a weapon attack, the attack is hasted (reduces its action cost by one).",,,,WeaponRider
+Somatic Spell,Swift Step,Hex,Free Action,1 Mana,Self,Instant,"As part of a movement action, increase the movement by 3m.",,,,MovementRider
+Somatic Spell,Divergent Strike,Hex,Free Action,1 Mana,Self,Instant,"As part of a weapon attack, the attack gains advantage and deals an additional 2d4 + Focus Spirit damage on hit.","2d4,Focus",,Spirit,WeaponRider
+Somatic Spell,Subtle Spell,Hex,Free Action,1 Mana,Self,Instant,"As part of a spell cast, the spell does not require incantations.",,,,SpellRider
+Somatic Spell,Somatic Heal,Hex,Free Action,1 Mana,Self,Instant,"As part of a spell cast, heal yourself for 2d4 plus 1d4 for each mana point expended by the casted spell.",,,,SpellRider
+Shape Shifter Spell,Animal Shape,Hex,1 Action,2 Mana,Self,8 Hours,Choose a living creature of large size or smaller you can imagine. You take the form of that creature and gain two creature traits. Casting this spell again while in that form it extends the duration by 8H.,,,,
+Shape Shifter Spell,Humanoid Shape,Hex,1 Action,2 Mana,Self,8 Hours,"Choose a humanoid creature of large size or smaller you can imagine. You take the form of that creature. If the form you choose is of a specific creature, you make a Sense skill roll for how well you can imitate it. Casting this spell again while in that form it extends the duration by 8H.",,,,
+Shape Shifter Spell,Object Shape,Hex,1 Action,2 Mana,Self,8 Hours,"Choose an inanimate object of large size or smaller you can imagine. You take the form of that object, losing the ability to move. Casting this spell again while in that form it extends the duration by 8H. If the object you become is broken, this spell ends and you receive one Shatter wound.",,,,
+Shape Shifter Spell,Fluid Shape,Hex,Free Action,1 Mana,Self,Instant,"While under the effect of a spell that changes your form, take on a new form as if recasting the spell. This also refreshes the duration of the spell.",,,,
+Shape Shifter Spell,Living Weapon,Hex,Free Action,2 Mana,Self,Instant,"As part of an attack, sacrifice  up to ten hit points to increase the damage of the attack by that amount.",,,,AttackRider
+Siphon Spell,Siphoning Strike,Hex,Free Action,0 Mana,Self,Instant,"As part of a melee attack that deals a wound to a creature, restore three mana points.",,,,AttackRider
+Siphon Spell,Suppress,Hex,1 Action,3 Mana,Touch,Concentration,"If you are touching a creature, it becomes stunned for one action. You must expend one action each turn to maintain this spell on a target.",,,,
+Siphon Spell,Phantom Reach,Hex,1 Action,2 Mana,Self,Concentration,Your melee attacks and weapon actions have an additional 3m range.,,,,
+Siphon Spell,Accelerated Heal,Hex,2 Actions,2 Mana,Self,Instant,"When this spell is first cast, instantly heal 2d4 + Focus hit points. When this spell resolves, heal an additional 2d4 hit points.","2d4,Focus",2d4,Heal,
+Siphon Spell,Share Effect,Hex,Free Action,1 Mana,Touch,Instant,"As part of a self casted spell, instead cast that spell as a hex spell on a creature you are touching. Spells with a duration require you to continue touching the creature for the duration of the spell else it ends immediately.",,,,SpellRider
+Monk Spell,Enhance Body,Hex,Free Action,1 Mana,Self,Instant,"As part of a skill roll, gain an advantage to the roll.",,,,SkillRider
+Monk Spell,Block,Hex,Free Action,2 Mana,Self,Instant,"As part of a withstand reaction, increase your armor roll by 2d6.",,,,WithstandRider
+Monk Spell,Resonating Strike,Hex,Free Action,2 Mana,Self,Instant,"As part of a weapon attack, ignore the hit creature's armor. Nonmagical weapons or shields that attempt to block the attack are destroyed instead.",,,,WeaponRider
+Monk Spell,Leap,Hex,Free Action,1 Mana,Self,Instant,"As part of a jump action, you may jump three times the distance.",,,,MovementRider
+Monk Spell,Cleanse Spirit,Hex,1 Action,2 Mana,Self,Instant,Instantly clear any non-permanent Hex effects applied to you other than ones you specify.,,,,
+Spiritualist Spell,Swift Spell,Hex,Free Action,2 Mana,Self,Instant,"As part of a spell cast, the spell is hasted (reduces its action cost by one).",,,,SpellRider
+Spiritualist Spell,Sixth Sense,Hex,2 Actions,2 Mana,Self,Concentration,You are able to supernaturally perceive the presence of any creatures and magical effects within 10m of you.,,,,
+Spiritualist Spell,Shroud,Hex,2 Actions,2 Mana,Self,Concentration,You cannot be targeted by hex spells that require touch and do not trigger traps or magical detection. Casting any other spell ends this spell immediately.,,,,
+Spiritualist Spell,Flight,Hex,2 Actions,3 Mana,Self,Concentration,Gain the ability to move freely in any direction for your movement or to hover in the air.,,,,
+Spiritualist Spell,Shift Soul,Hex,Free Action,3 Mana,6m,Instant,Instant teleport yourself to an unoccupied space you can percieve within 6m.,,,,
+Covenant Keystone,Patronic Form,Hex,2 Actions,4 Mana,Self,1 Minute,Petition your Patron to grant you an altered physical form appropriate to your Patron. Doing this grants you one apparition trait for one minute.,,,,
+Covenant Keystone,Aura of Alacrity,Hex Aura,2 Actions,4 Mana,5m,Concentration,"You and creatures you choose within 5m gain 1d4 healing each turn, and have advantage to all Evasion and Awareness rolls.",,1d4,Heal,
+Covenant Keystone,Aura of Protection,Hex Aura,2 Actions,4 Mana,5m,Concentration,"You and creatures you choose within 5m gain 2d4 armor during a withstand reaction each turn, and have advantage to all Tenacity rolls used for non-magical effects.",,,,
+Covenant Keystone,Aura of Mind Shielding,Hex Aura,2 Actions,4 Mana,5m,Concentration,You and creatures you choose within 5m automatically succeed possible tenacity rolls used to resist mind controlling hex spells.,,,,
+Covenant Keystone,Possession,Hex,2 Actions,5 Mana,Self,1 Minute,"Petition your Patron to take over your physical body. If your Patron agrees, you lose all control of your body for up to one minute. Your Patron has access to all of its abilities and may choose to perform actions it wishes.",,,,
+Covenant Capstone,Summon Patron,Summon,3 Actions,8 Mana,6m,Instant,"Petition your Patron to appear in a physical from. If it chooses to appear, it takes actions and leaves when it wishes to.",,,,
+Covenant Capstone,Prayer (Wish),Hex,3 Actions,8 Mana,Self,Instant,"Petition your Patron to grant a wish you request of it. Your Patron will consider granting your wish, or an altered version of it. Most Patrons are less likely to fulfill wishes when used repeatedly.",,,,
+Covenant Capstone,Banish,Hex,5 Actions,6 Mana,6m,Instant,"Choose a creature that is native to a plane other than your current one. That creature is banished back to its home plane, and cannot return to the plane it was banished from as long as this spell's caster is alive.",,,,
+Covenant Capstone,Divine Passage,Enchantment,5 Actions,8 Mana,6m,Instant,"Petition your Patron to grant passage to the location your Patron resides (or another place significant to it), including to a different plane. Your Patron decides the location the passageway leads.",,,,
+Covenant Capstone,Divine Reinforcements,Summon,5 Actions,8 Mana,24m,Instant,Petition your Patron to send creatures to aid you. The number and strength of the creatures summoned will be proportional to the need when casted.,,,,
+Elemental Keystone,Wounding Cast,Hex,Free Action,3 Mana,Self,Instant,"As part of a spell cast using your Casting Material, if your attack roll exceeds the target's tenacity the spell deals one additional wound to the hit target.",,,,SpellRider
+Elemental Keystone,Overload,Projection Beam,4 Actions,5 Mana,24m,Instant,Create a powerful 2m wide beam dealing 8d12 your Casting Material's damage type to creatures hit by the beam.,,,,
+Elemental Keystone,Stack,Hex,2 Actions,4 Mana,8m,Concentration,"When the target creature is damaged by your Casting Material's damage type, it recieves an additional 1d6 damage. Each type it recieves damage from that damage type, the additional damage is increased by 1d6 (1d6, 2d6, 3d6, and so on).",,,,
+Elemental Keystone,Elemental Form,Hex,2 Actions,4 Mana,Self,1 Minute,"Transform your physical body into your Castiner Material, gaining immunity to your Casting Material's damage type. Objects in your possession are unaffected by this spell and not harmed by dangerous materials (such as fire).",,,,
+Elemental Keystone,Summon Elemental Creature,Summon,2 Actions,4 Mana,8m,10 Minutes,Summon an Elemental creature made from your Casting Material that you control. Elemental creatures may use basic spells you know that use your Casting Material.,,,,
+Elemental Capstone,Distant Control,Hex,1 Action,5 Mana,Self,Concentration,Your control over your casting material becomes only limited by your perception.,,,,
+Elemental Capstone,Maelstrom,Enchantment,4 Actions,8 Mana,1km,24 Hours,Call forth a magical torrent of your casting material.,,,,
+Elemental Capstone,Imprison,Projection,2 Actions,8 Mana,16m,Instant,Using your Casting Material to completely restrain a creature of huge size or smaller. This spell may also be used to protect a creature by completely surrounding it in your casting material. The prison requires a DC 30 Dexterity skill roll to escape.,,,,
+Elemental Capstone,Transmute,Enchantment,3 Actions,6 Mana,8m,Instant,"Transmute up to 10kg of any material similar to your Casting Material into it, or from your Casting Material into a similar material.",,,,
+Elemental Capstone,Universal Medium,Hex,3 Actions,8 Mana,Self,Concentration,You may use any inanimate material within 8m as your Casting Material until this spell ends.,,,,
+Fabrication Keystone,Duplicate Object,Enchantment,1 Action,4 Mana,Touch,Concentration,Duplicate an Object you touch of at most small size. Duplicated legendary objects remain magical but lose their legendary effects.,,,,
+Fabrication Keystone,Body Modification,Permanent Hex,8 Hours,6 Mana,Self,Instant,Alter your body using magical or mechanical components. Components incorporated into your body may be cast without incantations for one action.,,,,
+Fabrication Keystone,Huge Construct,Hex,1 Hour,6 Mana,Touch,Instant,Imbue non-creature material you specify into a huge size functioning Automaton you control. This spell may only be used on one Automaton at a time. The Automaton must be at least partially made of rare material.,,,,
+Fabrication Keystone,Homing Projectile,Enchantment,Free Action,1 Mana,Self,Instant,"As part of a ranged weapon attack, the projectile launch is able to curve its path in a way you specify. Doing this increases its attack roll by 5.",,,,AttackRider
+Fabrication Keystone,Scrollcraft,Enchantment,Free Action,2 Mana,Touch,Instant,"As part of a runecrafting or other action that stores a magical effect, you may imbue the effect into a parchment. The spell or effect stored this way does not expire, but requires the caster to expend Mana equal to the spell's original cast.",,,,SpellRider
+Fabrication Capstone,Construct Swarm,Summon,3 Actions,8 Mana,10m,Concentration,TBD,,,,
+Fabrication Capstone,Craft Legendary Artifact,Enchantment,8 Hours,8 Mana,Touch,Instant,"Utilize legendary crafting material to create a legendary artifact with intended effects you specify. When constructed, the GM decides how the legendary object functions.",,,,
+Fabrication Capstone,Massive Construct,Hex,8 Hours,8 Mana,Touch,Instant,Imbue non-creature material you specify into a massive size functioning Automaton you control. This spell may only be used on one Automaton at a time. The Automaton must be at least partially made of legendary material.,,,,
+Fabrication Capstone,Flexible Armory,Enchantment,Free Action,1 Mana,Touch,Instant,Any time you touch a weapon you may choose to alter its weapon properties to have any non-legendary effect or property.,,,,AttackRider
+Fabrication Capstone,Create Spell,Enchantment,8 Hours,8 Mana,Touch,Instant,Utilize legendary crafting material or reagents to create a spell with an intended custom effect you specify. The GM decides how the spell resolves when cast.,,,,
+Occult Keystone,Twin Spell,Hex,Free Action,4 Mana,Self,Instant,"As a part of a basic spell cast, cast it twice, allowing the second to have a different target. Both spell effects have separate attack and concentration rolls.
+
+Rare Reagent: The second spell is a different spell but shares the targeting of the first.",,,,SpellRider
+Occult Keystone,Summon Servant,Summon,2 Actions,4 Mana,16m,Instant,"Summon a spiritual creature you control. The creature can be at most large size and has one apparition trait. Servants remain for 24H.
+
+Uncommon Reagents: you may expend any amount of uncommon reagents to summon that many additional servants.",,,,
+Occult Keystone,Spell Sniper,Hex,Free Action,1 Mana,Self,Instant,"Your current spell cast has double range.
+
+Ordinary Reagent: You may extend your spell by one action to extend its range up to 500m. The spell is additionally able to curve its path to target creatures behind terrain.",,,,SpellRider
+Occult Keystone,Wild Magic,Hex,1 Action,6 Mana,Self,Instant,TBD,,,,
+Occult Keystone,Demiplane,Enchantment,1 Minute,4 Mana,Self,Instant,"Change the shape of your pocket space's dimension to any form and containing any objects. Objects created this way can't be consumed, heal, damage, or leave the space.
+
+Rare Reagent: Objects you create in the space may be consumed, heal, or damage.",,,,
+Occult Capstone,Za Worldo,Hex,4 Actions,8 Mana,Self,Instant,"You instantly gain ten additional actions you may perform as if time were stopped. Other creatures cannot react to your actions.
+
+Legendary Reagent: You stop time for one minute instead, and may choose to share this effect with creatures you touch.",,,,
+Occult Capstone,Duplicate Body,Summon,4 Actions,8 Mana,4m,Instant,"Create an exact duplicate of yourself you may control independently. The duplicate lasts for one minute.
+
+Legendary Reagent: The duplicate becomes permanent. If your original body dies, you become the duplicate.",,,,
+Occult Capstone,Doom,Enchantment,8 Actions,8 Mana,100m,Concentration,"black hole?
+
+Legendary Reagent: It kills everything",,,,
+Occult Capstone,Anti-Magic Field,Enchantment,5 Actions,8 Mana,50m,Concentration,"Create a region up to 25m in radius that prevents all magical effects or spells from being cast or triggered. Apparitions die immediately inside the region.
+
+Legendary Reagent: This region of anti-magic becomes permanent, and not even you can remove it.",,,,
+Occult Capstone,Plane Shift,Hex,1 Minute,8 Mana,Self,Instant,"You gain the ability to move to a different plane than your current one that you specify. You may or may not land in a location you think of in that plane (decided by the GM).
+
+Rare Reagent: You may bring up to five additional creatures with you.",,,,
+Psychic Keystone,Hex Blade,Hex,Free Action,1 Mana,Self,Instant,"As part of a melee attack that deals damage to a creature, reduce that creature's tenacity by five until the end of your next turn.",,,,AttackRider
+Psychic Keystone,Astral Projection,Summon,2 Actions,4 Mana,Self,Concentration,"Create an invisible, intangible duplicate of yourself you control that can only fly at twice your movement. You share consciousness and perception with this duplicate. If the duplicate recieves ten or more soul damage from a single attack, this spell ends.",,,,
+Psychic Keystone,Psionic Beam,Projection Beam,3 Actions,4 Mana,15m,Concentration,"Create a 1m wide beam of psychic energy the deals 8d4 + Focus Psychic damage to creatures in its path. The beam may go through objects you can see through. Each turn, you may continue this spell by expending one action.",,,,
+Psychic Keystone,Tangible Illusion,Enchantment,Free Action,4 Mana,Self,Instant,"Your current illusion spell becomes tangible, gaining weight and mass. If the illusion takes or deals more than 20 damage at once, it ends immediately (dealing a maximum of 20 damage).",,,,SpellRider
+Psychic Keystone,Restore Wound,Hex,4 Actions,4 Mana,Touch,Instant,"Target creature restores one wound, and recieves ten hit points of damage. If the creature has fewer than ten hit points remaining, this spell fails.",,,,
+Psychic Capstone,Fear,Hex,1 Action,6 Mana,15m,1 Minute,Target creature manifests its greatest fear for one minute. It responds to its fear as if it were real.,,,,
+Psychic Capstone,Dominate Mind,Hex,3 Actions,8 Mana,24m,Concentration,Gain full control over a creature's actions. This spell's attack is cast with a disadvantage.,,,,
+Psychic Capstone,Heightened Telekinetic,Hex,Free Action,0 Mana,Self,Instant,"As part of a telekinetic spell, you may enhance the spell in one of three ways:
+-The spell costs two less Mana to cast.
+-The spell increases its damage by 3d6.
+-The spell may be extended by one action to increase the amount of material it can move by 10x.",,,,SpellRider
+Psychic Capstone,Mind into Reality,Enchantment,3 Actions,10 Mana,100m,Concentration,Control the shape of your surroundings to you or another creature's perceptions or imagination.,,,,
+Psychic Capstone,Regeneration,Hex,2 Actions,8 Mana,Touch,1 Minute,"As a free action, target creature restores 2d4 hit points each turn for up to one minute.",,,,
+Somatic Keystone,Charge Attack,Hex,1 Action,4 Mana,Self,Concentration,"As part of a Dexterity or Celerity attack, increase the damage of the attack by 3d6 by extending the attack by one action. Each turn you remain concentrating on this spell, you may extend the attack to again increase its damage.",,,,AttackRider
+Somatic Keystone,Huge Form,Hex,Free Action,3 Mana,Self,Instant,"As part of a spell cast to change your shape, the form you choose may instead be up to huge size. You additionally gain five magical armor while transformed.",,,,SpellRider
+Somatic Keystone,Soul Extension,Hex Aura,1 Action,4 Mana,3m,Concentration,"Extend your soul to fill the space within 3m. You may cast touch spells on creatures within that range, and you have full knowledge of all creatures and object within the range (even if magically concealed).",,,,
+Somatic Keystone,Multi-Attack,Hex,3 Actions,6 Mana,Self,Instant,"Charge up a flurry of attacks. When this spell activates, you may haste a Dexterity attack up to six times (this may create an attack multiple times). After each attack, you may move your movement.",,,,
+Somatic Keystone,Standing Projection,Summon,1 Action,4 Mana,2m,1 Minute,"Create a tangible duplicate of yourself that you may use to take actions in your place. You share armor and hit points with the duplicate, and it cannot move more than 24 meters from you or this spell ends immediately.",,,,
+Somatic Capstone,Efficient Cast,Hex,Free Action,1 Mana,Self,Instant,"As part of a spell cast,that spell requires two less mana (minimum 0).",,,,SpellRider
+Somatic Capstone,Titantic Form,Hex,Free Action,6 Mana,Self,Instant,"As part of a spell cast to change your shape, the form you choose may instead be up to massive size. You additionally gain fifteen magical armor while transformed.",,,,
+Somatic Capstone,Soul Expansion,Hex Aura,3 Actions,8 Mana,8m,Concentration,Extend your soul to fill the space within 8m. Your spell attacks made on creatures within the radius automatically succeed.,,,,
+Somatic Capstone,Perfect Form,Hex,2 Actions,8 Mana,Self,1 Minute,"Your Dexterity, Celerity, Awareness, Tenacity, and Evasion all become +10 for one minute. At the end of the minute, you lose all your remaining mana.",,,,
+Somatic Capstone,Unleashed Soul,Projection Beam,5 Actions,10 Mana,250m,Concentration,"Begin charging a massive spiritual blast. When this spell completes, targets within a 3m wide beam are dealt 10d12 Shatter and 10d12 Spirit damage. Spell attacks and projectiles that come into contact with the beam are immediately destroyed.",,,,
