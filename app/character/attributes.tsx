@@ -1,11 +1,14 @@
-import { CalculatedState, Character, emptyCalculatedState, emptyLimitedState } from "@/types/characterTypes";
+// React
 import { useEffect, useState } from "react";
-import "./attributes.css";
-import { Attribute, Talent } from "@/types/talentTypes";
+// Hooks
 import { useGetAttributeList } from "@/hooks/useGetAttributeList";
-import useCalculateState, { applyLimitedEffects } from "@/hooks/useCalculateState";
-import { Effect } from "@/types/stateTypes";
 import { useModifyEffect } from "@/hooks/operations/effectOperations";
+// Types
+import { CalculatedState, Character, emptyCalculatedState, emptyLimitedState } from "@/types/characterTypes";
+import { Effect } from "@/types/stateTypes";
+import { Attribute, Talent } from "@/types/talentTypes";
+// CSS
+import "./attributes.css";
 
 const maxLevel = 8;
 
@@ -120,45 +123,44 @@ export default function attributes(character: Character, setCharacterData: Funct
     return (
         <div className="attributes">
             <div className="talent1name">
-                {character.talent1.name}
+                {(character.talent1.name === "") ? "Talent 1" : character.talent1.name}
             </div>
             <div className="level">
-                <div className="levelName">
-                    Level
-                </div>
                 <div className="levelSelect">
+                    <div className="z-100 pointer-events-none">Level</div>
                     <select defaultValue={character?.attributeLevel?.toString()} onChange={(e) => { setCharacterLevel(Number(e.currentTarget.value)) }}>
                         {/*creates an array of the same size as the max level, the uses a map function and index to generate the level select options.*/ }
-                        {[...Array(maxLevel+1)].map((x,i)=><option key={i} value={i} className="text-[32px]">{i}</option>)}
+                        {[...Array(maxLevel+1)].map((x,i)=><option key={i} value={i}>{i}</option>)}
                     </select>
                 </div>
+                
             </div>
             <div className="talent2name">
-                {character.talent2.name}
+                {(character.talent2.name === "") ? "Talent 2" : character.talent2.name}
             </div>
             <div className="talent1attributes">
                 {attribute1List.map((attribute: Attribute) => (
                     <div className="attributeContainer" key={attribute.name}>
                         {!(character.attributes1?.filter(a => attribute.name === a.name).length > 0) ? ((((character.attributes1.length + character.attributes2.length < character.attributeLevel) && (character.attributes1.length - character.attributes2.length < 2)) ? (
                             <div className="attributeNotSelected" onClick={() => { addAttribute(false, attribute) }}>
-                                {attribute.name} <br /> {attribute.description1}
+                                <div className="attributeName">{attribute.name}</div> {attribute.description1}
                             </div>) : (
                             <div className="attributeDisallowed">
-                                {attribute.name} <br /> {attribute.description1}
+                                <div className="attributeName">{attribute.name}</div> {attribute.description1}
                             </div>
                         ))
                         ) : (<div className="attributeSelected" onClick={() => { removeAttribute(false, attribute) }}>
-                            {attribute.name} <br /> {attribute.description1}
+                            <div className="attributeName">{attribute.name}</div> {attribute.description1}
                         </div>)}
                     </div>
                 ))}
             </div>
             <div className="talent1stones">
                 <div className={(character.attributes1.length < 2) ? ("keystone") : ("keystoneActive")}>
-                    <u>{character.talent1.name} Keystone</u> <br /> {character.talent1.keystone}
+                    <u className="stoneName">{character.talent1.name} Keystone ({Math.min(character.attributes1.length,2)}/2)</u> <br /> {character.talent1.keystone}
                 </div>
                 <div className={(character.attributes1.length < 4) ? ("capstone") : ("capstoneActive")}>
-                    <u>{character.talent1.name} Capstone</u> <br /> {character.talent1.capstone}
+                    <u className="stoneName">{character.talent1.name} Capstone ({character.attributes1.length}/4)</u> <br /> {character.talent1.capstone}
                 </div>
             </div>
             <div className="talent2attributes">
@@ -166,24 +168,24 @@ export default function attributes(character: Character, setCharacterData: Funct
                     <div className="attributeContainer" key={attribute.name}>
                         {!(character.attributes2?.filter(a => attribute.name === a.name).length > 0) ? ((((character.attributes1.length + character.attributes2.length < character.attributeLevel) && (character.attributes2.length - character.attributes1.length < 2)) ? (
                             <div className="attributeNotSelected" onClick={() => { addAttribute(true, attribute) }}>
-                                {attribute.name} <br /> {attribute.description1}
+                                <div className="attributeName">{attribute.name}</div> {attribute.description1}
                             </div>) : (
                             <div className="attributeDisallowed">
-                                {attribute.name} <br /> {attribute.description1}
+                                <div className="attributeName">{attribute.name}</div> {attribute.description1}
                             </div>
                         ))
                         ) : (<div className="attributeSelected" onClick={() => { removeAttribute(true, attribute) }}>
-                            {attribute.name} <br /> {attribute.description1}
+                            <div className="attributeName">{attribute.name}</div> {attribute.description1}
                         </div>)}
                     </div>
                 ))}
             </div>
             <div className="talent2stones">
                 <div className={(character.attributes2.length < 2) ? ("keystone") : ("keystoneActive")}>
-                    <u> {character.talent2.name} Keystone</u> <br /> {character.talent2.keystone}
+                    <u className="stoneName"> {character.talent2.name} Keystone ({Math.min(character.attributes2.length,2)}/2)</u> <br /> {character.talent2.keystone}
                 </div>
                 <div className={(character.attributes2.length < 4) ? ("capstone") : ("capstoneActive")}>
-                    <u>{character.talent2.name} Capstone</u> <br /> {character.talent2.capstone}
+                    <u className="stoneName">{character.talent2.name} Capstone ({character.attributes2.length}/4)</u> <br /> {character.talent2.capstone}
                 </div>
             </div>
         </div>

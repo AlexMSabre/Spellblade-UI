@@ -1,32 +1,32 @@
 textarea {
-    font-size: 20px;
-    border: 1px solid black;
+    font-size: var(--font-sm);
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    padding: 10px;
+    background-color: var(--card);
 }
 
 .story {
     display: grid;
     grid-template-areas: "appearance bgstory motivations";
-    border: 1px solid black;
     text-align: center;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
-    background-color: #eeeeee;
-    border: 1px solid black;
+    width: calc(100vw - 160px);
 }
 
 .story div.appearance {
     grid-area: appearance;
-    border: 1px solid black;
 }
 
 .story div.bgstory {
     grid-area: bgstory;
-    border: 1px solid black;
+
 }
 
 .story div.motivations {
     grid-area: motivations;
-    border: 1px solid black;
 }

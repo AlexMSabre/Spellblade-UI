@@ -1,329 +1,468 @@
 .talents {
+    /*Size*/
+    height: calc(100vh - 180px);
+    width: calc(100vw - 160px);
+    /*Layout*/
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
-    background-color: #eeeeee;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    color: var(--primary);
+    background-color: var(--background);
 }
 
 .talents div.header {
+    /*Size*/
+    height: var(--font-xl);
+    /*Layout*/
     text-align: center;
-    font-size: 48px;
-    border: 1px solid rgb(85, 85, 85);
-    height: 65px;
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
+}
+
+.header:hover {
+    /*Color and Text Styles*/
+    background-color: var(--muted-foreground);
+    /*Interactive*/
+    cursor: pointer;
 }
 
 .talents div.talentChoices {
+    /*Size*/
+    height: calc(100vh - 245px);
+    width: calc(100vw - 160px);
+    /*Layout*/
     display: grid;
-    position: relative;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
-    height: calc(100vh - 330px);
-    width: calc(100vw - 130px);
+    position: relative;
+    /*Boundaries*/
     gap: 5px;
 }
 
 .talentChoices div.covDamageSelect {
-    position: absolute;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Layout*/
     z-index: 10;
-    top: 0px;
-    left: calc((100vw - 130px)/8 - 5px);
-    width: calc((100vw - 130px)/8);
-    height: 25px;
+    top: -8px;
+    left: calc(3*(100vw - 160px)/20 - 18px);
+    position: absolute;
 }
 
 .covSelect {
-    width: calc((100vw - 130px)/8);
-    height: 25px;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
+    background-color: var(--ring);
+}
+
+.covSelect:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }
 
 .elemSelect {
-    width: calc((100vw - 130px)/8);
-    height: 25px;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
+    background-color: var(--ring);
+}
+
+.elemSelect:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }
 
 .elemInput {
-    width: calc((100vw - 130px)/8);
-    height: 25px;
-    font-size: 20px;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Layout*/
+    text-align: center;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
+    background-color: var(--ring);
+}
+
+.elemInput:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
 .talentChoices div.elemDamageSelect {
-    position: absolute;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Layout*/
     z-index: 10;
-    top: 25px;
-    left: calc(3*(100vw - 130px)/8 - 3px);
-    width: calc((100vw - 130px)/8);
-    height: 25px;
+    top: calc(var(--font-sm));
+    left: calc(2*(100vw - 160px)/5 - 18px);
+    position: absolute;
 }
 
 .talentChoices div.elemTypeText {
-    position: absolute;
+    /*Size*/
+    width: calc((100vw - 160px)/16);
+    height: var(--font-sm);
+    /*Layout*/
     z-index: 10;
-    top: 0px;
-    left: calc(3*(100vw - 130px)/8 - 3px);
-    width: calc((100vw - 130px)/8);
-    height: 25px;
-    background-color: rgb(179, 179, 255);
+    top: -8px;
+    left: calc(2*(100vw - 160px)/5 - 18px);
+    position: absolute;
 }
 
 .talentCard {
+    /*Layout*/
     display: grid;
-    text-align: center;
-    background-color: #eeeeee;
-    border: 1px solid #1d1d1d;
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    padding-top: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .talentCard:hover {
-    background-color: #b9b9b9;
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Interactive*/
     cursor: pointer;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
-.disabledTalentCard { 
+.disabledTalentCard {
+    /*Layout*/
     display: grid;
-    text-align: center;
-    background-color: #acacac;
-    border: 1px solid #1d1d1d;
+    /*Border*/
+    border-image: var(--border-select-locked);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Boundaries*/
+    padding: 15px;
+    padding-top: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--background);
 }
 
 .cardGrid {
+    /*Size*/
+    height: calc(3*(100vh - 330px)/10 - 6px);
+    /*Layout*/
     display: grid;
-    grid-template-areas: "name name name icon"
-    "type type splash splash"
-    "role role splash splash"
-    "compl compl splash splash";
-    grid-template-rows: 2fr 1fr 1fr 1fr;
-}
-
-.cardGrid div.talentName {
-    font-size: 48px;
-    padding-left: 10px;
-    text-align: left;
-    grid-area: name;
-    border: 1px solid #1d1d1d;
-}
-
-.cardGrid div.talentIcon {
-    grid-area: icon;
-    background-color: rgb(179, 179, 255);
-}
-
-.cardGrid div.talentType {
-    text-align: left;
-    font-size: 20px;
-    grid-area: type;
-    border: 1px solid #1d1d1d;
-}
-
-.cardGrid div.talentRole {
-    text-align: left;
-    font-size: 20px;
-    grid-area: role;
-    border: 1px solid #1d1d1d;
-}
-
-.cardGrid div.talentCompl {
-    text-align: left;
-    font-size: 20px;
-    grid-area: compl;
-    border: 1px solid #1d1d1d;
-}
-
-.cardGrid div.talentSplash {
-    grid-area: splash;
-    border: 1px solid #1d1d1d;
-    background-color: rgb(179, 179, 255);
+    grid-template-areas: "name name icon"
+    "type none icon"
+    "type splash splash"
+    "role splash splash"
+    "compl splash splash";
+    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr 2fr 2fr;
 }
 
 .cardBack {
-    display: subgrid;
-    grid-area: "backName backIcon";
-    grid-template-columns: 400px auto;
-    grid-template-rows: auto auto;
-    color:white;
-    background-color: #333333;
-    border: 1px solid #1d1d1d;
+    /*Layout*/
+    display: grid;
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    padding-top: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--chart-1);
 }
 
 .cardBack:hover {
-    background-color: #414141;
+    /*Interactive*/
     cursor: pointer;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
-.cardBack div.cardBackName {
-    font-size: 48px;
-    padding-left: 10px;
-    text-align: left;
+.cardBack div.cardBackGrid {
+    /*Size*/
+    height: calc(3*(100vh - 330px)/10 - 6px);
+    /*Layout*/
+    display: grid;
+    grid-template-areas: "backName backIcon"
+    "backDesc backDesc";
+    grid-template-columns: 9fr 1fr;
+    grid-template-rows: var(--font-xl) 3fr;
+}
+
+.cardBackName {
+    /*Layout*/
     grid-area: backName;
-    border: 1px solid #1d1d1d;
+    text-align: left;
+    /*Boundaries*/
+    padding-left: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
 }
 
-.cardBack div.cardDesc {
-    padding-left: 10px;
-    text-align: left;
-    color: white;
+.cardBackIcon {
+    /*Layout*/
+    grid-area: backIcon;
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
+}
+
+.cardBackDesc {
+    /*Layout*/
     grid-area: backDesc;
+    text-align: left;
+    /*Boundaries*/
+    padding-left: 10px;
+    padding-left: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
+    /*Interactive*/
+    overflow-y: auto;
+}
+
+
+.cardGrid div.talentName {
+    /*Layout*/
+    grid-area: name;
+    text-align: left;
+    /*Boundaries*/
+    padding-left: 10px;
+    margin-bottom: -8px;
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
+}
+
+.cardGrid div.talentIcon {
+    /*Layout*/
+    grid-area: icon;
+    /*Interactive*/
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
+}
+
+.cardGrid div.talentType {
+    /*Layout*/
+    grid-area: type;
+    text-align: left;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+}
+
+.cardGrid div.talentRole {
+    /*Layout*/
+    grid-area: role;
+    text-align: left;
+    line-height: 1;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+}
+
+.cardGrid div.talentCompl {
+    /*Layout*/
+    grid-area: compl;
+    text-align: left;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+}
+
+.cardGrid div.talentSplash {
+    /*Layout*/
+    grid-area: splash;
+    /*Interactive*/
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
 }
 
 .view {
+    /*Layout*/
     text-align: center;
-    color: white;
+    /*Color and Text Styles*/
     background-color: #333333;
 }
 
 .view:hover {
+    /*Color and Text Styles*/
     background-color: #1d1d1d;
+    /*Interactive*/
     cursor: pointer;
 }
 
 .talents div.selected {
+    /*Size*/
+    height: calc(100vh - 245px);
+    /*Layout*/
     display: grid;
-    grid-template-areas: "viewTalent1 viewTalent2"
-    "returnTalent returnTalent";
+    grid-template-areas: "viewTalent1 viewTalent2";
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: calc(100vh - 335px) 28px;
-    border: 1px solid #1d1d1d;
     text-align: center;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .selected div.viewTalent1 {
+    /*Layout*/
     grid-area: viewTalent1;
     display: grid;
     grid-template-areas: "selectedName selectedName"
     "selectedType selectedRoles"
-    "selectedFlavor selectedFlavor"
     "selectedSkills selectedComplexity"
+    "selectedFlavor selectedFlavor"
     "selectedBonus selectedBonus"
     "selectedAbility selectedAbility"
     "selectedAtts selectedAtts"
     "selectedAttributes selectedAttributes";
-    grid-template-rows: 4fr 1fr 8fr 1fr 3fr 5fr 2fr 6fr;
+    grid-template-rows: 3fr 1fr 1fr 8fr 3fr 5fr 2fr 6fr;
     grid-template-columns: 1fr 1fr;
-    font-size: 36px;
-    border: 1px solid #1d1d1d;
+    /*Border*/
+    border-image: var(--border-square);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Boundaries*/
+    padding: 8px;
+    /*Interactive*/
     overflow-y: auto;
-    padding-right: 5px;
 }
 
 .selected div.viewTalent2 {
+    /*Layout*/
     grid-area: viewTalent2;
     display: grid;
     grid-template-areas: "selectedName selectedName"
     "selectedType selectedRoles"
-    "selectedFlavor selectedFlavor"
     "selectedSkills selectedComplexity"
+    "selectedFlavor selectedFlavor"
     "selectedBonus selectedBonus"
     "selectedAbility selectedAbility"
     "selectedAtts selectedAtts"
     "selectedAttributes selectedAttributes";
-    grid-template-rows: 4fr 1fr 8fr 1fr 3fr 5fr 2fr 6fr;
+    grid-template-rows: 3fr 1fr 1fr 8fr 3fr 5fr 2fr 6fr;
     grid-template-columns: 1fr 1fr;
-    font-size: 36px;
-    border: 1px solid #1d1d1d;
+    /*Border*/
+    border-image: var(--border-square);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Boundaries*/
+    padding: 8px;
+    /*Interactive*/
     overflow-y: auto;
-    padding-right: 5px;
 }
 
 .selectedName {
+    /*Layout*/
     grid-area: selectedName;
-    border: 1px solid #1d1d1d;
-    font-size: 48px;
+    font-size: var(--font-xl);
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
 }
 
 .selectedType {
+    /*Layout*/
     grid-area: selectedType;
-    border: 1px solid #1d1d1d;
-    font-size: 28px;
 }
 
 .selectedRoles {
+    /*Layout*/
     grid-area: selectedRoles;
-    border: 1px solid #1d1d1d;
-    font-size: 28px;
 }
 
 .selectedFlavor {
+    /*Layout*/
     grid-area: selectedFlavor;
-    border: 1px solid #1d1d1d;
-    font-size: 20px;
     text-align: left;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
 }
 
 .selectedComplexity {
+    /*Layout*/
     grid-area: selectedComplexity;
-    border: 1px solid #1d1d1d;
     font-size: 28px;
 }
 
 .selectedSkills {
+    /*Layout*/
     grid-area: selectedSkills;
-    border: 1px solid #1d1d1d;
-    font-size: 28px;
 }
 
 .selectedBonus {
-    line-height: 1.2;
+    /*Layout*/
     grid-area: selectedBonus;
-    border: 1px solid #1d1d1d;
-    font-size: 28px;
+    /*Color and Text Styles*/
+    line-height: 1.2;
 }
 
 .selectedAbility {
+    /*Layout*/
     grid-area: selectedAbility;
-    border: 1px solid #1d1d1d;
     text-align: left;
-    font-size: 20px;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
 }
 
 .selectedAtts {
-    font-size: 28px;
+    /*Layout*/
     grid-area: selectedAtts;
-    border: 1px solid #1d1d1d;
 }
 
 .selectedAttributes {
-    line-height: 1.2;
+    /*Layout*/
     grid-area: selectedAttributes;
     display: grid;
     grid-template-areas:"att1 att2"
     "arr3 att4";
     grid-template-columns: 1fr 1fr;
-    border: 1px solid #1d1d1d;
-    font-size: 24px;
+    /*Color and Text Styles*/
+    line-height: 1.2;
+    font-size: var(--font-sm);
 }
 
 .selectedAttributes att1 {
+    /*Layout*/
     grid-area: att1;
-    border: 1px solid #1d1d1d;
 }
 
 .selectedAttributes att2 {
+    /*Layout*/
     grid-area: att2;
-    border: 1px solid #1d1d1d;
 }
 
 .selectedAttributes att3 {
+    /*Layout*/
     grid-area: att3;
-    border: 1px solid #1d1d1d;
 }
 
 .selectedAttributes att4 {
+    /*Layout*/
     grid-area: att4;
-    border: 1px solid #1d1d1d;
-}
-
-
-.selected div.returnTalent {
-    text-align: center;
-    grid-area: returnTalent;
-    border: 1px solid #1d1d1d;
-    color: white;
-    background-color: #333333;
-    font-size: 18px;
-}
-
-.selected div.returnTalent:hover {
-    background-color: #1d1d1d;
-    cursor: pointer;
 }
 

@@ -1,12 +1,18 @@
+// React
 import { ChangeEvent, useEffect, useState } from "react";
-import { emptyInventory, emptyInventoryDAO, emptyItem, emptyPack, Inventory, InventoryDAO, Item, Pack, getInventoryItemQTY } from "@/types/itemTypes";
-import "./equipment.css";
+// Hooks
 import { useGetEquipmentScreen } from "@/hooks/useGetEquipmentScreen";
+import { useModifyEffect } from "@/hooks/operations/effectOperations";
+// Types
 import { Character } from "@/types/characterTypes";
+import { emptyInventory, emptyInventoryDAO, emptyItem, emptyPack, Inventory, InventoryDAO, Item, Pack, getInventoryItemQTY } from "@/types/itemTypes";
 import { ammoQuantity, proficiencyTypes, weaponQuantity } from "@/types/Enums";
 import { Effect } from "@/types/stateTypes";
-import { useModifyEffect } from "@/hooks/operations/effectOperations";
+// Pages
 import itemSearch from "../itemSearch";
+// CSS
+import "./equipment.css";
+
 
 const displayFilters = ["Supplies", "Currency"];
 
@@ -70,12 +76,18 @@ export default function equipment(character: Character, setCharacter: Function, 
         return (
             <div className="inventoryTable">
                 {inventory.filter(i=>!displayFilters.includes(i.item.itemType)).map((item: InventoryDAO) => (
-                    <div className="tableRow" key={item.item.name}>
-                        <div className="tableName">{item.item.name}</div>
-                        <div className="tableQTY">{item.inventory.quantity}</div>
-                        <div className="tableType">{item.item.itemType}</div>
-                        <div className="tableDesc">{item.item.description}</div>
-                    </div>
+                    <details className="tableRow" key={item.item.name}>
+                        <summary className="tableSummary">
+                            <div className="tableCellName">{item.item.name}</div>
+                            <div className="tableCellContent">{item.inventory.quantity}</div>
+                            <div className="tableCellContent">{item.item.itemType}</div>
+                            <div className="tableCellContent">{item.item.weight}</div>
+                            <div className="tableCellContent">{item.item.rarity}</div>
+                        </summary>
+                        <div className="tableCellDesc">
+                            {item.item.description}
+                        </div>
+                    </details>
                 ))}
             </div>
         )
@@ -230,7 +242,6 @@ export default function equipment(character: Character, setCharacter: Function, 
         <div className="equipment">
             <div className="inventory">
                 <div className="startPack">
-                    <div className="startHead"> Inventory: </div>
                     {makePackSelector()}
                 </div>
                 {/*painstakingly display every quantity*/}
@@ -289,17 +300,20 @@ export default function equipment(character: Character, setCharacter: Function, 
                     <div className="outerDesc">{inventory.find(i=>i.item.itemType==="Outerwear"&&i.inventory.equipped===true)?.item.description || "Choose an outerwear"}</div>
                 </div>
                 <div className="tableHead">
-                    <div className="tableName">
+                    <div className="tableCellName">
                         Item Name
                     </div>
-                    <div className="tableQTY">
+                    <div className="tableCellContent">
                         QTY
                     </div>
-                    <div className="tableType">
+                    <div className="tableCellContent">
                         Type
                     </div>
-                    <div className="tableDesc">
-                        Description
+                    <div className="tableCellContent">
+                        Weight
+                    </div>
+                    <div className="tableCellContent">
+                        Rarity
                     </div>
 
                 </div>
@@ -307,7 +321,7 @@ export default function equipment(character: Character, setCharacter: Function, 
             </div>
             <div className="proficiencies">
                 <div className="prof1">
-                    <div className="weaponHead">Proficiency 1</div>
+                    <div className="weaponHead">Weapon 1</div>
                     {makeProfTypeSelectors(0)}
                     <select className="weaponSelect" defaultValue={character.proficiencies[0]} onChange={e=>handleProfItemChange(0,e.currentTarget.value)}>
                         {/*if a proficiency type is selected, build the select list to only include items of the type, and dont include any other weapons selected by other proficiencies */}
@@ -325,7 +339,7 @@ export default function equipment(character: Character, setCharacter: Function, 
                     <div className="weaponSpecial">Special Properties: { profData[0]?.properties ? profData[0]?.properties: "None"}</div>
                 </div>
                 <div className="prof2">
-                    <div className="weaponHead">Proficiency 2</div>
+                    <div className="weaponHead">Weapon 2</div>
                     {makeProfTypeSelectors(1)}
                     <select className="weaponSelect" defaultValue={character.proficiencies[1]} onChange={e=>handleProfItemChange(1,e.currentTarget.value)}>
                         {typeSelect[1]!="" && itemsList.filter(i=>i.itemType.includes(typeSelect[1])&& !character.proficiencies.toSpliced(1,1).includes(i.name)).map(item=>(
@@ -342,7 +356,7 @@ export default function equipment(character: Character, setCharacter: Function, 
                     <div className="weaponSpecial">Special Properties: { profData[1]?.properties ? profData[1]?.properties: "None"}</div>
                 </div>
                 <div className="prof3">
-                    <div className="weaponHead">Proficiency 3</div>
+                    <div className="weaponHead">Weapon 3</div>
                     {makeProfTypeSelectors(2)}
                     <select className="weaponSelect" defaultValue={character.proficiencies[2]} onChange={e=>handleProfItemChange(2,e.currentTarget.value)}>
                         {typeSelect[2]!="" && itemsList.filter(i=>i.itemType.includes(typeSelect[2])&& !character.proficiencies.toSpliced(2,1).includes(i.name)).map(item=>(

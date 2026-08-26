@@ -14,7 +14,7 @@ export default function appHeader(session : any, status : any){
         </ul>
         {status==="authenticated"? 
         <div className="account"><SignOutButton/> <br/> {session?.user?.email} </div>:
-        <div className="account"><button onClick={() => signIn("cognito")}>Sign In</button></div>
+        <div className="account"><div className="log" onClick={() => signIn("cognito")}>Sign In</div></div>
         }
       </div>)
 }

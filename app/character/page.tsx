@@ -1,27 +1,33 @@
 "use client";
-import Image from "next/image";
+// React
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+// ShadCN
 import {Tabs, TabsTrigger, TabsList, TabsContent} from "@/components/ui/tabs";
+// Hooks
+import { useCharacterSave } from "@/hooks/useCharacterSave";
+import { useCharacterById } from "@/hooks/useCharacterById";
+import { useGetEffects } from "@/hooks/useGetEffectsList";
+// Types
+import { CalculatedState, Character, emptyCalculatedState, emptyCharacter } from "@/types/characterTypes";
+import { InventoryDAO } from "@/types/itemTypes";
+import { SpellDAO } from "@/types/spellTypes";
+import { Effect } from "@/types/stateTypes";
+// Functions
+import useCalculateState from "@/hooks/useCalculateState";
+// Pages
+import appHeader from "@/components/appHeader";
 import background from "./background";
 import talents from "./talents";
 import attributes from "./attributes";
+import skills from "./skills";
 import spells from "./spells";
 import equipment from "./equipment";
 import story from "./story";
 import preview from "./preview";
-import { useEffect, useState } from "react";
-import { CalculatedState, Character, emptyCalculatedState, emptyCharacter } from "@/types/characterTypes";
-import { InventoryDAO } from "@/types/itemTypes";
+// CSS
 import "./page.css";
-import { SpellDAO } from "@/types/spellTypes";
-import appHeader from "@/components/appHeader";
-import { useCharacterSave } from "@/hooks/useCharacterSave";
-import { useSession } from "next-auth/react";
-import skills from "./skills";
-import useCalculateState from "@/hooks/useCalculateState";
-import { useGetEffects } from "@/hooks/useGetEffectsList";
-import { Effect } from "@/types/stateTypes";
-import { useCharacterById } from "@/hooks/useCharacterById";
-import { useSearchParams } from "next/navigation";
 
   //create an empty character, for now.   this will be the master data that everything will update or reference
 
@@ -33,6 +39,7 @@ export default function Builder({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
     const searchId = useSearchParams().get('id');
+    const searchLevel = useSearchParams().get('level');
 
     const [currentTab, setCurrentTab] = useState("background");
     const [characterData, setCharacterData] = useState<Character>(emptyCharacter)
@@ -40,7 +47,8 @@ export default function Builder({
     const [characterInventory, setCharacterInventory] = useState<InventoryDAO[]>([]);
     const [characterSpells, setCharacterSpells] = useState<SpellDAO[]>([]);
     const [effectList, setEffectList] = useState<Effect[]>([]);
-    
+    const [saveStatus, setSaveStatus] = useState("Unsaved");
+
     const { data: session, status } = useSession();
 
     useEffect(()=>{
@@ -48,10 +56,14 @@ export default function Builder({
         setEffectList(data.data.data.getEffectList);
         if (searchId) {
           useCharacterById(searchId).then(result=>{
+            console.log(result);
             setCharacterData(result.data.data.fullCharacterById.character);
             setCharacterInventory(result.data.data.fullCharacterById.inventory);
             setCharacterSpells(result.data.data.fullCharacterById.spells);
         });
+        }
+        else if (searchLevel && (Number(searchLevel)<=8)) {
+          setCharacterData(prev=>({...prev, attributeLevel: Number(searchLevel)}))
         }
       })
     },[]);
@@ -84,16 +96,26 @@ export default function Builder({
 
     //saves the character via the backend
     function handleSave(){
+      setSaveStatus("Saving...");
       if(status==="authenticated"){
         useCharacterSave(characterData, characterInventory, characterSpells).then(data=>{
-          console.log(data);
           let characterDAO = data.data.data.saveCharacter;
-          //updates the character data to have the newly generated ID
-          setCharacterData(prev=>({...prev, id: characterDAO.character.id}));
-          //updates the inventory and spells to also have their newly generated IDs, plus the characterId
-          setCharacterInventory(characterDAO.inventory);
-          setCharacterSpells(characterDAO.spells);
+          if (characterDAO) {
+            let characterDAO = data.data.data.saveCharacter;
+            //updates the character data to have the newly generated ID
+            setCharacterData(prev=>({...prev, id: characterDAO.character.id}));
+            //updates the inventory and spells to also have their newly generated IDs, plus the characterId
+            setCharacterInventory(characterDAO.inventory);
+            setCharacterSpells(characterDAO.spells);
+            setSaveStatus("Saved");
+          }
+          else {
+            setSaveStatus("Error Saving Character!");
+          }
         });
+      }
+      else {
+        setSaveStatus("Cannot Save Character! Must be logged in.");
       }
     }
 
@@ -107,19 +129,22 @@ export default function Builder({
         <div className="saveButton" onClick={handleSave}>
           Save
         </div>
+        <div className="saveStatus">
+          Status: {saveStatus}
+        </div>
         <div className="nextButton" onClick={()=>{nextTab()}}>
             Next
         </div>
         <Tabs className="tabsContainer" defaultValue="background" orientation="vertical" value={currentTab} onValueChange={(e:string)=>{moveTab(e)}}>
-            <TabsList>
-                <TabsTrigger value="background">Background</TabsTrigger>
-                <TabsTrigger value="talents">Talents</TabsTrigger>
-                <TabsTrigger value="attributes">Attributes</TabsTrigger>
-                <TabsTrigger value="skills">Skills</TabsTrigger>
-                <TabsTrigger value="spells">Spells</TabsTrigger>
-                <TabsTrigger value="equipment">Equipment</TabsTrigger>
-                <TabsTrigger value="story">Story</TabsTrigger>
-                <TabsTrigger value="preview">Preview</TabsTrigger>
+            <TabsList className="tabsList">
+                <TabsTrigger className="tab" value="background">Background</TabsTrigger>
+                <TabsTrigger className="tab" value="talents">Talents</TabsTrigger>
+                <TabsTrigger className="tab" value="attributes">Attributes</TabsTrigger>
+                <TabsTrigger className="tab" value="skills">Skills</TabsTrigger>
+                <TabsTrigger className="tab" value="spells">Spells</TabsTrigger>
+                <TabsTrigger className="tab" value="equipment">Equipment</TabsTrigger>
+                <TabsTrigger className="tab" value="story">Story</TabsTrigger>
+                <TabsTrigger className="tab" value="preview">Preview</TabsTrigger>
             </TabsList>
             <TabsContent value="background">{background(characterData,setCharacterData)}</TabsContent>
             <TabsContent value="talents">{talents(characterData,setCharacterData)}</TabsContent>

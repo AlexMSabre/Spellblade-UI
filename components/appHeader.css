@@ -1,4 +1,8 @@
 .main {
+    /*Size*/
+    height: 100vh;
+    width: 100vw;
+    /*Layout*/
     display: grid;
     grid-template-areas: 
     "headerbar headerbar headerbar headerbar"
@@ -7,44 +11,65 @@
     "footerbar footerbar footerbar footerbar";
     grid-template-rows: 1fr 8fr 4fr 0.5fr;
     grid-template-columns: repeat(3, minmax(0, 1fr)) 1fr;
+    /*Boundaries*/
     gap: 5px;
+    /*Color and Text Styles*/
     background-color: transparent;
-    height: 100vh;
-    width: 100vw;
+    font-size: var(--font-lg);
+    color: var(--secondary);
 }
 
 .main div.headerBar {
+    /*Size*/
+    height: 70px;
+    /*Layout*/
     grid-area: headerbar;
-    font-size: 48px;
-    background-color: #333333;
     display: flex;
     justify-content: space-between;
+    /*Boundaries*/
+    padding-left: 10px;
+    padding-right: 10px;
+    /*Color and Text Styles*/
+    background-color: var(--foreground);
 }
 
 .headerBar ul {
-    list-style-type: none;
-    overflow: hidden;
+    /*Layout*/
     display: flex;
+    /*Boundaries*/
     gap: 20px;
 }
 
 .headerBar ul li a {
+    /*Layout*/
     display: block;
-    color: white;
-    font-size: 48px;
-}
-
-.headerBar div.account {
-    color: white;
-    font-size: 24px;
-    padding-right: 20px;
-    text-align: right;
-}
-
-.account:hover {
-    cursor: pointer;
 }
 
 .headerBar ul li a:hover {
-    background-color: #111111;
+    /*Color and Text Styles*/
+    background-color: var(--accent-foreground);
+}
+
+.headerBar div.account {
+    font-size: var(--font-sm);
+    /*Color and Text Styles*/
+    text-align: right;
+}
+
+.log:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent-foreground);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.main div.footerbar {
+    /*Size*/
+    height: 30px;
+    /*Layout*/
+    grid-area: footerbar;
+    align-self: end;
+    /*Color and Text Styles*/
+    background-color: var(--foreground);
+    font-size: var(--font-xsm);
 }

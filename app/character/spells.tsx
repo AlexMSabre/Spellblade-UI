@@ -1,11 +1,15 @@
-import { Spell, SpellDAO } from "@/types/spellTypes";
+// React
 import { useEffect, useState } from "react";
+// ShadUI
 import { Toggle } from "@/components/ui/toggle";
-import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from "@/components/ui/accordion";
-import "./spells.css";
-import { CalculatedState, Character } from "@/types/characterTypes";
+// Hooks
 import { useGetFilteredSpells } from "@/hooks/useGetFilteredSpells";
+// Types
+import { CalculatedState, Character } from "@/types/characterTypes";
+import { Spell, SpellDAO } from "@/types/spellTypes";
 import { Talent, Attribute } from "@/types/talentTypes";
+// CSS
+import "./spells.css";
 
 //constant values.  may need to be removed to enums file.
 const maxDomainSpells = 3;
@@ -119,27 +123,23 @@ export default function spells(character: Character, currentTab: string, calcula
         return (
             <div className="availableTable">
                 {(activeFilters.length == 0) ? ("No Filters Selected") : spellList.map((spell: Spell) => (
-                    <div key={spell.name} className={(validSpell(spell)) ? ("cell") : ("disabledCell")}>
-                        <div onClick={() => { addSpell(spell) }} className={(validSpell(spell)) ? ("w-[30px] bg-[#cccccc] hover:bg-[#aaaaaa]") : ("w-[30px] bg-[#cccccc] hover:bg-[#cc0000]")}>
+                    <div className="spellRow" key={spell.name}>
+                        <div onClick={() => { addSpell(spell) }} className={(validSpell(spell)) ? ("cellAdd") : ("cellInvalidAdd")}>
                             +
                         </div>
-                        <Accordion>
-                            <AccordionItem>
-                                <AccordionTrigger>
-                                    <div className="cellContentName">{spell.name}</div>
-                                    <div className="cellContentMedium">{spell.manaCost} Mana</div>
-                                    <div className="cellContentMedium">{spell.actionCost}</div>
-                                    <div className="cellContentShort">{spell.range}</div>
-                                    <div className="cellContentLong">{spell.spellType}</div>
-                                    <div className="cellContentLong">{spell.source}</div>
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                    <div className="cellDescription">
-                                        {spell.description}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
+                        <details className={(validSpell(spell)) ? ("spellCell") : ("disabledCell")}>
+                            <summary>
+                                <div className="cellContentName">{spell.name}</div>
+                                <div className="cellContentShort">{spell.manaCost} Mana</div>
+                                <div className="cellContentShort">{spell.actionCost}</div>
+                                <div className="cellContentShort">{spell.range}</div>
+                                <div className="cellContentShort">{spell.spellType}</div>
+                                <div className="cellContentShort">{spell.source}</div>
+                            </summary>
+                            <div className="cellDescription">
+                                {spell.description}
+                            </div>
+                        </details>
                     </div>
                 ))}
             </div>)
@@ -150,29 +150,24 @@ export default function spells(character: Character, currentTab: string, calcula
         return (
             <div className="currentTable">
                 {currentSpellList.map((spelld: SpellDAO) => (
-                    <div className="cell" key={spelld.spell.name}>
-                        <Accordion>
-                            <AccordionItem>
-                                <AccordionTrigger>
-                                    <div className="cellContentName" >{spelld.spell.name}</div>
-                                    <div className="cellContentMedium">{spelld.spell.manaCost} Mana</div>
-                                    <div className="cellContentMedium">{spelld.spell.actionCost}</div>
-                                    <div className="cellContentShort">{spelld.spell.range}</div>
-                                    <div className="cellContentLong">{spelld.spell.spellType}</div>
-                                    <div className="cellContentLong">{spelld.spell.source}</div>
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                    <div className="cellDescription">
-                                        {spelld.spell.description}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
-                        <div onClick={() => { removeSpell(spelld) }} className="w-[30px] bg-[#cccccc] hover:bg-[#aaaaaa]">
+                    <div className="spellRow" key={spelld.spell.name}>
+                        <details className="spellCell" >
+                            <summary>
+                                <div className="cellContentName" >{spelld.spell.name}</div>
+                                <div className="cellContentShort">{spelld.spell.manaCost} Mana</div>
+                                <div className="cellContentShort">{spelld.spell.actionCost}</div>
+                                <div className="cellContentShort">{spelld.spell.range}</div>
+                                <div className="cellContentShort">{spelld.spell.spellType}</div>
+                                <div className="cellContentShort">{spelld.spell.source}</div>
+                            </summary>
+                            <div className="cellDescription">
+                                {spelld.spell.description}
+                            </div>
+                        </details>
+                        <div onClick={() => { removeSpell(spelld) }} className="cellRemove">
                             -
                         </div>
                     </div>
-
                 ))}
             </div>)
     }
@@ -311,17 +306,21 @@ export default function spells(character: Character, currentTab: string, calcula
 
     return (
         <div className="spells">
+            <div className="info1">
+                (Ignore) Domain Spells : ({spellCounts.domain}/{maxDomainSpells}) <br />
+                Class Spells: ({currentSpellList.length - spellCounts.domain - spellCounts.keystone1 - spellCounts.keystone2 - spellCounts.capstone1 - spellCounts.capstone2}/{calculatedState.spellCapacity}) <br />
+                Keystone Spells: ({spellCounts.keystone1 + spellCounts.keystone2}/{((character.talent1.caster && character.attributes1.length>=2) ? maxKeystoneSpells : 0) + ((character.talent2.caster && character.attributes2.length>=2) ? maxKeystoneSpells : 0)}) <br />
+                Capstone Spells: ({spellCounts.capstone1 + spellCounts.capstone2}/{((character.talent1.caster && character.attributes1.length==4) ? maxCapstoneSpells : 0) + ((character.talent2.caster && character.attributes2.length==4) ? maxCapstoneSpells : 0)})
+            </div>
+            <div className="info2">
+                Info
+            </div>
             <div className="currentHeader">
                 Chosen Spells
             </div>
             {activeCurrentSpellsTable}
-            <div className="info1">
-                Domain Spells : ({spellCounts.domain}/{maxDomainSpells}) <br />
-                Class Spells: ({currentSpellList.length - spellCounts.domain - spellCounts.keystone1 - spellCounts.keystone2 - spellCounts.capstone1 - spellCounts.capstone2}/{calculatedState.spellCapacity})
-            </div>
-            <div className="info2">
-                Keystone Spells: ({spellCounts.keystone1 + spellCounts.keystone2}/{(character.talent1.caster ? maxKeystoneSpells : 0) + (character.talent2.caster ? maxKeystoneSpells : 0)}) <br />
-                Capstone Spells: ({spellCounts.capstone1 + spellCounts.capstone2}/{(character.talent1.caster ? maxCapstoneSpells : 0) + (character.talent2.caster ? maxCapstoneSpells : 0)})
+            <div className="availableHeader">
+                Available Spells
             </div>
             <div className="filter">
                 Filters:
@@ -332,7 +331,10 @@ export default function spells(character: Character, currentTab: string, calcula
             </div>
             {availableSpellsTable}
             <div className="free">
-                Free
+                
+            </div>
+            <div className="gap">
+                
             </div>
         </div>
     )

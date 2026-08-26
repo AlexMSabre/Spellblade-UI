@@ -1,22 +1,28 @@
 .equipment {
+    /*Size*/
+    height: calc(100vh - 180px);
+    width: calc(100vw - 160px);
+    /*Layout*/
     display: grid;
     grid-template-areas: "inventory proficiencies search";
-    border: 1px solid black;
-    text-align: center;
     grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
     gap: 10px;
-    height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
-    background-color: #eeeeee;
-    border: 1px solid black;
+    /*Color and Text Styles*/
+    /*Interactive*/
 }
 
-select {
-    background-color: #99bbfa;
-    text-align: center;
-}
 
 .equipment div.inventory {
+    /*Size*/
+    height: calc(100vh - 180px);
+    /*Layout*/
     grid-area: inventory;
     display: grid;
     grid-template-areas: "pack pack"
@@ -26,41 +32,51 @@ select {
     "tableHead tableHead"
     "inventoryTable inventoryTable";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.5fr 1fr 1fr 2fr 1fr 8fr;
-    border: 1px solid black;
-    height: calc(100vh - 180px);
+    grid-template-rows: 1fr 1fr 1fr 2.5fr 1fr 12fr;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    /*Interactive*/
 }
 
 .inventory div.startPack {
     grid-area: pack;
     display: grid;
-    grid-template-areas: "head choice";
-    grid-template-columns: 1fr 3fr;
-    font-size: 28;
-    border: 1px solid black;
-}
-
-.startPack div.startHead {
-    grid-area: head;
+    font-size: var(--font-lg);
 }
 
 .startPack div.startChoice {
     grid-area: choice;
 }
 
+select {
+    background-color: var(--ring);
+    text-align: center;
+}
+
+
 .inventory div.currency {
-    font-size: 24px;
+    /*Layout*/
     grid-area: currency;
     display: grid;
     grid-template-areas: "head head head head head"
     "total denom1 denom2 denom3 denom4";
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 2fr;
+    /*Border*/
     border: 1px solid black;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
 }
 
 .currency div.currencyHead {
-    font-size: 24px;
+    font-size: var(--font-md);
     grid-area: head;
     border: 1px solid black;
 }
@@ -91,19 +107,22 @@ select {
 }
 
 .inventory div.supplies {
-    grid-area: supplies;
-    line-height: 1.2;
-    font-size: 24px;
-    display: grid;
+    /*Layout*/
+     grid-area: supplies;
+     display: grid;
     grid-template-areas: "head head head"
     "food water salves";
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 2fr;
+    /*Border*/
     border: 1px solid black;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
 }
 
 .supplies div.suppliesHead {
     grid-area: head;
+    font-size: var(--font-md);
     border: 1px solid black;
 }
 
@@ -123,19 +142,21 @@ select {
 }
 
 .inventory div.reagents {
+    /*Layout*/
     grid-area: reagents;
-    line-height: 1.2;
-    font-size: 24px;
     display: grid;
     grid-template-areas: "head head head head"
     "ordinary uncommon rare legendary";
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 2fr;
+    /*Border*/
     border: 1px solid black;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
 }
 
 .reagents div.reagentsHead {
-    font-size: 28px;
+    font-size: var(--font-md);
     grid-area: head;
     border: 1px solid black;
 }
@@ -161,19 +182,21 @@ select {
 }
 
 .inventory div.materials {
+    /*Layout*/
     grid-area: materials;
-    line-height: 1.2;
-    font-size: 24px;
     display: grid;
     grid-template-areas: "head head head head"
     "ordinary uncommon rare legendary";
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 3fr 2fr;
+    /*Border*/
     border: 1px solid black;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
 }
 
 .materials div.materialsHead {
-    font-size: 28px;
+    font-size: var(--font-md);
     grid-area: head;
     border: 1px solid black;
 }
@@ -251,60 +274,85 @@ select {
 .inventory div.tableHead {
     grid-area: tableHead;
     display: grid;
-    grid-template-columns: 3fr 1fr 2fr 5fr;
-    font-size: 28px;
-    border: 1px solid black;
+    grid-template-columns: 5fr 1.5fr 3fr 1.5fr 3fr;
+    font-size: var(--font-sm);
+    padding-right: 12px;
 }
 
 .inventory div.inventoryTable {
+    height: 100%;
     grid-area: inventoryTable;
-    border: 1px solid black;
-    overflow-y: auto;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-right: 12px;
 }
 
-.inventoryTable div.tableRow {
+.tableRow {
+    min-height: min-content;
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
-    grid-template-columns: 3fr 1fr 2fr 5fr;
-    border: 1px solid black;
-    min-height: 40px;
+    grid-template-columns: 1fr;
+    font-size: var(--font-xsm);
+    /*Border*/
 }
 
-.tableName {
-    font-size: 24px;
+.tableSummary {
+    display: grid;
+    grid-template-columns: 5fr 1.5fr 3fr 1.5fr 3fr;
+    cursor: pointer;
+    
+}
+
+ .tableCellName {
+    font-size: var(--font-sm);
+    border: 1px solid var(--primary);
     text-align: left;
-    border: 1px solid black;
-    padding-right: 5px;
+    padding-left: 12px;
 }
 
-.tableQTY {
-    border: 1px solid black;
+.tableCellDesc {
+    text-align: left;
+    padding: 8px;
+    padding-left: 12px;
 }
 
-.tableType {
-    border: 1px solid black;
+.tableCellContent {
+    border: 1px solid var(--primary);
+    flex: 3;
 }
 
-.tableDesc {
-    border: 1px solid black;
-}
 
 .equipment div.proficiencies {
     grid-area: proficiencies;
     font-size: 28px;
     display: grid;
-    border: 1px solid black;
     text-align: left;
     grid-template-areas: "prof1"
     "prof2"
     "prof3";
     grid-template-rows: 1fr 1fr 1fr;
+    background-color: var(--card);
+    border-radius: var(--radius);
 }
 
 .proficiencies div.prof1 {
+    /*Size*/
+    /*Layout*/
+    /*Border*/
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    /*Interactive*/
     grid-area: prof1;
-    font-size: 20px;
-    border: 1px solid black;
+    font-size: var(--font-xsm);
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
     grid-template-areas: "head head head head"
     "type type type weapon"
@@ -313,13 +361,23 @@ select {
     "propertyCost propertyEffect propertyEffect propertyEffect"
     "special special special special";
     grid-template-columns: 3fr 3fr 1fr 5fr;
-    grid-template-rows: 3fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows:  3fr 2.5fr 2fr 2fr 2fr 2fr;
+    padding: 8px;
 }
 
 .proficiencies div.prof2 {
+        /*Size*/
+    /*Layout*/
+    /*Border*/
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    /*Interactive*/
     grid-area: prof2;
-    font-size: 20px;
-    border: 1px solid black;
+    font-size: var(--font-xsm);
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
     grid-template-areas: "head head head head"
     "type type type weapon"
@@ -328,13 +386,23 @@ select {
     "propertyCost propertyEffect propertyEffect propertyEffect"
     "special special special special";
     grid-template-columns: 3fr 3fr 1fr 5fr;
-    grid-template-rows: 3fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows:  3fr 2.5fr 2fr 2fr 2fr 2fr;
+    padding: 8px;
 }
 
 .proficiencies div.prof3 {
+        /*Size*/
+    /*Layout*/
+    /*Border*/
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    /*Interactive*/
     grid-area: prof3;
-    font-size: 20px;
-    border: 1px solid black;
+    font-size: var(--font-xsm);
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
     grid-template-areas: "head head head head"
     "type type type weapon"
@@ -343,12 +411,19 @@ select {
     "propertyCost propertyEffect propertyEffect propertyEffect"
     "special special special special";
     grid-template-columns: 3fr 3fr 1fr 5fr;
-    grid-template-rows: 3fr 2fr 2fr 2fr 2fr 2fr;
+    grid-template-rows: 3fr 2.5fr 2fr 2fr 2fr 2fr;
+    padding: 8px;
 }
 
 .weaponHead {
+        /*Size*/
+    /*Layout*/
+    /*Border*/
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    /*Interactive*/
     grid-area: head;
-    font-size: 28px;
+    font-size: var(--font-md);
     text-align: center;
     border: 1px solid black;
 }
@@ -356,11 +431,13 @@ select {
 .weaponType {
     grid-area: type;
     border: 1px solid black;
+    font-size: var(--font-sm);
 }
 
 .weaponSelect {
     grid-area: weapon;
     border: 1px solid black;
+    font-size: var(--font-sm);
 }
 
 .weaponAttackName {

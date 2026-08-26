@@ -1,38 +1,100 @@
 body {
-    background-color: whitesmoke;
+    /*Size*/
+    /*Layout*/
+    /*Border*/
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    /*Interactive*/
+    background-image: url("../spellblade/Background2.png");
+    color: var(--primary);
 }
 
-.main div.create {
+.content {
+    /*Size*/
+    height: 25vh;
+    width: 100vw;
+    /*Layout*/
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "login create play";
+    /*Border*/
+    text-align: center;
+    /*Boundaries*/
+    margin-top: 25px;
+    /*Color and Text Styles*/
+    font-size: var(--font-xl);
+    color: var(--primary);
+}
+
+.content div.create {
+    /*Layout*/
     grid-area: create;
-    font-size: 56px;
-    border-image: url("../spellblade/TextBorder.png");
+    align-content: center;
+    /*Border*/
+    border-image: var(--border-select);
     border-image-slice: 25% 25%;
-    border-image-width: 100px 100px;
-    padding: 25px;
-    text-align: center;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
-.main div.play {
+.content div.create:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.content div.play {
+    /*Layout*/
     grid-area: play;
-    font-size: 56px;
-    border-image: url("../spellblade/TextBorder.png");
+    align-content: center;
+    /*Border*/
+    border-image: var(--border-select);
     border-image-slice: 25% 25% fill;
-    border-image-width: 100px 100px;
-    padding: 25px;
-    text-align: center;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    
 }
 
-.main div.login {
-    grid-area: login;
-    font-size: 56px;
-    border-image: url("../spellblade/TextBorder.png");
+.content div.play:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
     border-image-slice: 25% 25%;
-    border-image-width: 100px 100px;
-    padding: 25px;
-    text-align: center;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }
 
-.main div.footerbar {
-    background-color: #333333;
-    grid-area: footerbar;
+.content div.login {
+    /*Layout*/
+    grid-area: login;
+    align-content: center;
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.content div.login:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }

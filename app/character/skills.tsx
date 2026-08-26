@@ -40,85 +40,106 @@ export default function skills(character: Character, setCharacterData: Function,
 
     return (
         <div className="skills">
-            <div className="skillsTitle">
+            <div className="skillPoints">
                 Remaining Skill Points: {points}
+            </div>
+            <div className="skillInfo">
+                Info
             </div>
             <div className="fitness">
                 Fitness
-                <ButtonGroup className="w-full">
-                    <Button size="icon" onClick={() => { handleSkillChange("baseFitness", -1) }} disabled={character.baseFitness == 0}><Minus /></Button>
-                    <div className="w-full border-1 border-black text-[20px]">{character?.baseFitness}</div>
-                    <Button size="icon" onClick={() => { handleSkillChange("baseFitness", 1) }} disabled={(character.baseFitness == 6) || (points <= 0)}><Plus /></Button>
+                <ButtonGroup className="w-full p-[4px]">
+                    <Button size="lg" onClick={() => { handleSkillChange("baseFitness", -1) }} disabled={character.baseFitness == 0}><Minus /></Button>
+                    <div className="adder">{character?.baseFitness}</div>
+                    <Button size="lg" onClick={() => { handleSkillChange("baseFitness", 1) }} disabled={(character.baseFitness == 6) || (points <= 0)}><Plus /></Button>
                 </ButtonGroup>
                 +
-                <div className="w-full border-1 border-black text-[20px]"> Ancestry: {ancestryBonuses.fitness}</div>
+                <div className="adder"> Ancestry: {ancestryBonuses.fitness}</div>
                 +
-                <div className="w-full border-1 border-black text-[20px]">Keystones: {keyBonuses.fitness}</div>
+                <div className="adder">Keystones: {keyBonuses.fitness}</div>
                 =
-                <div className="w-full border-1 border-black text-[20px]">Total: +{calculatedState.fitness}</div>
+                <div className="adderTotal">Total: +{calculatedState.fitness}</div>
 
             </div>
             <div className="focus">
                 Focus
-                <ButtonGroup className="w-full">
-                    <Button size="icon" onClick={() => { handleSkillChange("baseFocus", -1) }} disabled={character.baseFocus == 0}><Minus /></Button>
-                    <div className="w-full border-1 border-black text-[20px]">{character?.baseFocus}</div>
-                    <Button size="icon" onClick={() => { handleSkillChange("baseFocus", 1) }} disabled={(character.baseFocus == 6) || (points <= 0)}><Plus /></Button>
+                <ButtonGroup className="w-full p-[4px]">
+                    <Button size="lg" onClick={() => { handleSkillChange("baseFocus", -1) }} disabled={character.baseFocus == 0}><Minus /></Button>
+                    <div className="adder">{character?.baseFocus}</div>
+                    <Button size="lg" onClick={() => { handleSkillChange("baseFocus", 1) }} disabled={(character.baseFocus == 6) || (points <= 0)}><Plus /></Button>
                 </ButtonGroup>
                 +
-                <div className="w-full border-1 border-black text-[20px]"> Ancestry: {ancestryBonuses.focus}</div>
+                <div className="adder"> Ancestry: {ancestryBonuses.focus}</div>
                 +
-                <div className="w-full border-1 border-black text-[20px]">Keystones: {keyBonuses.focus}</div>
+                <div className="adder">Keystones: {keyBonuses.focus}</div>
                 =
-                <div className="w-full border-1 border-black text-[20px]">Total: +{calculatedState.focus}</div>
+                <div className="adderTotal">Total: +{calculatedState.focus}</div>
             </div>
             <div className="precision">
                 Precision
-                <ButtonGroup className="w-full">
-                    <Button size="icon" onClick={() => { handleSkillChange("basePrecision", -1) }} disabled={character.basePrecision == 0}><Minus /></Button>
-                    <div className="w-full border-1 border-black text-[20px]">{character?.basePrecision}</div>
-                    <Button size="icon" onClick={() => { handleSkillChange("basePrecision", 1) }} disabled={(character.basePrecision == 6) || (points <= 0)}><Plus /></Button>
+                <ButtonGroup className="w-full p-[4px]">
+                    <Button size="lg" onClick={() => { handleSkillChange("basePrecision", -1) }} disabled={character.basePrecision == 0}><Minus /></Button>
+                    <div className="adder">{character?.basePrecision}</div>
+                    <Button size="lg" onClick={() => { handleSkillChange("basePrecision", 1) }} disabled={(character.basePrecision == 6) || (points <= 0)}><Plus /></Button>
                 </ButtonGroup>
                 +
-                <div className="w-full border-1 border-black text-[20px]"> Ancestry: {ancestryBonuses.precision}</div>
+                <div className="adder"> Ancestry: {ancestryBonuses.precision}</div>
                 +
-                <div className="w-full border-1 border-black text-[20px]">Keystones: {keyBonuses.precision}</div>
+                <div className="adder">Keystones: {keyBonuses.precision}</div>
                 =
-                <div className="w-full border-1 border-black text-[20px]">Total: +{calculatedState.precision}</div>
+                <div className="adderTotal">Total: +{calculatedState.precision}</div>
             </div>
             <div className="sense">
                 Sense
-                <ButtonGroup className="w-full">
-                    <Button size="icon" onClick={() => { handleSkillChange("baseSense", -1) }} disabled={character.baseSense == 0}><Minus /></Button>
-                    <div className="w-full border-1 border-black text-[20px]">{character?.baseSense}</div>
-                    <Button size="icon" onClick={() => { handleSkillChange("baseSense", 1) }} disabled={(character.baseSense == 6) || (points <= 0)}><Plus /></Button>
+                <ButtonGroup className="w-full p-[4px]">
+                    <Button size="lg" onClick={() => { handleSkillChange("baseSense", -1) }} disabled={character.baseSense == 0}><Minus /></Button>
+                    <div className="adder">{character?.baseSense}</div>
+                    <Button size="lg" onClick={() => { handleSkillChange("baseSense", 1) }} disabled={(character.baseSense == 6) || (points <= 0)}><Plus /></Button>
                 </ButtonGroup>
                 +
-                <div className="w-full border-1 border-black text-[20px]"> Ancestry: {ancestryBonuses.sense}</div>
+                <div className="adder"> Ancestry: {ancestryBonuses.sense}</div>
                 +
-                <div className="w-full border-1 border-black text-[20px]">Keystones: {keyBonuses.sense}</div>
+                <div className="adder">Keystones: {keyBonuses.sense}</div>
                 =
-                <div className="w-full border-1 border-black text-[20px]">Total: +{calculatedState.sense}</div>
+                <div className="adderTotal">Total: +{calculatedState.sense}</div>
             </div>
-
-
-
-            <div className="skills1">
-                <div className="w-full border-1 border-black text-[30px] text-left">Awareness: +{calculatedState.awareness}</div>
-                <div className="w-full border-1 border-black text-[30px] text-left">Celerity: +{calculatedState.celerity}</div>
-                <div className="w-full border-1 border-black text-[30px] text-left">Dexterity: +{calculatedState.dexterity}</div>
-            </div>
-            <div className="skills2">
-                <div className="w-full border-1 border-black text-[30px] text-left">Evasion: +{calculatedState.evasion}</div>
-                <div className="w-full border-1 border-black text-[30px] text-left">Subtlety: +{calculatedState.subtlety}</div>
-                <div className="w-full border-1 border-black text-[30px] text-left">Tenacity: +{calculatedState.tenacity}</div>
-            </div>
-            <div className="skills3">
-                <div className="w-full border-1 border-black text-[30px] text-left">Max Mana: {calculatedState.manaMax}</div>
-                <div className="w-full border-1 border-black text-[30px] text-left">Spell Capacity: {calculatedState.spellCapacity}</div>
-            </div>
-            <div className="skills4">
-                <div className="w-full border-1 border-black text-[30px] text-left">Wound Tolerance: {calculatedState.woundsMax}</div>
+            <div className="skillList">
+                <div className="listAwareness">Awareness: <br/>+{calculatedState.awareness}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Focus + Sense)/2</div> A creature's ability to sense their surroundings and make careful observations.
+                    </div>
+                </div>
+                <div className="listCelerity">Celerity: <br/>+{calculatedState.celerity}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Focus + Precision)/2</div> A creature's ability to precisely execute delicate performances, such as casting spells.
+                    </div>
+                </div>
+                <div className="listDexterity">Dexterity: <br/>+{calculatedState.dexterity}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Fitness + Precision)/2</div> A creature's ability to perform physical actions using weapons, tools, or their body.
+                    </div>
+                </div>
+                <div className="listEvasion">Evasion: <br/>+{calculatedState.evasion}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Fitness + Sense)/2</div> A creature's ability to sense and avoid danger, such as dodging attacks.
+                    </div>
+                </div>
+                <div className="listSubtlety">Subtlety: <br/>+{calculatedState.subtlety}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Focus + Precision)/2</div> A creature's ability to conceal themselves or their actions from other creatures.
+                    </div>
+                </div>
+                <div className="listTenacity">Tenacity: <br/>+{calculatedState.tenacity}<br/>
+                    <div className="listDesc">
+                        <div className="text-center underline">(Fitness + Focus)/2</div> A creature's ability to resist changes made against them, such as poison or spell effects.
+                    </div>
+                </div>
+                <div className="listMisc">
+                    <div className="text-center">Other Values</div>
+                    Maximum Mana: {calculatedState.manaMax} <br/> 
+                    Spell Capacity: {calculatedState.spellCapacity} <br/> 
+                    Wound Tolerance: {calculatedState.woundsMax}
+                </div>
             </div>
         </div>
     )

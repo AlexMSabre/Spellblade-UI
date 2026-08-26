@@ -1,65 +1,616 @@
 .skills {
-    display: grid;
-    grid-template-areas: "skills skills skills skills skills skills1 skills1 skills2 skills3 skills4"
-    "fitness focus precision sense sense skills1 skills1 skills2 skills3 skills4";
-    grid-template-rows: 1fr 10fr;
-    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr 1fr 2fr 2fr 2fr;
-    background-color: #eeeeee;
-    border: 1px solid black;
-    text-align: center;
+    /*Size*/
     height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
+    width: calc(100vw - 160px);
+    /*Layout*/
+    display: grid;
+    grid-template-areas: "points points points points info"
+    "fitness focus precision sense info"
+    "skillList skillList skillList skillList skillList";
+    grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+    grid-template-rows: 1fr 6fr 4fr;
+    text-align: center;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    gap: 5px;
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--background);
+    font-size: var(--font-md);
 }
 
-.skills div.skillsTitle {
-    grid-area: skills;
-    font-size: 36px;
-    border: 1px solid rgb(31, 31, 31);
+.skills div.skillPoints {
+    /*Size*/
+    /*Layout*/
+    grid-area: points;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-lg);
+}
+
+.skills div.skillPoints:hover {
+    /*Interactive*/
+    text-decoration: underline;
+    cursor: help;
+}
+
+.skills div.skillInfo {
+    /*Layout*/
+    grid-area: info;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .skills div.fitness {
-    line-height: 1.0;
-    font-size: 26px;
+    /*Size*/
+    /*Layout*/
     grid-area: fitness;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    /*Interactive*/
+}
+
+.skills div.fitness:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.fitness:hover) div.listDexterity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.fitness:hover) div.listEvasion{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.fitness:hover) div.listTenacity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
 }
 
 .skills div.focus {
-    line-height: 1.0;
-    font-size: 26px;
+    /*Size*/
+    /*Layout*/
     grid-area: focus;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    /*Interactive*/
+}
+
+.skills div.focus:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.focus:hover) div.listAwareness{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.focus:hover) div.listCelerity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.focus:hover) div.listTenacity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
 }
 
 .skills div.precision {
-    line-height: 1.0;
-    font-size: 26px;
+    /*Size*/
+    /*Layout*/
     grid-area: precision;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    /*Interactive*/
 }
+
+.skills div.precision:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.precision:hover) div.listCelerity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.precision:hover) div.listDexterity{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.precision:hover) div.listSubtlety{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+
 .skills div.sense {
-    line-height: 1.0;
-    font-size: 26px;
+    /*Size*/
+    /*Layout*/
     grid-area: sense;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    /*Interactive*/
 }
 
-.skills div.skills1 {
-    grid-area: skills1;
-    border: 1px solid rgb(31, 31, 31);
+.skills div.sense:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
-.skills div.skills2 {
-    grid-area: skills2;
-    border: 1px solid rgb(31, 31, 31);
+.skills:has(.sense:hover) div.listAwareness{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
 }
 
-.skills div.skills3 {
-    grid-area: skills3;
-    border: 1px solid rgb(31, 31, 31);
+.skills:has(.sense:hover) div.listEvasion{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
 }
 
-.skills div.skills4 {
-    grid-area: skills4;
-    border: 1px solid rgb(31, 31, 31);
+.skills:has(.sense:hover) div.listSubtlety{
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.adder {
+    /*Size*/
+    width: 100%;
+    /*Border*/
+    border: solid 1px var(--primary);
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+}
+
+.adder:hover{
+    /*Interactive*/
+    text-decoration: underline;
+    cursor: help;
+}
+
+.adderTotal {
+    /*Size*/
+    width: 100%;
+    /*Border*/
+    border: solid 1px var(--primary);
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
+}
+
+.adderTotal:hover {
+    /*Interactive*/
+    text-decoration: underline;
+    cursor: help;
+}
+
+.skills div.skillList {
+    /*Layout*/
+     grid-area: skillList;
+     display: flex;
+    /*Boundaries*/
+    gap: 5px;
+}
+
+.skillList div.listAwareness {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listAwareness:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listAwareness:hover) div.focus{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listAwareness:hover) div.sense{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listCelerity {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listCelerity:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listCelerity:hover) div.focus{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listCelerity:hover) div.precision{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listDexterity {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listDexterity:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listDexterity:hover) div.fitness{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listDexterity:hover) div.precision{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listEvasion {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listEvasion:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listEvasion:hover) div.fitness{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listEvasion:hover) div.sense{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listSubtlety {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listSubtlety:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listSubtlety:hover) div.precision{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listSubtlety:hover) div.sense{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listTenacity {
+    /*Layout*/
+    flex: 1;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-md);
+}
+
+.skillList div.listTenacity:hover {
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+}
+
+.skills:has(.skillList div.listTenacity:hover) div.fitness{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+        /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skills:has(.skillList div.listTenacity:hover) div.focus{
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--linked);
+}
+
+.skillList div.listMisc {
+    /*Layout*/
+    flex: 2;
+    text-align: left;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 8px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.listDesc {
+    /*Layout*/
+    text-align: left;
+    /*Boundaries*/
+    padding: 4px;
+    /*Color and Text Styles*/
+    font-size: var(--font-xsm);
 }

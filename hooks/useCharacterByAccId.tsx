@@ -7,7 +7,7 @@ export const useCharacterByAccId = async (userId: String) => {
         url: process.env.NEXT_PUBLIC_BACKEND_URI,
         data: {
             query: `query Query($userId: String) { charactersByUserId(userId: $userId) 
-                { id name baseFitness basePrecision baseFocus baseSense size
+                { id name  attributeLevel baseFitness basePrecision baseFocus baseSense size
                     attributes1 { name talentName } 
                     attributes2 { name talentName }
                     talent1 { name caster } 

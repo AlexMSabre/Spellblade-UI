@@ -1,4 +1,5 @@
 import { signOut } from "next-auth/react";
+import "./appHeader.css"
 import { redirect } from "next/dist/server/api-utils";
 
 export default function SignOutButton() {
@@ -16,7 +17,7 @@ export default function SignOutButton() {
   };
 
   return (
-    <button onClick={handleLogout}>
+    <button className="log" onClick={handleLogout}>
       Sign Out
     </button>
   );

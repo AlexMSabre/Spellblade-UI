@@ -55,15 +55,12 @@ export default function Sheet({
         <main className="main">
             {appHeader(session, status)}
             <div>
-                {(!waitForLoad && validCharacter) ? (
-                    <div className="panels">
-                        <div>{inventoryPanel(characterInventory, setCharacterInventory)}</div>
-                        <div>{mainPanel(character, setCharacter, calculatedState, setCalculatedState)}</div>
-                        <div>{spellPanel(calculatedState, characterSpells)}</div>
-                        {/*<a href={"/character?id=" + character?.id}>Go Back to Builder!</a>*/}
-                    </div>): (
-                    <div>{(validCharacter) ? "Please wait...": "Invalid Character Id!"}</div>
-                )}
+                <div className="panels" hidden={waitForLoad || !validCharacter}>
+                    <div>{inventoryPanel(characterInventory, setCharacterInventory)}</div>
+                    <div>{mainPanel(character, setCharacter, calculatedState, setCalculatedState)} <br/> <a href={"/character?id=" + character?.id}>Go Back to Builder!</a> </div>
+                    <div>{spellPanel(calculatedState, characterSpells)}</div>
+                </div>
+                <div hidden={!waitForLoad && validCharacter}>{(validCharacter) ? "Please wait...": "Invalid Character Id!"}</div>
             </div>
             <div className="footerbar">
                 footer

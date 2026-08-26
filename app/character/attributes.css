@@ -1,180 +1,252 @@
 .attributes {
-    display: grid;
-    grid-template-areas: "talent1name talent1name talent1name talent1name level level talent2name talent2name talent2name talent2name"
-    "talent1attributes talent1attributes talent1stones talent1stones talent1stones talent2attributes talent2attributes talent2attributes talent2stones talent2stones"
-    "skills skills skills skills skills skills1 skills1 skills2 skills3 skills4"
-    "fitness focus precision sense sense skills1 skills1 skills2 skills3 skills4";
-    grid-template-rows: 0.6fr 5fr 0.3fr 3fr;
-    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr 1fr 2fr 2fr 2fr;
-    background-color: #eeeeee;
-    border: 1px solid black;
-    text-align: center;
+    /*Size*/
     height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
+    width: calc(100vw - 160px);
+    /*Layout*/
+    display: grid;
+    grid-template-areas: "talent1name talent1name level level talent2name talent2name"
+    "talent1attributes talent1stones talent1stones talent2attributes talent2attributes talent2stones";
+    grid-template-rows: 1fr 9fr;
+    grid-template-columns: 6fr 5fr 1fr 1fr 5fr 6fr;
+    text-align: center;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--background);
+    font-size: var(--font-md);
 }
 
 .attributes div.level {
+    /*Layout*/
     grid-area: level;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.level div.levelName {
-    font-size: 28px;
-    border: 1px solid rgb(31, 31, 31);
 }
 
 .level div.levelSelect {
-    font-size: 48px;
-    border: 1px solid rgb(31, 31, 31);
+    /*Layout*/
+    display: grid;
+    /*Border*/
+    border-radius: 15px;
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
+    
+}
+.level select {
+    /*Size*/
+    height: calc(15vh);
+    /*Layout*/
+    margin-top: calc(-1*var(--font-lg) - 20px);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
-.level div.levelSelect:hover {
-    background-color: #a3a3a3;
+.level select:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }
 
-.level div.levelPoints {
-    border: 1px solid rgb(31, 31, 31);
-}   
+.level option {
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
 
 .attributes div.talent1name {
-    font-size: 56px;
+    /*Layout*/
     grid-area: talent1name;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-xxl);
 }
 
 .attributes div.talent2name {
-    font-size: 56px;
+    /*Layout*/
     grid-area: talent2name;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
+    font-size: var(--font-xxl);
 }
 
 .attributes div.talent1attributes {
+    /*Size*/
+    max-height: 100%;
+    /*Layout*/
     grid-area: talent1attributes;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
-    border: 1px solid rgb(31, 31, 31);
 }
 
 .attributes div.talent2attributes {
+    /*Size*/
+    max-height: 100%;
+    /*Layout*/
     grid-area: talent2attributes;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
-    border: 1px solid rgb(31, 31, 31);
 }
 
 .attributes div.talent1stones {
+    /*Layout*/
     grid-area: talent1stones;
     display: grid;
-    border: 1px solid rgb(31, 31, 31);
 }
 
 .attributes div.talent2stones {
+    /*Layout*/
     grid-area: talent2stones;
     display: grid;
-    border: 1px solid rgb(31, 31, 31);
 }
 
 .keystone {
-    font-size: 24px;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--background);
+    font-size: var(--font-md);
 }
 
 .capstone {
-    font-size: 24px;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--background);
 }
 
 .keystoneActive {
-    font-size: 24px;
-    background-color: #cccbcb;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
 .capstoneActive {
-    font-size: 24px;
-    background-color: #cccbcb;
-    border: 1px solid rgb(31, 31, 31);
+    /*Border*/
+    border-image: var(--border-default-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
 }
 
-.attributes div.skillsTitle {
-    grid-area: skills;
-    font-size: 36px;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.fitness {
-    line-height: 1.0;
-    font-size: 26px;
-    grid-area: fitness;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.focus {
-    line-height: 1.0;
-    font-size: 26px;
-    grid-area: focus;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.precision {
-    line-height: 1.0;
-    font-size: 26px;
-    grid-area: precision;
-    border: 1px solid rgb(31, 31, 31);
-}
-.attributes div.sense {
-    line-height: 1.0;
-    font-size: 26px;
-    grid-area: sense;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.skills1 {
-    grid-area: skills1;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.skills2 {
-    grid-area: skills2;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.skills3 {
-    grid-area: skills3;
-    border: 1px solid rgb(31, 31, 31);
-}
-
-.attributes div.skills4 {
-    grid-area: skills4;
-    border: 1px solid rgb(31, 31, 31);
+.stoneName {
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
 }
 
 .attributeContainer {
-    border: 1px solid rgb(31, 31, 31);
-    display: grid;
+    /*Layout*/
+    display: flex;
+    flex-direction: column;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+    /*Interactive*/
+    overflow-y: hidden;
+}
+
+.attributeContainer div.attributeName {
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
 }
 
 .attributeContainer div.attributeNotSelected {
-    border: 1px solid rgb(31, 31, 31);
+    /*Layout*/
+    flex-grow: 1;
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
-.attributeNotSelected:hover {
-    background-color: #9e9e9e;
+.attributeContainer div.attributeNotSelected:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }
 
 .attributeContainer div.attributeDisallowed {
-    border: 1px solid rgb(31, 31, 31);
-    background-color: #727272;
+    /*Layout*/
+    flex-grow: 1;
+    /*Border*/
+    border-image: var(--border-select-locked);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--background);
 }
 
 .attributeContainer div.attributeSelected {
-    border: 1px solid rgb(31, 31, 31);
-    color: whitesmoke;
-    background-color: #1a1a1a;
+    /*Layout*/
+    flex-grow: 1;
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Boundaries*/
+    padding: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--chart-1);
 }
 
-.attributeSelected:hover {
-    background-color: #303030;
+.attributeContainer div.attributeSelected:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
 }

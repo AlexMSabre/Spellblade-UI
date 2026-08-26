@@ -1,138 +1,274 @@
 .background {
+    /*Size*/
+    height: calc(100vh - 180px);
+    width: calc(100vw - 160px);
+    /*Layout*/
     display: grid;
-    font-size: 36px;
-    text-align: center;
     grid-template-areas: "name ancestry faction";
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    background-color: #eeeeee;
-    height: calc(100vh - 180px);
-    width: calc(100vw - 130px);
+    /*Boundaries*/
     gap: 10px;
+    /*Color and Text Styles*/
+    text-align: center;
+    font-size: var(--font-md);
 }
 
 .background div.name {
-    grid-area: name;
+    /*Size*/
     height: calc(100vh - 180px);
-    border: 1px solid black;
+    /*Layout*/
+    grid-area: name;
     display: flex;
     flex-direction: column;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .name div.nameBox {
-    border: 1px solid rgb(85, 85, 85);
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
+    background-color: var(--muted);
 }
 
-input {
-    font-size: 56px;
+.name input {
+    /*Layout*/
     text-align: center;
+    /*Boundaries*/
+    margin: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-xl);
+    color: var(--primary);
+}
+
+.name div.worlds {
+    /*Size*/
+    width: calc(33vw - 80px);
+    /*Layout*/
+    align-self: center;
+    /*Boundaries*/
+    margin: 10px;
+}
+
+.chip {
+    /*Size*/
+    height: var(--font-xl);
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
+}
+
+.worldOption {
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
 }
 
 .name div.image {
-    border: 1px solid rgb(85, 85, 85);
-    background-color: rgb(179, 179, 255);
+    /*Layout*/
     flex: 1;
+    /*Boundaries*/
+    margin: 10px;
+    /*Color and Text Styles*/
+    border-radius: var(--radius);
+    /*Interactive*/
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
 }
 
 .background div.ancestry {
-    grid-area: ancestry;
-    border-style: solid;
+    /*Size*/
     height: calc(100vh - 180px);
-    border: 1px solid rgb(85, 85, 85);
+    /*Layout*/
+    grid-area: ancestry;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .scrollContainer {
+    /*Size*/
+    height: calc(100vh - 180px);
+    /*Layout*/
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 180px);
+}
+
+.scrollTitle {
+    /*Color and Text Styles*/
+    font-size: var(--font-lg);
 }
 
 .scrollList {
+    /*Layout*/
     grid-area: scroll;
+    /*Boundaries*/
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    /*Interactive*/
     overflow-y: auto;
+    scrollbar-color: var(--primary) var(--card);
 }
 
 .scrollList div.cell {
+    /*Size*/
+    height: 150px;
+    /*Layout*/
     display: grid;
     grid-template-areas: "name world image"
     "description description image";
     grid-template-rows: 50px auto;
-    grid-template-columns: 3fr 2fr 2fr; 
-    border: 1px solid rgb(85, 85, 85);
-    height: 150px;
+    grid-template-columns: 3fr 2fr 2fr;
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Boundaries*/
+    padding: 10px;
+    padding-left: 15px;
 }
 
-.cell:hover {
-    background-color: #dddddd;
+.scrollList div.cell:hover {
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
     cursor: pointer;
 }
 
 .cell div.cellName {
+    /*Layout*/
     grid-area: name;
     text-align: left;
-    border: 1px solid rgb(173, 173, 173);
 }
 
 .cell div.cellDescription {
+    /*Layout*/
     grid-area: description;
     text-align: left;
-    font-size: 18px;
-    border: 1px solid rgb(173, 173, 173);
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+    /*Interactive*/
     overflow-y: hidden;
 }
 
 .cell div.cellWorld {
-    font-size: 20px;
+    /*Layout*/
     grid-area: world;
-    text-align: right;
-    border: 1px solid rgb(173, 173, 173);
+    display: block;
+    align-items: center;
+    text-align: center;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
 }
 
 .cell div.cellImage {
+    /*Layout*/
     grid-area: image;
-    border: 1px solid rgb(173, 173, 173);
-    background-color: rgb(179, 179, 255);
+    /*Interactive*/
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
+}
+
+.variants select {
+    /*Size*/
+    width: calc((100vw - 160px)/3 - 24px);
+    /*Color and Text Styles*/
+    background-color: var(--ring);
+    font-size: var(--font-lg);
+}
+
+.variants select:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.variants select option {
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
 }
 
 .ancestry div.description {
-    font-size: 20px;
-    text-align: left;
-    border: 1px solid rgb(85, 85, 85);
-    overflow-y: auto;
-    padding-right: 8px;
+    /*Size*/
     height: calc(100vh - 489px);
+    /*Layout*/
+    text-align: left;
+    /*Boundaries*/
+    padding-right: 10px;
+    padding-left: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
+    /*Interactive*/
+    overflow-y: auto;
 }
 
 .background div.faction {
-    grid-area: faction;
+    /*Size*/
     height: calc(100vh - 180px);
-    border: 1px solid rgb(85, 85, 85);
+    /*Layout*/
+    grid-area: faction;
     display: flex;
+    flex-direction: column;
+    /*Border*/
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: 15px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .faction div.description {
-    font-size: 20px;
-    text-align: left;
-    border: 1px solid rgb(85, 85, 85);
-    overflow-y: auto;
-    padding-right: 8px;
+    /*Size*/
     height: calc(100vh - 489px);
+    /*Layout*/
+    text-align: left;
+    /*Boundaries*/
+    padding-right: 10px;
+    padding-left: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
+    /*Interactive*/
+    overflow-y: auto;
 }
 
 .return {
-    flex: 1;
-    border: 1px solid rgb(85, 85, 85);
-    font-size: 56px;
-    text-align: left;
+    /*Layout*/
+    text-align: center;
+    /*Border*/
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    /*Color and Text Styles*/
     text-decoration: underline;
+    font-size: var(--font-xl);
+    /*Interactive*/
     text-wrap: nowrap;
     overflow-x: hidden;
 }
 
 .return:hover {
-    background-color: #dddddd;
+    /*Border*/
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
     cursor: pointer;
-}
-
-.variants:hover {
-    background-color: #dddddd;
 }

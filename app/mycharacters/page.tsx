@@ -15,8 +15,16 @@ export default function characterSelect() {
 
   const { data: session, status } = useSession({ required: true });
   const [characterLoad, setCharacterLoad] = useState(false);
+  const [deleteQueue, setDeleteQueue] = useState("");
 
-
+  function confirmDelete() {
+    useDeleteCharacter(deleteQueue || "").then((data)=>{
+      if(data.data.data.deleteCharacter==true){
+        setCharacterList(characterList.filter(i=>i.id!=deleteQueue))
+      }
+    });
+    setDeleteQueue("");
+  }
 
   //gets all the characters associated with the user
   useEffect(() => {
@@ -24,7 +32,6 @@ export default function characterSelect() {
 
     if (user) {
       useCharacterByAccId(user.id).then((result) => {
-        console.log(result);
         setCharacterList(result.data.charactersByUserId);
       });
     }
@@ -72,13 +79,20 @@ export default function characterSelect() {
                   <TableCell>{character.basePrecision}</TableCell>
                   <TableCell>{character.baseFocus}</TableCell>
                   <TableCell>{character.baseSense}</TableCell>
-                  <TableCell><button onClick={()=>useDeleteCharacter(character.id || "")}>Delete</button></TableCell>
+                  <TableCell><div className="deleteChar" onClick={()=>setDeleteQueue(character.id || "")}>Delete</div></TableCell>
                 </TableRow>
               ))}
 
             </TableBody>
 
           </Table>
+        </div>
+        <div className="confirmDelete" hidden={deleteQueue == ""}>
+          <div className="interface">
+            Are you sure? <br/>
+            <button onClick={()=>confirmDelete()}> Yeah </button> <br/>
+            <button onClick={()=>setDeleteQueue("")}> Nah </button>
+          </div>
         </div>
       </main>
     </div>

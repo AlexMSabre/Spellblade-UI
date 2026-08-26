@@ -1,11 +1,16 @@
+// React
 import { useEffect, useState } from "react";
+// Hooks
 import { Character } from "@/types/characterTypes";
-import "./talents.css";
-import { Talent } from "@/types/talentTypes";
 import { useGetTalentScreen } from "@/hooks/useGetTalentScreen";
-import { Effect } from "@/types/stateTypes";
 import { useModifyEffect } from "@/hooks/operations/effectOperations";
+import { useGetAttributeList } from "@/hooks/useGetAttributeList";
+// Types
+import { Attribute, Talent } from "@/types/talentTypes";
 import { DamageTypes } from "@/types/Enums";
+import { Effect } from "@/types/stateTypes";
+// CSS
+import "./talents.css";
 
 export default function talents(character:Character,setCharacterData:Function) {
     //switch flipped on first talent select
@@ -14,11 +19,15 @@ export default function talents(character:Character,setCharacterData:Function) {
     const [showSelected, setShowSelected] = useState(false);
     const [talentList, setTalentList] = useState<Talent[]>([]);
     const [effectList, setEffectList] = useState<Effect[]>([]);
+    const [attributeList, setAttributeList] = useState<Attribute[]>([]);
 
     useEffect(()=>{
         useGetTalentScreen().then((data)=>{
             setTalentList(data.data.data.getTalentScreen.talents.sort((a: Talent, b: Talent) => a.caster === b.caster ? 0 : a.caster? -1 : 1));
             setEffectList(data.data.data.getTalentScreen.effects);
+        })
+        useGetAttributeList().then(data => {
+            setAttributeList(data.data.data.getAttributeList);
         })
     },[])
 
@@ -88,18 +97,21 @@ export default function talents(character:Character,setCharacterData:Function) {
     }
 
     function handleChangeDamageType(value: string, talent: string){
-        if(talent==="Covenant")
-            setCharacterData((prev: Character)=>({...prev, patronDamageType: value}))
-        else
-            setCharacterData((prev: Character)=>({...prev, elementDamageType: value}));
+        if (value != "Damage") {
+            if(talent==="Covenant")
+                setCharacterData((prev: Character)=>({...prev, patronDamageType: value}));
+            else
+                setCharacterData((prev: Character)=>({...prev, elementDamageType: value}));
+        }
     }
 
     function buildTalentCards() {
         return(<div className="talentChoices">
             <div className="covDamageSelect" hidden={character.talent1.name!="Covenant" && character.talent2.name!="Covenant"}>
                 <select className="covSelect"
-                    onChange={ e=> handleChangeDamageType(e.currentTarget.value, "Covenant")} 
+                    onChange={ e=> handleChangeDamageType(e.currentTarget.value, "Covenant")}
                     defaultValue={character.patronDamageType}>
+                        <option>Damage</option>
                         {buildDamageTypeSelector("Soul")}
                         {buildDamageTypeSelector("Elemental")}
                 </select>
@@ -111,11 +123,14 @@ export default function talents(character:Character,setCharacterData:Function) {
                 <select className="elemSelect"
                     onChange={ e=> handleChangeDamageType(e.currentTarget.value, "Elemental")} 
                     defaultValue={character.elementDamageType}>
+                        <option>Damage</option>
                         {buildDamageTypeSelector("Elemental")}
                 </select>
             </div>
             {talentList.map((talent:Talent)=>( //selector view
-                <button key={talent.name} className={((!talentSelection)&&(readySelection)) ? ("disabledTalentCard"): ("talentCard")} onClick={()=>{ setTalent(talent)}}>
+                <button key={talent.name} className={((character.talent1.name === talent.name)||(character.talent2.name === talent.name)) ? 
+                    ("cardBack"): ((!talentSelection)&&(readySelection) ? "disabledTalentCard" : "talentCard")}
+                    onClick={()=>{ setTalent(talent)}}>
                     {!((character.talent1.name === talent.name)||(character.talent2.name === talent.name)) ? (
                         <div className="cardGrid">
                             <div className="talentName">
@@ -128,20 +143,21 @@ export default function talents(character:Character,setCharacterData:Function) {
                                 {talent.caster ? "Spellcaster" : "Blademaster"}
                             </div>
                             <div className="talentRole">
-                                {talent.role}
+                                Role: {talent.role}
                             </div>
                             <div className="talentCompl">
-                                { talent.complexity}
+                                Complexity: { talent.complexity}/5
                             </div>
                             <div className="talentSplash">
                                 Splash
                             </div>
                         </div>
-                    ): /* selected version */ (<div className="cardBack"> 
+                    ): /* selected version */ (<div className="cardBackGrid"> 
                             <div className="cardBackName">
                                 {talent.name}
                             </div>
-                            <div className="cardDesc">
+                            <div className="cardBackIcon">icon</div>
+                            <div className="cardBackDesc">
                                 {talent.description}
                             </div>
                     </div>)}
@@ -152,15 +168,12 @@ export default function talents(character:Character,setCharacterData:Function) {
 
     return (
     <div className="talents">
-        <div className="header">
-            Choose two Talents ({Number(!talentSelection) + Number(readySelection)}/2)
+        <div className="header" onClick={()=>{ setShowSelected(!showSelected)}}>
+            {(!showSelected) ? (((!talentSelection)&&(readySelection)) ? "Click to View Talents" : ("Choose Two Talents (" + ((Number(!talentSelection) + Number(readySelection))) + "/2)")) : "Click to Return"}
         </div>
         { !showSelected ? (
             <div>
                 {buildTalentCards()}
-                <div className="view" onClick={()=>{ setShowSelected(true)}}>
-                    View Details
-                </div>
             </div>
         ): ( //details view
         <div className="selected">
@@ -169,42 +182,42 @@ export default function talents(character:Character,setCharacterData:Function) {
                     { character.talent1.name }
                 </div>
                 <div className="selectedType">
-                    {character.talent1.caster ? "Spellcaster" : "Blademaster"}
+                    <div className="underline">Talent Type</div> {character.talent1.caster ? "Spellcaster" : "Blademaster"}
                 </div>
                 <div className="selectedFlavor">
                     {character.talent1.description}
                 </div>
                 <div className="selectedRoles">
-                    {character.talent1.role}
+                    <div className="underline">Roles</div> {character.talent1.role}
                 </div>
                 <div className="selectedComplexity">
-                    Complexity: {character.talent1.complexity}
+                    <div className="underline">Complexity</div> {character.talent1.complexity}/5
                 </div>
                 <div className="selectedSkills">
-                    Preferred Skills: {character.talent1.prioritySkills}
+                    <div className="underline">Preferred Skills</div> {character.talent1.prioritySkills}
                 </div>
                 <div className="selectedBonus">
-                    Bonuses: <br/> +{character.talent1.hpBonus} Hit Point Maximum{character.talent1.caster && " | +3 Mana Bonus"}
+                    <div className="underline">Bonuses</div> +{character.talent1.hpBonus} Hit Point Maximum{character.talent1.caster && " | +3 Mana Bonus"}
                 </div>
                 <div className="selectedAbility">
-                    Abilities: <br/> {character.talent1.ability1}
+                   <u>Abilities:</u> <br/> {character.talent1.ability1}
                 </div>
                 <div className="selectedAtts">
-                    Attributes:
+                    <u>Attributes</u>
                 </div>
                 {/*TODO*/}
-                <div className="selectedAttributes"> 
+                <div className="selectedAttributes">
                     <div className="att1">
-                        <u>Cleric</u> <br/> Guidance | Cure Wounds | Revive | Silence | Dissuade
+                        <u>{attributeList.filter(a => a.talentName === character.talent1.name)[0]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent1.name)[0]?.description1 || ""}
                     </div>
                     <div className="att2">
-                        <u>Paladin</u> <br/> Soul Armor | Taunting Presence | Forify Mind | Rebuke | Resiliance
+                        <u>{attributeList.filter(a => a.talentName === character.talent1.name)[1]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent1.name)[1]?.description1 || ""}
                     </div>
                     <div className="att3">
-                        <u>Warlock</u> <br/> Light/Extinguish | Hallow/Desecrate | Essence Transfer | Weaken Soul | Drain
+                        <u>{attributeList.filter(a => a.talentName === character.talent1.name)[2]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent1.name)[2]?.description1 || ""}
                     </div>
                     <div className="att4">
-                        <u>Justiciar</u> <br/> Holy Weapon | Summon Creature | Divine Warning | Zealotry | Persecute
+                        <u>{attributeList.filter(a => a.talentName === character.talent1.name)[3]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent1.name)[3]?.description1 || ""}
                     </div>
                 </div>
             </div>
@@ -213,46 +226,43 @@ export default function talents(character:Character,setCharacterData:Function) {
                     { character.talent2.name }
                 </div>
                 <div className="selectedType">
-                    {character.talent2.caster ? "Spellcaster" : "Blademaster"}               
+                    <div className="underline">Talent Type</div> {character.talent2.caster ? "Spellcaster" : "Blademaster"}               
                     </div>
                 <div className="selectedFlavor">
                     {character.talent2.description}
                 </div>
                 <div className="selectedRoles">
-                    {character.talent2.role}
+                    <div className="underline">Roles</div> {character.talent2.role}
                 </div>
                 <div className="selectedComplexity">
-                    Complexity: {character.talent2.complexity}
+                    <div className="underline">Complexity</div> {character.talent2.complexity}/5
                 </div>
                 <div className="selectedSkills">
-                    Preferred Skills: {character.talent2.prioritySkills}
+                    <div className="underline">Preferred Skills</div> {character.talent2.prioritySkills}
                 </div>
                 <div className="selectedBonus">
-                    Bonuses: <br/> +{character.talent2.hpBonus} Hit Point Maximum{character.talent2.caster && " | +3 Mana Bonus"}
+                    <div className="underline">Bonuses</div> +{character.talent2.hpBonus} Hit Point Maximum{character.talent2.caster && " | +3 Mana Bonus"}
                 </div>
                 <div className="selectedAbility">
-                    Abilities: <br/> {character.talent2.ability1}
+                    <u>Abilities:</u> <br/> {character.talent2.ability1}
                 </div>
                 <div className="selectedAtts">
-                    Attributes:
+                    <u>Attributes</u>
                 </div>
                 <div className="selectedAttributes"> 
                     <div className="att1">
-                        <u>Interceptor</u> <br/> Interceptor
+                        <u>{attributeList.filter(a => a.talentName === character.talent2.name)[0]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent2.name)[0]?.description1 || ""}
                     </div>
                     <div className="att2">
-                        <u>Provoker</u> <br/> Provoker
+                        <u>{attributeList.filter(a => a.talentName === character.talent2.name)[1]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent2.name)[1]?.description1 || ""}
                     </div>
                     <div className="att3">
-                        <u>Tactician</u> <br/> Tactician
+                        <u>{attributeList.filter(a => a.talentName === character.talent2.name)[2]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent2.name)[2]?.description1 || ""}
                     </div>
                     <div className="att4">
-                        <u>Deflector</u> <br/> Deflector
+                        <u>{attributeList.filter(a => a.talentName === character.talent2.name)[3]?.name || ""}</u> <br/> {attributeList.filter(a => a.talentName === character.talent2.name)[3]?.description1 || ""}
                     </div>
                 </div>
-            </div>
-            <div className="returnTalent" onClick={()=>{setShowSelected(false)}}>
-                Return
             </div>
         </div>)}
     </div>

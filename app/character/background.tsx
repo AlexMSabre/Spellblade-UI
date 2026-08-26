@@ -1,12 +1,18 @@
 "use client"
-import { useEffect, useState } from "react";
-import { Character } from "@/types/characterTypes";
-import "./background.css";
-import { useGetBackgroundScreen } from "@/hooks/useGetBackgroundScreen";
-import { Ancestry, Background, Effect, Trait } from "@/types/stateTypes";
-import { useModifyEffect } from "@/hooks/operations/effectOperations";
-import { Combobox, ComboboxContent, ComboboxList, ComboboxItem, ComboboxInput, ComboboxEmpty, ComboboxChips, ComboboxChip, ComboboxValue, ComboboxChipsInput, useComboboxAnchor } from "@/components/ui/combobox";
+// React
 import React from "react";
+import { useEffect, useState } from "react";
+// ShadUI
+import { Combobox, ComboboxContent, ComboboxList, ComboboxItem, ComboboxInput, ComboboxEmpty, ComboboxChips, ComboboxChip, ComboboxValue, ComboboxChipsInput, useComboboxAnchor } from "@/components/ui/combobox";
+// Hooks
+import { useModifyEffect } from "@/hooks/operations/effectOperations";
+import { useGetBackgroundScreen } from "@/hooks/useGetBackgroundScreen";
+// Types
+import { Character } from "@/types/characterTypes";
+import { Ancestry, Background, Effect, Trait } from "@/types/stateTypes";
+// CSS
+import "./background.css";
+
 
 export default function background(character:Character,setCharacterData:Function) {
 
@@ -18,8 +24,8 @@ export default function background(character:Character,setCharacterData:Function
     const [ancestrySelection, setAncestrySelection] = useState(false);
     const [backgroundSelection, setBackgroundSelection] = useState(false);
     //list of children that belong to the current parent. referred to as "variants" in the UI
-    const [ancVariantList, setAncVariantList] = useState(<div></div>);
-    const [backVariantList, setBackVariantList] = useState(<div></div>);
+    const [ancVariantSelector, setAncVariantSelector] = useState(<div></div>);
+    const [backVariantSelector, setBackVariantSelector] = useState(<div></div>);
     //master lists, should not be changed except by the API call.
     const [ancestryList, setAncestryList] = useState<Ancestry[]>([]);
     const [backgroundList, setBackgroundList] = useState<Background[]>([]);
@@ -46,6 +52,11 @@ export default function background(character:Character,setCharacterData:Function
             setBackgroundParentList(parentList);
         })
     },[])
+
+    useEffect(()=>{
+        setAncVariantSelector(buildAncestryVariants(character.ancestry.parent));
+        setBackVariantSelector(buildBackgroundVariants(character.background.parentTrait.name));
+    },[sourceFilter])
 
     //step 3 of 3, save variant/child selection to character data
     function saveAncestrytoCharacter(e:string){
@@ -105,7 +116,7 @@ export default function background(character:Character,setCharacterData:Function
         return <select defaultValue={character.ancestry?.name} onChange={(e)=>(saveAncestrytoCharacter(e.currentTarget.value))}>Choose Variant
             {variants.map((variant: Ancestry)=>(
                 <option value = {variant.name} key={variant.name}>
-                    {variant.name}
+                    Variant: {variant.name}
                 </option>
             ))}
         </select>
@@ -135,7 +146,7 @@ export default function background(character:Character,setCharacterData:Function
     const ancestryChoice = (ancestry:Ancestry) => {
         //flip switch to set child menu view
         setAncestrySelection(true);
-        setAncVariantList(buildAncestryVariants(ancestry.parent));
+        setAncVariantSelector(buildAncestryVariants(ancestry.parent));
         //if the Parent selection has changed, set the default child as the variant
         if (character.ancestry?.parent != ancestry.parent) {
             saveAncestrytoCharacter(ancestry.name);
@@ -146,7 +157,7 @@ export default function background(character:Character,setCharacterData:Function
     const backgroundChoice = (background:Background) => {
         //backVariants will be chosen with background choice
         setBackgroundSelection(true);
-        setBackVariantList(buildBackgroundVariants(background.parentTrait));
+        setBackVariantSelector(buildBackgroundVariants(background.parentTrait));
         if (character.background?.parentTrait.name != background.parentTrait) {
             setCharacterData((prev: any) => ({
             ...prev,
@@ -196,20 +207,20 @@ export default function background(character:Character,setCharacterData:Function
     <div className="background">
         <div className="name">
             <input className="nameBox" type="text" placeholder="Character Name" value={character.name} onChange={(e)=>(setCharacterData((prev:Character)=>({...prev, name: e.target.value})))}/>
-            <div>
+            <div className="worlds">
                 <Combobox
                     multiple
                     autoHighlight
                     items={["Core","Ribean","Zaub"]}
                     defaultValue={["Core"]}
-                    onValueChange={(value)=>(setSourceFilter(value))}
-                    >
-                    <ComboboxChips ref={anchor} className="w-full text-[18px]">
+                    onValueChange={(value)=>(setSourceFilter(value))}>
+
+                    <ComboboxChips ref={anchor}>
                         <ComboboxValue>
                         {(values) => (
                             <React.Fragment>
                                 {values.map((value: string) => (
-                                    <ComboboxChip key={value} className="text-[28px]">{value}</ComboboxChip>
+                                    <ComboboxChip className="chip" key={value}>{value}</ComboboxChip>
                                 ))}
                                 <ComboboxChipsInput />
                             </React.Fragment>
@@ -220,7 +231,7 @@ export default function background(character:Character,setCharacterData:Function
                         <ComboboxEmpty>No items found.</ComboboxEmpty>
                         <ComboboxList>
                         {(item) => (
-                            <ComboboxItem key={item} value={item}>
+                            <ComboboxItem className="worldOption" key={item} value={item}>
                             {item}
                             </ComboboxItem>
                         )}
@@ -242,7 +253,7 @@ export default function background(character:Character,setCharacterData:Function
                     {character.ancestry?.parent}
                 </div>
                 <div className="variants">
-                    {ancVariantList}
+                    {ancVariantSelector}
                 </div>
                 Traits: {character.ancestry?.trait1?.name + ", " + character.ancestry?.trait2?.name}
                 <div className="description">
@@ -251,14 +262,14 @@ export default function background(character:Character,setCharacterData:Function
             </div>
             //parent view
         ): (<div className="scrollContainer">
-                <div>Choose an Ancestry</div>
+                <div className="scrollTitle">Choose an Ancestry</div>
                 <div className="scrollList">
                     {buildAncestryList()}
                 </div>
             </div>)}
         </div>
         
-        <div className="flex flex-col faction">
+        <div className="faction">
             {backgroundSelection ? (
                 //child view
             <div>
@@ -267,7 +278,7 @@ export default function background(character:Character,setCharacterData:Function
                     {character.background?.parentTrait.name}
                 </div>
                 <div className="variants">
-                    {backVariantList}
+                    {backVariantSelector}
                 </div>
                 Traits: {character.background?.childTrait?.name}
                 <div className="description">
@@ -276,7 +287,7 @@ export default function background(character:Character,setCharacterData:Function
             </div>
             //parent view
         ): (<div className="scrollContainer">
-                <div>Choose a Background</div>
+                <div className="scrollTitle">Choose a Background</div>
                 <div className="scrollList">
                     {buildBackgroundList()}
                 </div>

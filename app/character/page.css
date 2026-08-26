@@ -1,54 +1,100 @@
 .page {
+    /*Layout*/
     display: grid;
-    grid-template-areas: "prev none next"
-    "tabs tabs tabs";
-    grid-template-columns: 100px auto 100px;
-    grid-template-rows: 40px auto;
+    grid-template-areas: "prev save status none next"
+    "tabs tabs tabs tabs tabs";
+    grid-template-columns: 100px auto 300px auto 100px;
+    grid-template-rows: var(--font-lg) auto;
     align-items: flex-end;
+    /*Boundaries*/
     gap: 10px;
+    /*Color and Text Styles*/
+    color: var(--primary);
+    font-size: var(--font-md);
 }
 
 .prevButton {
+    /*Layout*/
     grid-area: prev;
     text-align: center;
-    font-size: 28px;
-    border-radius: 10px;
-    background-color: rgb(175, 175, 175);
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
     margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .prevButton:hover {
-    background-color: rgb(218, 218, 218);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
     cursor: pointer;
 }
 
 .nextButton {
+    /*Layout*/
     grid-area: next;
     text-align: center;
-    font-size: 28px;
-    border-radius: 10px;
-    background-color: rgb(175, 175, 175);
-    margin-right: 20px;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .nextButton:hover {
-    background-color: rgb(218, 218, 218);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
     cursor: pointer;
-}
-
-.tabsContainer {
-    grid-area: tabs;
 }
 
 .saveButton {
+    /*Layout*/
+    grid-area: save;
     text-align: center;
-    font-size: 28px;
-    border-radius: 10px;
-    background-color: rgb(175, 175, 175);
-    margin-right: 20px;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
 }
 
 .saveButton:hover {
-    background-color: rgb(218, 218, 218);
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
     cursor: pointer;
+}
+
+.saveStatus {
+    /*Layout*/
+    grid-area: status;
+    text-align: left;
+        /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.page div.tabsContainer {
+    /*Layout*/
+    grid-area: tabs;
+}
+
+.tabsContainer div.tabsList {
+    /*Border*/
+    border-radius: 0px;
+}
+
+.tab {
+    /*Border*/
+    border-radius: 0px;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
 }
