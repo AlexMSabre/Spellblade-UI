@@ -10,26 +10,21 @@ export default function spellPanel(characterState : CalculatedState, characterSp
         return (
             <div className="spellTable">
                 {characterSpells.map((spelld: SpellDAO) => (
-                    <div className="cell" key={spelld.spell.name}>
-                        <Accordion>
-                            <AccordionItem>
-                                <AccordionTrigger>
-                                    <div className="cellContentName" >{spelld.spell.name}</div>
-                                    <div className="cellContentMedium">{spelld.spell.manaCost} Mana</div>
-                                    <div className="cellContentMedium">{spelld.spell.actionCost}</div>
-                                    <div className="cellContentShort">{spelld.spell.range}</div>
-                                    <div className="cellContentLong">{spelld.spell.spellType}</div>
-                                    <div className="cellContentLong">{spelld.spell.source}</div>
-                                </AccordionTrigger>
-                                <AccordionContent>
-                                    <div className="cellDescription">
-                                        {spelld.spell.description}
-                                    </div>
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
+                    <div className="spellRow" key={spelld.spell.name}>
+                        <details className="spellCell">
+                            <summary>
+                                <div className="cellContentName">{spelld.spell.name}</div>
+                                <div className="cellContentShort">{spelld.spell.manaCost} Mana</div>
+                                <div className="cellContentShort">{spelld.spell.actionCost}</div>
+                                <div className="cellContentShort">{spelld.spell.range}</div>
+                                <div className="cellContentShort">{spelld.spell.spellType}</div>
+                                <div className="cellContentShort">{spelld.spell.source}</div>
+                            </summary>
+                            <div className="cellDescription">
+                                {spelld.spell.description}
+                            </div>
+                        </details>
                     </div>
-
                 ))}
             </div>)
     }

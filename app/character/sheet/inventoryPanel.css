@@ -1,207 +1,282 @@
 .invPanel {
-    height: calc(85vh);
     max-width: 40vw;
-    border: 1px solid black;
+    height: calc(100vh - 150px);
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
-    grid-template-areas: "invTitle invTitle"
-    "inventoryCollapsible inventoryCollapsible"
-    "itemFilter itemFilter"
-    "itemTable itemTable";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.5fr auto 0.5fr 4fr;
+    grid-template-areas: "invTitle invTitle invTitle invTitle"
+    "currencies expand expand pinned"
+    "supplies supplies pinnedTable pinnedTable"
+    "reagents reagents pinnedTable pinnedTable"
+    "materials materials pinnedTable pinnedTable"
+    "equip1 equip1 pinnedTable pinnedTable"
+    "equip2 equip2 pinnedTable pinnedTable"
+    "innerwear innerwear pinnedTable pinnedTable"
+    "outerwear outerwear pinnedTable pinnedTable";
+    grid-template-columns: 4fr 1fr 1fr 4fr;
+    grid-template-rows: var(--font-lg) var(--font-md) var(--font-md) var(--font-md) var(--font-md) 6fr 6fr 4fr 4fr;
+    background-color: var(--card);
+    color: var(--primary);
+    font-size: var(--font-sm);
+    padding: 8px;
+    line-height: 1.3;
+    position: relative;
+}
+
+.toolTip {
+    visibility: hidden;
+    background-color: black;
+    color: whitesmoke;
+    position: absolute;
+    z-index: 2;
+    bottom: -20px;
+    font-size: var(--font-xsm);
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 8px;
+}
+
+.invPanel div.pinned {
+    grid-area: pinned;
+    border: 1px solid black;
+    text-align: center;
+    clip-path: polygon(20px 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.invPanel div.pinnedTable {
+    grid-area: pinnedTable;
+    border: 1px solid black;
+    text-align: center;
+    overflow-y: auto;
 }
 
 .invPanel div.invTitle {
-    font-size: 36px;
+    font-size: var(--font-md);
     grid-area: invTitle;
     border: 1px solid black;
+    text-align: center;
 }
 
-.invPanel div.inventoryCollapsible {
-    grid-area: inventoryCollapsible;
-    display: grid;
-    grid-template-areas: "currencies supplies"
-    "reagents materials"
-    "equip1 equip2"
-    "innerwear outerwear"
-    "expandInventory expandInventory";
-    grid-template-columns: 1fr 1fr;
-    min-height: min-content;
-}
-
-.inventoryCollapsible div.currencies {
+.invPanel div.currencies {
     grid-area: currencies;
-    display: grid;
-    grid-template-areas: "head head head head head"
-    "total denom1 denom2 denom3 denom4";
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    border: 1px solid black;
-    font-size: 24px;
+    border-bottom: 1px solid black;
+    display: flex;
 }
 
-.currencies div.currencyHead {
-    grid-area: head;
-    display: grid;
-    border: 1px solid black;
+.currencies:hover div.currencyTotal {
+    width: 0;
+    text-wrap: nowrap;
+}
+
+.currencies:hover div.currencyDesc {
+    flex: 1;
+    overflow: visible;
+    border-right: 1px solid black;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .currencies div.currencyTotal {
-    grid-area: total;
-    border: 1px solid black;
+    overflow: hidden;
 }
 
-.currencies div.currencyDenom1 {
-    grid-area: denom1;
-    border: 1px solid black;
+.currencies div.currencyDesc {
+    width: 0;
+    overflow: hidden;
+    text-align: center;
+    text-wrap: nowrap;
+    position: relative;
 }
 
-.currencies div.currencyDenom2 {
-    grid-area: denom2;
-    border: 1px solid black;
+.currencies div.currencyDesc:hover {
+    cursor: pointer;
 }
 
-.currencies div.currencyDenom3 {
-    grid-area: denom3;
-    border: 1px solid black;
+.currencyDesc:hover div.toolTip {
+    visibility: visible;
 }
 
-.currencies div.currencyDenom4 {
-    grid-area: denom4;
-    border: 1px solid black;
-}
-
-.inventoryCollapsible div.supplies {
+.invPanel div.supplies {
     grid-area: supplies;
-    display: grid;
-    grid-template-areas: "head head head"
-    "food water salves";
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    border: 1px solid black;
-    font-size: 24px;
+    border-bottom: 1px solid black;
+    display: flex;
 }
 
-.supplies div.suppliesHead {
-    grid-area: head;
-    border: 1px solid black;
+.supplies:hover div.supplyTotal {
+    width: 0;
+    text-wrap: nowrap;
 }
 
-.supplies div.suppliesFood {
-    grid-area: food;
-    border: 1px solid black;
+.supplies:hover div.supplyDesc {
+    flex: 1;
+    overflow: visible;
+    border-right: 1px solid black;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
-.supplies div.suppliesWater {
-    grid-area: water;
-    border: 1px solid black;
+.supplyDesc:hover div.toolTip {
+    visibility: visible;
 }
 
-.supplies div.suppliesSalves {
-    grid-area: salves;
-    border: 1px solid black;
+.supplies div.supplyTotal {
+    overflow: hidden;
 }
 
-.inventoryCollapsible div.reagents {
+.supplies div.supplyDesc {
+    width: 0;
+    overflow: hidden;
+    text-align: center;
+    text-wrap: nowrap;
+    position: relative;
+}
+
+.supplies div.supplyDesc:hover {
+    cursor: pointer;
+}
+
+.invPanel div.reagents {
     grid-area: reagents;
-    display: grid;
-    grid-template-areas: "head head head head"
-    "ordinary uncommon rare legendary";
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    border: 1px solid black;
-    font-size: 24px;
+    border-bottom: 1px solid black;
+    display: flex;
 }
 
-.reagents div.reagentsHead {
-    grid-area: head;
-    border: 1px solid black;
+.reagents:hover div.reagentTotal {
+    width: 0;
+    text-wrap: nowrap;
 }
 
-.reagents div.reagentsOrdinary {
-    grid-area: ordinary;
-    border: 1px solid black;
+.reagents:hover div.reagentDesc {
+    flex: 1;
+    border-right: 1px solid black;
+    padding-left: 4px;
+    padding-right: 4px;
+    overflow: visible;
 }
 
-.reagents div.reagentsUncommon {
-    grid-area: uncommon;
-    border: 1px solid black;
+.reagents div.reagentTotal {
+    overflow: hidden;
 }
 
-.reagents div.reagentsRare {
-    grid-area: rare;
-    border: 1px solid black;
+.reagents div.reagentDesc {
+    width: 0;
+    overflow: hidden;
+    text-align: center;
+    text-wrap: nowrap;
+    position: relative;
 }
 
-.reagents div.reagentsLegendary {
-    grid-area: legendary;
-    border: 1px solid black;
+.reagents div.reagentDesc:hover {
+    cursor: pointer;
 }
 
-.inventoryCollapsible div.materials {
+.reagentDesc:hover div.toolTip {
+    visibility: visible;
+}
+
+.invPanel div.materials {
     grid-area: materials;
-    display: grid;
-    grid-template-areas: "head head head head"
-    "ordinary uncommon rare legendary";
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    border: 1px solid black;
-    font-size: 24px;
+    border-bottom: 1px solid black;
+    display: flex;
 }
 
-.materials div.materialsHead {
-    grid-area: head;
-    border: 1px solid black;
+.materials:hover div.materialTotal {
+    width: 0;
+    text-wrap: nowrap;
 }
 
-.materials div.materialsOrdinary {
-    grid-area: ordinary;
-    border: 1px solid black;
+.materials:hover div.materialDesc {
+    flex: 1;
+    border-right: 1px solid black;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    overflow: visible;
 }
 
-.materials div.materialsUncommon {
-    grid-area: uncommon;
-    border: 1px solid black;
+.materials div.materialTotal {
+    overflow: hidden;
 }
 
-.materials div.materialsRare {
-    grid-area: rare;
-    border: 1px solid black;
+.materials div.materialDesc {
+    width: 0;
+    overflow: hidden;
+    text-wrap: nowrap;
+    position: relative;
 }
 
-.materials div.materialsLegendary {
-    grid-area: legendary;
-    border: 1px solid black;
+.materials div.materialDesc:hover {
+    cursor: pointer;
 }
 
-.inventoryCollapsible div.equip1 {
+.materialDesc:hover div.toolTip {
+    visibility: visible;
+}
+
+.equip1 {
     grid-area: equip1;
-    border: 1px solid black;
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
-    grid-template-areas: "weaponName weaponName weaponName weaponName"
-    "attackName attackCost attackRange attackEffect"
-    "propertyName propertyEffect propertyEffect propertyEffect"
-    "propertyCost propertyEffect propertyEffect propertyEffect"
-    "special special special special";
-    grid-template-columns: 2fr 3fr 1fr 5fr;
-    grid-template-rows: 1.2fr 1.5fr 1fr 1fr 1fr;
+    grid-template-areas: "weaponName weaponName weaponName"
+    "attackName attackCost attackRange"
+    "attackEffect attackEffect attackEffect"
+    "propertyName propertyCost propertyCost"
+    "propertyEffect propertyEffect propertyEffect"
+    "special special special";
+    grid-template-columns: 2fr 1.5fr 1fr;
+    grid-template-rows: 3fr 2fr 2fr 2fr auto 2fr;
+    font-size: var(--font-xsm);
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-bottom: 4px;
+    line-height: 1.2;
 }
 
-.inventoryCollapsible div.equip2 {
+.equip1:hover {
+    cursor: pointer;
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+}
+
+
+.equip2 {
     grid-area: equip2;
-    border: 1px solid black;
+    border-image: var(--border-select);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
-    grid-template-areas: "weaponName weaponName weaponName weaponName"
-    "attackName attackCost attackRange attackEffect"
-    "propertyName propertyEffect propertyEffect propertyEffect"
-    "propertyCost propertyEffect propertyEffect propertyEffect"
-    "special special special special";
-    grid-template-columns: 2fr 3fr 1fr 5fr;
-    grid-template-rows: 1.2fr 1.5fr 1fr 1fr 1fr;
+    grid-template-areas: "weaponName weaponName weaponName"
+    "attackName attackCost attackRange"
+    "attackEffect attackEffect attackEffect"
+    "propertyName propertyCost propertyCost"
+    "propertyEffect propertyEffect propertyEffect"
+    "special special special";
+    grid-template-columns: 2fr 1.5fr 1fr;
+    grid-template-rows: 3fr 2fr 2fr 2fr auto 2fr;
+    font-size: var(--font-xsm);
+    padding-left: 12px;
+    padding-right: 12px;
+    line-height: 1.2;
+}
+
+.equip2:hover {
+    cursor: pointer;
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
 }
 
 .weaponName {
-    font-size: 24px;
+    font-size: var(--font-md);
     grid-area: weaponName;
     text-align: center;
     border: 1px solid black;
@@ -228,6 +303,7 @@
 .weaponAttackEffect {
     grid-area: attackEffect;
     border: 1px solid black;
+    text-align: center;
 }
 
 .weaponPropertyName {
@@ -245,11 +321,13 @@
 .weaponPropertyEffect {
     grid-area: propertyEffect;
     border: 1px solid black;
+    font-size: var(--font-xsm);
 }
 
 .weaponSpecial {
     grid-area: special;
     border: 1px solid black;
+    font-size: var(--font-xsm);
 }
 
 .invPanel div.innerwear {
@@ -261,11 +339,11 @@
 
 .innerwear div.innerName {
     border: 1px solid black;
-    font-size: 24px;
 }
 
 .innerwear div.innerDesc {
     border: 1px solid black;
+    font-size: var(--font-xsm);
 }
 
 .invPanel div.outerwear {
@@ -277,64 +355,118 @@
 
 .outerwear div.outerName {
     border: 1px solid black;
-    font-size: 24px;
 }
 
 .outerwear div.outerDesc {
     border: 1px solid black;
-}
-
-.invPanel div.expandInventory {
-    grid-area: expandInventory;
-    font-size: 15px;
-    border: 1px solid black;
+    font-size: var(--font-xsm);
 }
 
 .expandInventory:hover {
-    background-color: #9e9e9e;
+    background-color: var(--accent);
+    cursor: pointer;
 }
 
-.invPanel div.itemFilter {
-    grid-area: itemFilter;
+.invPanel button.expand {
+    grid-area: expand;
     text-align: center;
-    display: grid;
-    grid-template-columns: 3fr 1fr 2fr 5fr;
-    font-size: 20px;
-    border: 1px solid black;
+    clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 100%, 20px 100%);
+    background:rgb(210, 230, 173);
+    margin-left: -18px;
+    margin-right: -18px;
+    z-index: 3;
+}
+
+.invPanel div.expand:hover {
+    cursor: pointer;
 }
 
 .invPanel div.itemTable {
     grid-area: itemTable;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
-    font-size: 20px;
+    padding-right: 12px;
+    position: absolute;
+    background-color: var(--card);
+    top: calc(var(--font-md) + var(--font-lg));
+    border-radius: var(--radius);
+    height: calc(100% - 16px - var(--font-md) - var(--font-lg));
+    width: calc(100% - 16px);
+    margin: 8px;
+    z-index: 2;
 }
 
-.itemTable div.itemTableRow {
+.tableRow {
+    min-height: min-content;
+    border: 1px solid black;
     display: grid;
-    grid-template-columns: 3fr 1fr 2fr 5fr;
-    border: 1px solid black;
-    min-height: 40px;
+    grid-template-columns: 1fr;
+    font-size: var(--font-xsm);
+    /*Border*/
 }
 
-.itemTableName {
-    font-size: 24px;
+.pinnedSummary {
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+    cursor: pointer;
     text-align: left;
-    border: 1px solid black;
-    padding-right: 5px;
 }
 
-.itemTableQTY {
-    border: 1px solid black;
-}
-
-.itemTableType {
-    border: 1px solid black;
-}
-
-.itemTableDesc {
-    padding-left: 5px;
+.tableSummary {
+    display: grid;
+    grid-template-columns: 5fr 3fr 2fr 1fr 1fr;
+    cursor: pointer;
     text-align: left;
-    font-size: 18px;
+}
+
+ .tableCellName {
+    font-size: var(--font-sm);
+    border: 1px solid var(--primary);
+    text-align: left;
+    padding-left: 12px;
+}
+
+.tableCellDesc {
+    text-align: left;
+    padding: 8px;
+    padding-left: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
     border: 1px solid black;
+}
+
+.tableCellContent {
+    border: 1px solid var(--primary);
+    flex: 3;
+    text-align: center;
+}
+
+.tableCellButton {
+    border: 1px solid var(--primary);
+    flex: 3;
+    text-align: center;
+    z-index: 1;
+}
+
+.tableCellButton:hover {
+    cursor: pointer;
+    background-color: var(--accent);
+    display: inline-block;
+}
+
+.tableCellInput {
+    width: calc(var(--font-md) + 6px);
+    border: 1px solid black;
+    text-align: center;
+}
+
+.lgInput {
+    width: calc(var(--font-md) + 6px);
+    text-align: right;
+}
+
+.smInput {
+    width: calc(var(--font-sm));
+    text-align: right;
 }

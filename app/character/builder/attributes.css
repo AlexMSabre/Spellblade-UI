@@ -16,7 +16,6 @@
     border-radius: var(--radius);
     /*Color and Text Styles*/
     background-color: var(--background);
-    font-size: var(--font-md);
 }
 
 .attributes div.level {
@@ -35,9 +34,9 @@
 }
 .level select {
     /*Size*/
-    height: calc(15vh);
+    height: calc(12vh);
     /*Layout*/
-    margin-top: calc(-1*var(--font-lg) - 20px);
+    margin-top: calc(-1*var(--font-lg) - 16px);
     /*Border*/
     border-image: var(--border-select);
     border-image-slice: 25% 25%;
@@ -45,6 +44,8 @@
     border-radius: 15px;
     /*Color and Text Styles*/
     background-color: var(--card);
+    padding-left: 12px;
+    padding-top: 32px;
 }
 
 .level select:hover {
@@ -62,6 +63,7 @@
 .level option {
     /*Color and Text Styles*/
     background-color: var(--card);
+    font-size: var(--font-md);
 }
 
 .attributes div.talent1name {
@@ -74,7 +76,7 @@
     border-radius: var(--radius);
     /*Color and Text Styles*/
     background-color: var(--card);
-    font-size: var(--font-xxl);
+    font-size: var(--font-xl);
 }
 
 .attributes div.talent2name {
@@ -87,7 +89,7 @@
     border-radius: var(--radius);
     /*Color and Text Styles*/
     background-color: var(--card);
-    font-size: var(--font-xxl);
+    font-size: var(--font-xl);
 }
 
 .attributes div.talent1attributes {
@@ -132,7 +134,7 @@
     padding: 15px;
     /*Color and Text Styles*/
     background-color: var(--background);
-    font-size: var(--font-md);
+    font-size: var(--font-sm);
 }
 
 .capstone {
@@ -145,6 +147,7 @@
     padding: 15px;
     /*Color and Text Styles*/
     background-color: var(--background);
+    font-size: var(--font-sm);
 }
 
 .keystoneActive {
@@ -157,6 +160,7 @@
     padding: 15px;
     /*Color and Text Styles*/
     background-color: var(--accent);
+    font-size: var(--font-sm);
 }
 
 .capstoneActive {
@@ -165,6 +169,7 @@
     border-image-slice: 25% 25%;
     border-image-width: 50px 50px;
     border-radius: var(--radius);
+    font-size: var(--font-sm);
     /*Boundaries*/
     padding: 15px;
     /*Color and Text Styles*/
@@ -173,7 +178,7 @@
 
 .stoneName {
     /*Color and Text Styles*/
-    font-size: var(--font-lg);
+    font-size: var(--font-md);
 }
 
 .attributeContainer {
@@ -181,7 +186,7 @@
     display: flex;
     flex-direction: column;
     /*Color and Text Styles*/
-    font-size: var(--font-sm);
+    font-size: var(--font-xsm);
     /*Interactive*/
     overflow-y: hidden;
 }

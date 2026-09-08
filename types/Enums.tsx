@@ -35,4 +35,4 @@ export const ammoQuantity = new Map([
      ["Bullet", 24],
 ])
 
-export const proficiencyTypes = ["Light", "Medium", "Heavy", "SpellCasting Tool", "Shield", "Ranged"]
+export const proficiencyTypes = ["Light", "Medium", "Heavy", "Spellcasting Tool", "Shield", "Ranged"]

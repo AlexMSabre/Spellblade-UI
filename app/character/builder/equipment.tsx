@@ -9,7 +9,7 @@ import { emptyInventory, emptyInventoryDAO, emptyItem, emptyPack, Inventory, Inv
 import { ammoQuantity, proficiencyTypes, weaponQuantity } from "@/types/Enums";
 import { Effect } from "@/types/stateTypes";
 // Pages
-import itemSearch from "../itemSearch";
+import itemSearch from "../../itemSearch";
 // CSS
 import "./equipment.css";
 
@@ -118,6 +118,7 @@ export default function equipment(character: Character, setCharacter: Function, 
         result.push(makeEquipInventoryItem("Healing Salve", pack.salves));
         result.push(makeEquipInventoryItem("Food (kg)", pack.rations));
         result.push(makeEquipInventoryItem("Water (kg)", pack.rations));
+        //result.push(makeEquipInventoryItem("Platinum", 0));
         result.push(makeEquipInventoryItem("Gold", Math.floor(pack.currency/100 % 100)));
         result.push(makeEquipInventoryItem("Silver", Math.floor(pack.currency/10 % 10)));
         result.push(makeEquipInventoryItem("Copper", Math.floor(pack.currency % 10)));
@@ -128,9 +129,11 @@ export default function equipment(character: Character, setCharacter: Function, 
         result.push(makeEquipInventoryItem("Ordinary Reagent", Number(reagents[2])));
         result.push(makeEquipInventoryItem("Uncommon Reagent", Number(reagents[1])));
         result.push(makeEquipInventoryItem("Rare Reagent", Number(reagents[0])));
+        result.push(makeEquipInventoryItem("Legendary Reagent", 0));
         result.push(makeEquipInventoryItem("Ordinary Crafting Material", Number(materials[2])));
         result.push(makeEquipInventoryItem("Uncommon Crafting Material", Number(materials[1])));
         result.push(makeEquipInventoryItem("Rare Crafting Material", Number(materials[0])));
+        result.push(makeEquipInventoryItem("Legendary Crafting Material", 0));
 
         setInventory(result);
     }

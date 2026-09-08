@@ -1,100 +1,41 @@
-.page {
-    /*Layout*/
-    display: grid;
-    grid-template-areas: "prev save status none next"
-    "tabs tabs tabs tabs tabs";
-    grid-template-columns: 100px auto 300px auto 100px;
-    grid-template-rows: var(--font-lg) auto;
-    align-items: flex-end;
-    /*Boundaries*/
-    gap: 10px;
+.characterList {
+    /*Size*/
+    width: calc(100vw);
+    height: calc(100vh - 80px);
     /*Color and Text Styles*/
+    background-color: var(--card);
     color: var(--primary);
+}
+
+.deleteChar:hover {
+    /*Color and Text Styles*/
+    background-color: var(--foreground);
+    color: var(--secondary);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.confirmDelete {
+    /*Size and Position*/
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    /*Color and Text Styles*/
+    background-color: rgba(0, 0, 0, 0.25);
+    position: absolute;
+}
+
+.confirmDelete div.interface {
+    /*Size and Position*/
+    top: calc(30vh);
+    left: calc(35vw);
+    height: calc(20vh);
+    width: calc(30vw);
+    /*Layout*/
+    position: relative;
+    /*Color and Text Styles*/
     font-size: var(--font-md);
-}
-
-.prevButton {
-    /*Layout*/
-    grid-area: prev;
-    text-align: center;
-    /*Border*/
-    border-radius: var(--radius);
-    /*Boundaries*/
-    margin-left: 20px;
-    /*Color and Text Styles*/
     background-color: var(--card);
-}
-
-.prevButton:hover {
-    /*Color and Text Styles*/
-    background-color: var(--accent);
-    /*Interactive*/
-    cursor: pointer;
-}
-
-.nextButton {
-    /*Layout*/
-    grid-area: next;
-    text-align: center;
-    /*Border*/
-    border-radius: var(--radius);
-    /*Boundaries*/
-    margin-left: 20px;
-    /*Color and Text Styles*/
-    background-color: var(--card);
-}
-
-.nextButton:hover {
-    /*Color and Text Styles*/
-    background-color: var(--accent);
-    /*Interactive*/
-    cursor: pointer;
-}
-
-.saveButton {
-    /*Layout*/
-    grid-area: save;
-    text-align: center;
-    /*Border*/
-    border-radius: var(--radius);
-    /*Boundaries*/
-    margin-left: 20px;
-    /*Color and Text Styles*/
-    background-color: var(--card);
-}
-
-.saveButton:hover {
-    /*Color and Text Styles*/
-    background-color: var(--accent);
-    /*Interactive*/
-    cursor: pointer;
-}
-
-.saveStatus {
-    /*Layout*/
-    grid-area: status;
-    text-align: left;
-        /*Border*/
-    border-radius: var(--radius);
-    /*Boundaries*/
-    margin-left: 20px;
-    /*Color and Text Styles*/
-    background-color: var(--card);
-}
-
-.page div.tabsContainer {
-    /*Layout*/
-    grid-area: tabs;
-}
-
-.tabsContainer div.tabsList {
-    /*Border*/
-    border-radius: 0px;
-}
-
-.tab {
-    /*Border*/
-    border-radius: 0px;
-    /*Color and Text Styles*/
-    font-size: var(--font-sm);
+    color: var(--primary);
 }

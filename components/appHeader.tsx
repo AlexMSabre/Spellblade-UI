@@ -8,7 +8,7 @@ export default function appHeader(session : any, status : any){
     <div className="headerBar">
         <ul>
           <li><a href="/">Spellblade TTRPG</a></li>
-          <li><a href="/mycharacters">My Characters</a></li>
+          <li><a href="/character">My Characters</a></li>
           <li><a href="/mygames">My Games</a></li>
           <li><a href="/rules">Rules</a></li>
         </ul>

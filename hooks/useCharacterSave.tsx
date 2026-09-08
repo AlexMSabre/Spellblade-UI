@@ -22,7 +22,7 @@ export const useCharacterSave = async (character: Character, inventoryData: Inve
             query: `query Query($characterDAO: inputCharacterDAO) {saveCharacter(characterDAO: $characterDAO) {
                 character { id name }
                 inventory { 
-                    inventory {id characterId itemId equipped quantity} 
+                    inventory {id characterId itemId equipped quantity pinned}
                     item { id name itemType subtype size equippable size weight description attack {name action range damage damageType} special {name action description} properties baseCost rarity}}
                 spells { 
                     spellCharacter {id characterId spellId} 

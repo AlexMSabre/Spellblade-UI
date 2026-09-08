@@ -207,7 +207,7 @@ summary {
 
 .cellContentName {
     /*Size*/
-    font-size: var(--font-lg);
+    font-size: var(--font-md);
 }
 
 .cellContentShort {

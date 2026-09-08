@@ -22,6 +22,7 @@ export interface Inventory {
     itemId: string
     equipped: boolean
     quantity: number
+    pinned: boolean
 }
 
 export interface InventoryDAO {
@@ -93,8 +94,8 @@ export var emptyInventory: Inventory = {
     characterId: null,
     itemId: "",
     equipped: false,
-    quantity: 1
-
+    quantity: 1,
+    pinned: false
 }
 
 export var emptyInventoryDAO: InventoryDAO = {
@@ -148,8 +149,8 @@ export var unarmedInventory: Inventory = {
     characterId: null,
     itemId: "",
     equipped: false,
-    quantity: 1
-
+    quantity: 1,
+    pinned: false
 }
 
 export var unarmedInventoryDAO: InventoryDAO = {

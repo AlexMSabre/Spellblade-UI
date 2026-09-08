@@ -1,0 +1,112 @@
+.page {
+    /*Layout*/
+    display: grid;
+    grid-template-areas: "prev save status goto none next"
+    "tabs tabs tabs tabs tabs tabs";
+    grid-template-columns: 100px auto 300px 500px auto 100px;
+    grid-template-rows: var(--font-lg) auto;
+    align-items: flex-end;
+    /*Boundaries*/
+    gap: 10px;
+    /*Color and Text Styles*/
+    color: var(--primary);
+    font-size: var(--font-md);
+}
+
+.prevButton {
+    /*Layout*/
+    grid-area: prev;
+    text-align: center;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.prevButton:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.nextButton {
+    /*Layout*/
+    grid-area: next;
+    text-align: center;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.nextButton:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.saveButton {
+    /*Layout*/
+    grid-area: save;
+    text-align: center;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.saveButton:hover {
+    /*Color and Text Styles*/
+    background-color: var(--accent);
+    /*Interactive*/
+    cursor: pointer;
+}
+
+.goto {
+    /*Layout*/
+    grid-area: goto;
+    text-align: center;
+    /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.saveStatus {
+    /*Layout*/
+    grid-area: status;
+    text-align: left;
+        /*Border*/
+    border-radius: var(--radius);
+    /*Boundaries*/
+    margin-left: 20px;
+    /*Color and Text Styles*/
+    background-color: var(--card);
+}
+
+.page div.tabsContainer {
+    /*Layout*/
+    grid-area: tabs;
+}
+
+.tabsContainer div.tabsList {
+    /*Border*/
+    border-radius: 0px;
+}
+
+.tab {
+    /*Border*/
+    border-radius: 0px;
+    /*Color and Text Styles*/
+    font-size: var(--font-sm);
+}

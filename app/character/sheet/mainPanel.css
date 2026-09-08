@@ -1,53 +1,59 @@
 .mainPanel {
-    height: calc(85vh);
+    height: calc(100vh - 150px);
     max-width: 40vw;
-    border: 1px solid black;
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
     display: grid;
-    grid-template-areas: "name name name name name name"
-    "armor armor picture picture health health"
-    "skills skills skills conditions conditions conditions"
-    "fitness focus focus precision precision sense"
-    "talent1Name talent1Name talent1Name talent2Name talent2Name talent2Name"
-    "talent1Attributes talent1Attributes talent1Attributes talent2Attributes talent2Attributes talent2Attributes";
-    grid-template-columns: 6fr 2fr 4fr 4fr 2fr 6fr;
-    grid-template-rows: 1fr 4fr 4fr 1fr 1fr 4fr;
-    font-size: 28px;
+    grid-template-areas: "name name name name name"
+    "picture picture mana mana health"
+    "picture picture conditions conditions conditions"
+    "mainskills talent1Name talent1Name talent2Name talent2Name"
+    "mainskills talent1Attributes talent1Attributes talent2Attributes talent2Attributes";
+    grid-template-columns: 6fr 2fr 7fr 1fr 8fr;
+    grid-template-rows: 2fr 3fr 4fr 1fr 8fr;
+    background-color: var(--card);
+    padding: 8px;
+    color: var(--primary);
 }
 
 .mainPanel div.characterName {
     grid-area: name;
-    font-size: 56px;
+    font-size: var(--font-lg);
     border: 1px solid black;
     text-align: center;
 }
 
-.mainPanel div.armor {
-    grid-area: armor;
+.mainPanel div.mana {
+    grid-area: mana;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    font-size: 36px;
+    font-size: var(--font-sm);
 }
 
-.armor div.currentArmor {
+
+.mana div.movement {
     flex: 1;
     border: 1px solid black;
 }
 
-.armor div.minArmor {
+.mana div.manaPoints {
     flex: 1;
     border: 1px solid black;
 }
 
-.armor div.movement {
+.mana div.wounds {
     flex: 1;
     border: 1px solid black;
 }
 
 .mainPanel div.picture {
+    z-index: 1;
+    border-radius: var(--radius);
     grid-area: picture;
-    background-color: rgb(179, 179, 255);
-    margin-bottom: calc(-4vh);
+    background-image: linear-gradient(rgb(179, 179, 255), rgb(85, 85, 85));
 }
 
 .mainPanel div.health {
@@ -55,7 +61,7 @@
     border: 1px solid black;
     display: flex;
     flex-direction: column;
-    font-size: 36px;
+    font-size: var(--font-sm);
 }
 
 .health div.hitPoints {
@@ -65,7 +71,6 @@
 
 .hitPoints div.hitCalc {
     display: inline;
-    font-size: 24px;
     background-color: rgb(194, 194, 194);
     border-radius: 10px;
     padding: 5px;
@@ -76,65 +81,36 @@
     cursor: pointer;
 }
 
-.health div.manaPoints {
+.health div.currentArmor {
     flex: 1;
     border: 1px solid black;
 }
 
-.health div.wounds {
+.health div.minArmor {
     flex: 1;
     border: 1px solid black;
 }
 
-.mainPanel div.skills {
-    grid-area: skills;
+.mainPanel div.mainSkills {
+    grid-area: mainskills;
     border: 1px solid black;
     text-align: center;
-    display: grid;
-    grid-template-areas: "title title"
-    "awareness evasion"
-    "celerity subtlety"
-    "dexterity tenacity";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
 }
 
-.skills div.skillsTitle {
+.mainSkills div.skillsTitle {
     grid-area: title;
     border: 1px solid black;
     text-align: center;
+    font-size: var(--font-sm);
 }
 
-.skills div.awareness {
-    grid-area: awareness;
+.mainSkills div.skillCell {
+    flex: 1;
     border: 1px solid black;
+    font-size: var(--font-xsm);
 }
-
-.skills div.celerity {
-    grid-area: celerity;
-    border: 1px solid black;
-}
-
-.skills div.dexterity {
-    grid-area: dexterity;
-    border: 1px solid black;
-}
-
-.skills div.evasion {
-    grid-area: evasion;
-    border: 1px solid black;
-}
-
-.skills div.subtlety {
-    grid-area: subtlety;
-    border: 1px solid black;
-}
-
-.skills div.tenacity {
-    grid-area: tenacity;
-    border: 1px solid black;
-}
-
 
 .mainPanel div.conditions {
     grid-area: conditions;
@@ -142,57 +118,40 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    font-size: var(--font-sm);
 }
 
 .conditions textarea {
     border: 1px solid black;
     flex: 1;
-}
-
-.mainPanel div.fitness {
-    grid-area: fitness;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.mainPanel div.focus {
-    grid-area: focus;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.mainPanel div.precision {
-    grid-area: precision;
-    border: 1px solid black;
-    text-align: center;
-}
-
-.mainPanel div.sense {
-    grid-area: sense;
-    border: 1px solid black;
-    text-align: center;
+    font-size: var(--font-xsm);
+    
 }
 
 .mainPanel div.talent1Name {
     grid-area: talent1Name;
     border: 1px solid black;
     text-align: center;
+    font-size: var(--font-sm);
 }
 
 .mainPanel div.talent2Name {
     grid-area: talent2Name;
     border: 1px solid black;
     text-align: center;
+    font-size: var(--font-sm);
 }
 
 .mainPanel div.talent1Attributes {
     grid-area: talent1Attributes;
     border: 1px solid black;
-    font-size: 24px;
+    font-size: var(--font-xsm);
+    overflow-y: auto;
 }
 
 .mainPanel div.talent2Attributes {
     grid-area: talent2Attributes;
     border: 1px solid black;
-    font-size: 24px;
+    font-size: var(--font-xsm);
+    overflow-y: auto;
 }

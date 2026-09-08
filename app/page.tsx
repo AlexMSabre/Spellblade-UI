@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
 
   function toCharacter() {
-    router.push("/character")
+    router.push("/character/builder")
   }
 
   function toPlay() {

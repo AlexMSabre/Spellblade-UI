@@ -1,164 +1,100 @@
 "use client";
-// React
+import appHeader from "@/components/appHeader";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useCharacterByAccId } from "@/hooks/useCharacterByAccId";
+import { Character } from "@/types/characterTypes";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-// ShadCN
-import {Tabs, TabsTrigger, TabsList, TabsContent} from "@/components/ui/tabs";
-// Hooks
-import { useCharacterSave } from "@/hooks/useCharacterSave";
-import { useCharacterById } from "@/hooks/useCharacterById";
-import { useGetEffects } from "@/hooks/useGetEffectsList";
-// Types
-import { CalculatedState, Character, emptyCalculatedState, emptyCharacter } from "@/types/characterTypes";
-import { InventoryDAO } from "@/types/itemTypes";
-import { SpellDAO } from "@/types/spellTypes";
-import { Effect } from "@/types/stateTypes";
-// Functions
-import useCalculateState from "@/hooks/useCalculateState";
-// Pages
-import appHeader from "@/components/appHeader";
-import background from "./background";
-import talents from "./talents";
-import attributes from "./attributes";
-import skills from "./skills";
-import spells from "./spells";
-import equipment from "./equipment";
-import story from "./story";
-import preview from "./preview";
-// CSS
 import "./page.css";
+import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
 
-  //create an empty character, for now.   this will be the master data that everything will update or reference
+export default function characterSelect() {
 
-const tabs = ["background", "talents", "attributes", "skills", "spells", "equipment", "story", "sheet"];
+  const [characterList, setCharacterList] = useState<Character[]>([]);
+  //gets the user data, bounces them if they aren't signed in
 
-export default function Builder({
-  searchParams,
-}: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}) {
-    const searchId = useSearchParams().get('id');
-    const searchLevel = useSearchParams().get('level');
+  const { data: session, status } = useSession({ required: true });
+  const [characterLoad, setCharacterLoad] = useState(false);
+  const [deleteQueue, setDeleteQueue] = useState("");
 
-    const [currentTab, setCurrentTab] = useState("background");
-    const [characterData, setCharacterData] = useState<Character>(emptyCharacter)
-    const [calculatedState, setCalculatedState] = useState<CalculatedState>(emptyCalculatedState);
-    const [characterInventory, setCharacterInventory] = useState<InventoryDAO[]>([]);
-    const [characterSpells, setCharacterSpells] = useState<SpellDAO[]>([]);
-    const [effectList, setEffectList] = useState<Effect[]>([]);
-    const [saveStatus, setSaveStatus] = useState("Unsaved");
+  function confirmDelete() {
+    useDeleteCharacter(deleteQueue || "").then((data)=>{
+      if(data.data.data.deleteCharacter==true){
+        setCharacterList(characterList.filter(i=>i.id!=deleteQueue))
+      }
+    });
+    setDeleteQueue("");
+  }
 
-    const { data: session, status } = useSession();
+  //gets all the characters associated with the user
+  useEffect(() => {
+    let user = session?.user
 
-    useEffect(()=>{
-      useGetEffects().then(data=>{
-        setEffectList(data.data.data.getEffectList);
-        if (searchId) {
-          useCharacterById(searchId).then(result=>{
-            console.log(result);
-            setCharacterData(result.data.data.fullCharacterById.character);
-            setCharacterInventory(result.data.data.fullCharacterById.inventory);
-            setCharacterSpells(result.data.data.fullCharacterById.spells);
-        });
-        }
-        else if (searchLevel && (Number(searchLevel)<=8)) {
-          setCharacterData(prev=>({...prev, attributeLevel: Number(searchLevel)}))
-        }
-      })
-    },[]);
-
-    useEffect(()=>setCharacterData(prev=>({...prev, userId: session?.user.id})),[session]);
-
-    useEffect(() => {
-      let calcState = useCalculateState(characterData);
-      setCalculatedState(calcState);
-    }, [currentTab])
-
-    //sets current tab when navigating from tabs menu
-    function moveTab(tab:string) {
-      setCurrentTab(tab);
+    if (user) {
+      useCharacterByAccId(user.id).then((result) => {
+        setCharacterList(result.data.charactersByUserId);
+      });
     }
 
-    function nextTab() {
-      let place = tabs.indexOf(currentTab);
-      if ((place != -1) && (place != (tabs.length-1))) {
-        setCurrentTab(tabs[place+1]);
-      }
-    }
+  }, [session]);
 
-    function prevTab() {
-      let place = tabs.indexOf(currentTab);
-      if (place != -1 && place != 0) {
-        setCurrentTab(tabs[place-1]);
-      }
-    }
+  useEffect(() => {
+    setCharacterLoad(true);
+  }, [characterList]);
 
-    //saves the character via the backend
-    function handleSave(){
-      setSaveStatus("Saving...");
-      if(status==="authenticated"){
-        useCharacterSave(characterData, characterInventory, characterSpells).then(data=>{
-          let characterDAO = data.data.data.saveCharacter;
-          if (characterDAO) {
-            let characterDAO = data.data.data.saveCharacter;
-            //updates the character data to have the newly generated ID
-            setCharacterData(prev=>({...prev, id: characterDAO.character.id}));
-            //updates the inventory and spells to also have their newly generated IDs, plus the characterId
-            setCharacterInventory(characterDAO.inventory);
-            setCharacterSpells(characterDAO.spells);
-            setSaveStatus("Saved");
-          }
-          else {
-            setSaveStatus("Error Saving Character!");
-          }
-        });
-      }
-      else {
-        setSaveStatus("Cannot Save Character! Must be logged in.");
-      }
-    }
+  if (status != "authenticated") { return (<p>Is loading</p>) };
+
 
   return (
-    <main className="main">
-      {appHeader(session, status)}
-      <div className="page">
-        <div className="prevButton" onClick={()=>{prevTab()}}>
-            Prev
+    <div>
+      <main className="main">
+        {appHeader(session, status)}
+        <div className="characterList">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Aspect Level</TableHead>
+                <TableHead>talent 1</TableHead>
+                <TableHead>talent 2</TableHead>
+                <TableHead>Ancestry</TableHead>
+                <TableHead>Background</TableHead>
+                <TableHead>Fitness</TableHead>
+                <TableHead>Precision</TableHead>
+                <TableHead>Focus</TableHead>
+                <TableHead>Sense</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
+              {characterLoad && characterList?.map((character) => (
+                <TableRow key={character.id}>
+                  <TableCell><a href={"/character/sheet?id=" + character.id}>{character.name}</a></TableCell>
+                  <TableCell>{character.attributeLevel}</TableCell>
+                  <TableCell>{character.talent1.name}</TableCell>
+                  <TableCell>{character.talent2.name}</TableCell>
+                  <TableCell>{character.ancestry.name}</TableCell>
+                  <TableCell>{character.background.name}</TableCell>
+                  <TableCell>{character.baseFitness}</TableCell>
+                  <TableCell>{character.basePrecision}</TableCell>
+                  <TableCell>{character.baseFocus}</TableCell>
+                  <TableCell>{character.baseSense}</TableCell>
+                  <TableCell><div className="deleteChar" onClick={()=>setDeleteQueue(character.id || "")}>Delete</div></TableCell>
+                </TableRow>
+              ))}
+
+            </TableBody>
+
+          </Table>
         </div>
-        <div className="saveButton" onClick={handleSave}>
-          Save
+        <div className="confirmDelete" hidden={deleteQueue == ""}>
+          <div className="interface">
+            Are you sure? <br/>
+            <button onClick={()=>confirmDelete()}> Yeah </button> <br/>
+            <button onClick={()=>setDeleteQueue("")}> Nah </button>
+          </div>
         </div>
-        <div className="saveStatus">
-          Status: {saveStatus}
-        </div>
-        <div className="nextButton" onClick={()=>{nextTab()}}>
-            Next
-        </div>
-        <Tabs className="tabsContainer" defaultValue="background" orientation="vertical" value={currentTab} onValueChange={(e:string)=>{moveTab(e)}}>
-            <TabsList className="tabsList">
-                <TabsTrigger className="tab" value="background">Background</TabsTrigger>
-                <TabsTrigger className="tab" value="talents">Talents</TabsTrigger>
-                <TabsTrigger className="tab" value="attributes">Attributes</TabsTrigger>
-                <TabsTrigger className="tab" value="skills">Skills</TabsTrigger>
-                <TabsTrigger className="tab" value="spells">Spells</TabsTrigger>
-                <TabsTrigger className="tab" value="equipment">Equipment</TabsTrigger>
-                <TabsTrigger className="tab" value="story">Story</TabsTrigger>
-                <TabsTrigger className="tab" value="preview">Preview</TabsTrigger>
-            </TabsList>
-            <TabsContent value="background">{background(characterData,setCharacterData)}</TabsContent>
-            <TabsContent value="talents">{talents(characterData,setCharacterData)}</TabsContent>
-            <TabsContent value="attributes">{attributes(characterData,setCharacterData, currentTab, setCalculatedState)}</TabsContent>
-            <TabsContent value="skills">{skills(characterData,setCharacterData, currentTab, setCalculatedState)}</TabsContent>
-            <TabsContent value="spells">{spells(characterData, currentTab, calculatedState, characterSpells, setCharacterSpells)}</TabsContent>
-            <TabsContent value="equipment">{equipment(characterData, setCharacterData, characterInventory, setCharacterInventory, effectList)}</TabsContent>
-            <TabsContent value="story">{story()}</TabsContent>
-            <TabsContent value="preview">{preview(characterData, calculatedState, characterInventory, characterSpells)}</TabsContent>
-        </Tabs>
-      </div>
-      <div className="footerbar">
-          footer
-      </div>
-    </main>
-  );
+      </main>
+    </div>
+  )
 }

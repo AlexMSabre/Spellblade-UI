@@ -7,7 +7,7 @@ export const useGetEquipmentScreen = async (characterId: string) => {
     let data = JSON.stringify({
         query: `query Query ($characterId: String){
    getEquipmentScreen (characterId: $characterId) {
-    inventory { id characterId itemId equipped quantity}
+    inventory { id characterId itemId equipped quantity pinned}
     items { id name itemType subtype size equippable size weight description properties baseCost rarity
         attack {name action range damage damageType} 
         special {name action description}

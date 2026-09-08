@@ -1,83 +1,94 @@
 .itemSearch {
-    height: calc(100vh - 180px);
-    background-color: aliceblue;
+    max-width: 40vw;
+    height: calc(100vh - 150px);
+    border-image: var(--border-default);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    background-color: var(--card);
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 16fr;
+    grid-template-rows: 1fr 1fr 10fr;
+    color: var(--primary);
+    font-size: var(--font-sm);
+    padding: 8px;
 }
 
 .itemSearch div.searchTitle {
     font-size: 36px;
     border: 1px solid black;
+    text-align: center;
 }
 
 .itemSearch div.searchFilter {
     font-size: 28px;
     border: 1px solid black;
-}
-
-.itemSearch div.searchTableHead {
-    font-size: 28px;
-    border: 1px solid black;
+    text-align: center;
 }
 
 .itemSearch div.searchTable {
-    font-size: 28px;
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
+    padding-right: 12px;
+    background-color: var(--card);
+    top: 12%;
+    border-radius: var(--radius);
 }
 
-.tableRow {
-    display: flex;
-    grid-template-columns: 8fr 2fr;
-    grid-template-rows: 1fr;
+.searchTableRow {
+    min-height: min-content;
     border: 1px solid black;
-    min-height: 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+    font-size: var(--font-xsm);
+    /*Border*/
 }
 
-.tableSubRow {
-    display: flex;
-    border: 1px solid black;
-    min-height: 40px;
-}
-
-.tableRow:hover {
-    background-color: rgb(202, 202, 202);
-}
-
-.tableName {
-    font-size: 24px;
+.searchTableSummary {
+    display: grid;
+    grid-template-columns: 5fr 3fr 3fr 2fr 2fr;
+    cursor: pointer;
     text-align: left;
+}
+
+ .tableCellName {
+    font-size: var(--font-sm);
+    border: 1px solid var(--primary);
+    text-align: left;
+    padding-left: 12px;
+}
+
+.tableCellDesc {
+    text-align: left;
+    padding: 8px;
+    padding-left: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
     border: 1px solid black;
-    padding-right: 5px;
 }
 
-.tableType {
+.tableCellContent {
+    border: 1px solid var(--primary);
+    flex: 3;
+    text-align: center;
+}
+
+.searchInput {
+    width: var(--font-md);
     border: 1px solid black;
+    text-align: center;
 }
 
-.tableAdd {
-    border: 1px solid black;
+.searchCellButton {
+    padding-left: 4px;
+    padding-right: 4px;
+    border: 1px solid var(--primary);
+    flex: 3;
+    text-align: center;
+    z-index: 1;
 }
 
-.tableDesc {
-    border: 1px solid black;
-}
-
-.searchPopup {
-    background-color: rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-}
-
-.searchPopup div.popupInterface {
-    position: relative;
-    font-size: 35px;
-    top: calc(30vh);
-    left: calc(35vw);
-    height: calc(20vh);
-    width: calc(30vw);
-    background-color: rgba(255, 255, 255, 1);
+.searchCellButton:hover {
+    cursor: pointer;
+    background-color: var(--accent);
 }

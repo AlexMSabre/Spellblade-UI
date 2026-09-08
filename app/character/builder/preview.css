@@ -1,0 +1,12 @@
+.preview {
+    display: flex;
+    text-align: center;
+    height: calc(100vh - 180px);
+    width: calc(100vw - 160px);
+    font-size: var(--font-sm);
+}
+
+.preview div.panel {
+    height: calc(100vh - 160px);
+    width: calc(33vw - 50px);
+}
