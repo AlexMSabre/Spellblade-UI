@@ -73,6 +73,8 @@ export default function Builder({
     useEffect(() => {
       let calcState = useCalculateState(characterData);
       setCalculatedState(calcState);
+      setCharacterData(prev=>({...prev, state: {...prev.state, hitPoints: calcState.hitPointsMax, manaPoints: calcState.manaMax, armor: calcState.armorMax}}));
+      
     }, [currentTab])
 
     //sets current tab when navigating from tabs menu

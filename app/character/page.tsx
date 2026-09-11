@@ -1,12 +1,12 @@
 "use client";
 import appHeader from "@/components/appHeader";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCharacterByAccId } from "@/hooks/useCharacterByAccId";
 import { Character } from "@/types/characterTypes";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import "./page.css";
 import { useDeleteCharacter } from "@/hooks/useDeleteCharacter";
+import { useRouter } from "next/navigation";
 
 export default function characterSelect() {
 
@@ -16,6 +16,7 @@ export default function characterSelect() {
   const { data: session, status } = useSession({ required: true });
   const [characterLoad, setCharacterLoad] = useState(false);
   const [deleteQueue, setDeleteQueue] = useState("");
+  const router = useRouter();
 
   function confirmDelete() {
     useDeleteCharacter(deleteQueue || "").then((data)=>{
@@ -42,6 +43,10 @@ export default function characterSelect() {
     setCharacterLoad(true);
   }, [characterList]);
 
+  function openCharacter(place: string) {
+    router.push(place);
+  }
+
   if (status != "authenticated") { return (<p>Is loading</p>) };
 
 
@@ -49,49 +54,39 @@ export default function characterSelect() {
     <div>
       <main className="main">
         {appHeader(session, status)}
-        <div className="characterList">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Aspect Level</TableHead>
-                <TableHead>talent 1</TableHead>
-                <TableHead>talent 2</TableHead>
-                <TableHead>Ancestry</TableHead>
-                <TableHead>Background</TableHead>
-                <TableHead>Fitness</TableHead>
-                <TableHead>Precision</TableHead>
-                <TableHead>Focus</TableHead>
-                <TableHead>Sense</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {/* dynamically stuffs each character into a table.  needs to be changed to a set of cards or sum */}
-              {characterLoad && characterList?.map((character) => (
-                <TableRow key={character.id}>
-                  <TableCell><a href={"/character/sheet?id=" + character.id}>{character.name}</a></TableCell>
-                  <TableCell>{character.attributeLevel}</TableCell>
-                  <TableCell>{character.talent1.name}</TableCell>
-                  <TableCell>{character.talent2.name}</TableCell>
-                  <TableCell>{character.ancestry.name}</TableCell>
-                  <TableCell>{character.background.name}</TableCell>
-                  <TableCell>{character.baseFitness}</TableCell>
-                  <TableCell>{character.basePrecision}</TableCell>
-                  <TableCell>{character.baseFocus}</TableCell>
-                  <TableCell>{character.baseSense}</TableCell>
-                  <TableCell><div className="deleteChar" onClick={()=>setDeleteQueue(character.id || "")}>Delete</div></TableCell>
-                </TableRow>
-              ))}
-
-            </TableBody>
-
-          </Table>
-        </div>
-        <div className="confirmDelete" hidden={deleteQueue == ""}>
-          <div className="interface">
-            Are you sure? <br/>
-            <button onClick={()=>confirmDelete()}> Yeah </button> <br/>
-            <button onClick={()=>setDeleteQueue("")}> Nah </button>
+        <div className="page">
+          <div className="utilityPanel">
+            <button className="newCharacter" onClick={()=>openCharacter("/character/builder")}>
+              New Character
+            </button>
+          </div>
+          <div className="myCharactersContainer">
+            <div className="myChars">My Characters</div>
+            {characterLoad && characterList?.map((character) => (
+              <button className="characterCard" key={character.id}>
+                <div className="cardName" onClick={()=>openCharacter("/character/sheet?id=" + character.id)}>{character.name}</div>
+                <div className="cardLevel" onClick={()=>openCharacter("/character/sheet?id=" + character.id)}>Level {character.attributeLevel}</div>
+                <div className="cardAncestry" onClick={()=>openCharacter("/character/sheet?id=" + character.id)}>{character.ancestry.name}</div>
+                <div className="cardTalent1" onClick={()=>openCharacter("/character/sheet?id=" + character.id)}>{character.talent1.name}</div>
+                <div className="cardTalent2" onClick={()=>openCharacter("/character/sheet?id=" + character.id)}>{character.talent2.name}</div>
+                <details className="cardSettings">
+                  <summary>
+                    O
+                  </summary>
+                  <div>
+                    Modify <br/> Duplicate <br/>
+                    <div className="deleteChar" onClick={()=>setDeleteQueue(character.id || "")}>Delete</div>
+                  </div>
+                </details>
+              </button>
+            ))}
+          </div>
+          <div className="confirmDelete" hidden={deleteQueue == ""}>
+            <div className="interface">
+              Are you sure? <br/>
+              <button onClick={()=>confirmDelete()}> Yeah </button> <br/>
+              <button onClick={()=>setDeleteQueue("")}> Nah </button>
+            </div>
           </div>
         </div>
       </main>

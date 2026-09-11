@@ -77,7 +77,7 @@ export default function equipment(character: Character, setCharacter: Function, 
             <div className="inventoryTable">
                 {inventory.filter(i=>!displayFilters.includes(i.item.itemType)).map((item: InventoryDAO) => (
                     <details className="tableRow" key={item.item.name}>
-                        <summary className="tableSummary">
+                        <summary className="eqTableSummary">
                             <div className="tableCellName">{item.item.name}</div>
                             <div className="tableCellContent">{item.inventory.quantity}</div>
                             <div className="tableCellContent">{item.item.itemType}</div>
@@ -252,11 +252,11 @@ export default function equipment(character: Character, setCharacter: Function, 
                     <div className="currencyHead">
                         Currencies
                     </div>
-                    <div className="currencyTotal">{getInventoryItemQTY(inventory, "Platinum")*1000+getInventoryItemQTY(inventory, "Gold")*100+getInventoryItemQTY(inventory, "Silver")*10+getInventoryItemQTY(inventory, "Copper")}c</div>
+                    <div className="currencyTotal">Total: {getInventoryItemQTY(inventory, "Platinum")*1000+getInventoryItemQTY(inventory, "Gold")*100+getInventoryItemQTY(inventory, "Silver")*10+getInventoryItemQTY(inventory, "Copper")}c</div>
                     <div className="currencyDenom1">{getInventoryItemQTY(inventory, "Platinum")}p</div>
                     <div className="currencyDenom2">{getInventoryItemQTY(inventory, "Gold")}g</div>
                     <div className="currencyDenom3">{getInventoryItemQTY(inventory, "Silver")}s</div>
-                    <div className="currencyDenom4">{getInventoryItemQTY(inventory, "Coppper")}c</div>
+                    <div className="currencyDenom4">{getInventoryItemQTY(inventory, "Copper")}c</div>
                 </div>
                 <div className="supplies">
                     <div className="suppliesHead">

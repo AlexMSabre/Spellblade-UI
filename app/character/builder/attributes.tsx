@@ -135,6 +135,9 @@ export default function attributes(character: Character, setCharacterData: Funct
                 </div>
                 
             </div>
+            <div className="info">
+                Info
+            </div>
             <div className="talent2name">
                 {(character.talent2.name === "") ? "Talent 2" : character.talent2.name}
             </div>

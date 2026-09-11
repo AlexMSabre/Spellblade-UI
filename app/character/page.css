@@ -1,10 +1,8 @@
-.characterList {
-    /*Size*/
-    width: calc(100vw);
-    height: calc(100vh - 80px);
-    /*Color and Text Styles*/
-    background-color: var(--card);
-    color: var(--primary);
+.page {
+    display: flex;
+    width: 100vw;
+    gap: 10px;
+    padding:5px;
 }
 
 .deleteChar:hover {
@@ -13,6 +11,87 @@
     color: var(--secondary);
     /*Interactive*/
     cursor: pointer;
+}
+
+.page div.myCharactersContainer {
+    flex: 3;
+    background-color: var(--card);
+    color: var(--primary);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    gap: 15px;
+}
+
+.myCharactersContainer div.myChars {
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+    height: min-content;
+}
+
+.myCharactersContainer button.characterCard {
+    height: 200px;
+    width: 500px;
+    display: grid;
+    grid-template-areas: "name name name settings"
+    "level talent1 none settings"
+    "ancestry talent2 none settings";
+    grid-template-columns: 3fr 3fr auto 1fr;
+    border-image: var(--border-select-glow);
+    border-image-slice: 25% 25%;
+    border-image-width: 50px 50px;
+    border-radius: var(--radius);
+    padding: 8px;
+    padding-left: 16px;
+    font-size: var(--font-md);
+}
+
+.myCharactersContainer button.characterCard:hover {
+    background-color: var(--accent);
+    cursor: pointer;
+}
+
+.characterCard div.cardName {
+    text-align: left;
+    grid-area: name;
+    font-size: var(--font-xl);
+    text-decoration: underline;
+    overflow-x: none;
+    text-wrap: wrap;
+}
+
+.characterCard details.cardSettings {
+    grid-area: settings;
+    background-color: var(--chart-1);
+    display: flex;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.cardSettings summary {
+    list-style: none;
+    width: 100%;
+}
+
+.cardSettings summary:hover {
+    background-color: var(--chart-2);
+}
+
+.characterCard div.cardLevel {
+    grid-area: level;
+}
+
+.characterCard div.cardAncestry {
+    grid-area: ancestry;
+}
+
+.characterCard div.cardTalent1 {
+    grid-area: talent1;
+}
+
+.characterCard div.cardTalent2 {
+    grid-area: talent2;
 }
 
 .confirmDelete {
@@ -38,4 +117,22 @@
     font-size: var(--font-md);
     background-color: var(--card);
     color: var(--primary);
+}
+
+.page div.utilityPanel {
+    flex: 2;
+    background-color: var(--card);
+    color: var(--primary);
+    padding: 8px;
+}
+
+.utilityPanel button.newCharacter {
+    height: 100px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.utilityPanel button.newCharacter:hover {
+    background-color: var(--accent);
+    cursor: pointer;
 }

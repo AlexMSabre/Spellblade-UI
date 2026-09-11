@@ -282,7 +282,7 @@ export default function inventoryPanel(characterInventory : InventoryDAO[], setI
                 <div className="weaponAttackRange">{equippedItem1?.item.attack?.range || "None"}</div>
                 <div className="weaponAttackEffect">{(equippedItem1?.item.attack?.damage + " " + equippedItem1?.item.attack?.damageType) || "None"}</div>
                 <div className="weaponPropertyName">{equippedItem1?.item.special?.name || "None"}</div>
-                <div className="weaponPropertyCost">{(equippedItem1?.item.special?.action  || "F") + "A"}</div>
+                <div className="weaponPropertyCost">{(equippedItem1?.item.special?.action  || "Free") + " Action"}</div>
                 <div className="weaponPropertyEffect">{equippedItem1?.item.special?.description || "None"}</div>
                 <div className="weaponSpecial">{equippedItem1?.item.properties || "None"}</div>
             </div>
@@ -293,7 +293,7 @@ export default function inventoryPanel(characterInventory : InventoryDAO[], setI
                 <div className="weaponAttackRange">{equippedItem2?.item.attack?.range || "None"}</div>
                 <div className="weaponAttackEffect">{(equippedItem2?.item.attack?.damage + " " + equippedItem1?.item.attack?.damageType) || "None"}</div>
                 <div className="weaponPropertyName">{equippedItem2?.item.special?.name || "None"}</div>
-                <div className="weaponPropertyCost">{(equippedItem2?.item.special?.action  || "F") + "A"}</div>
+                <div className="weaponPropertyCost">{(equippedItem2?.item.special?.action  || "Free") + " Action"}</div>
                 <div className="weaponPropertyEffect">{equippedItem2?.item.special?.description || "None"}</div>
                 <div className="weaponSpecial">{equippedItem2?.item.properties || "None"}</div>
             </div>

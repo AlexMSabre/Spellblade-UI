@@ -159,7 +159,7 @@ export default function itemSearch(character : Character, inventory : InventoryD
     function buildSearchFilterList() {
         return (
             <div className="searchFilter">
-                <select onClick={(e)=>setSearchFilter(e.currentTarget.value)} defaultValue={filterList[0]}>
+                <select onClick={(e)=>setSearchFilter(e.currentTarget.value)} defaultValue={filterList[0]} className="w-full">
                     {filterList.map(filter=>(
                         <option key={filter} value={filter}>{filter}</option>
                     ))}

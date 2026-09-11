@@ -10,7 +10,7 @@
     "currentHeader currentHeader gap availableTable"
     "currentTable currentTable gap availableTable";
     grid-template-columns: 3fr 3fr 8px 6fr;
-    grid-template-rows: 1fr 1.5fr 0.75fr 1fr 12fr;
+    grid-template-rows: var(--font-xl) auto calc(2*var(--font-sm)) 1fr 12fr;
     text-align: center;
     /*Border*/
     border-image: var(--border-default);
@@ -65,6 +65,7 @@
     padding: 8px;
     /*Color and Text Styles*/
     background-color: var(--card);
+    font-size: var(--font-sm);
 }
 
 .spells div.info2 {

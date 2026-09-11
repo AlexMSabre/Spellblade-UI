@@ -136,9 +136,9 @@ export default function skills(character: Character, setCharacterData: Function,
                 </div>
                 <div className="listMisc">
                     <div className="text-center">Other Values</div>
-                    Maximum Mana: {calculatedState.manaMax} <br/> 
-                    Spell Capacity: {calculatedState.spellCapacity} <br/> 
-                    Wound Tolerance: {calculatedState.woundsMax}
+                    Maximum Mana (Focus): {calculatedState.manaMax} <br/> 
+                    Spell Capacity (Focus): {calculatedState.spellCapacity} <br/> 
+                    Wound Tolerance (Tenacity): {calculatedState.woundsMax}
                 </div>
             </div>
         </div>

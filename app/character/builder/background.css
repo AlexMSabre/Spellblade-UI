@@ -52,14 +52,18 @@
     /*Size*/
     width: calc(33vw - 80px);
     /*Layout*/
-    align-self: center;
+    text-align: left;
     /*Boundaries*/
     margin: 10px;
+    /*Color and Text Styles*/
+    font-size: var(--font-md);
 }
 
 .chip {
     /*Size*/
-    height: var(--font-xl);
+    height: var(--font-lg);
+    /*Layout*/
+    margin-top: -60px;
     /*Color and Text Styles*/
     font-size: var(--font-md);
 }
@@ -160,7 +164,7 @@
     grid-area: description;
     text-align: left;
     /*Color and Text Styles*/
-    font-size: var(--font-sm);
+    font-size: var(--font-xsm);
     /*Interactive*/
     overflow-y: hidden;
 }
@@ -211,7 +215,7 @@
     padding-right: 10px;
     padding-left: 10px;
     /*Color and Text Styles*/
-    font-size: var(--font-md);
+    font-size: var(--font-xsm);
     /*Interactive*/
     overflow-y: auto;
 }
@@ -241,7 +245,7 @@
     padding-right: 10px;
     padding-left: 10px;
     /*Color and Text Styles*/
-    font-size: var(--font-md);
+    font-size: var(--font-xsm);
     /*Interactive*/
     overflow-y: auto;
 }

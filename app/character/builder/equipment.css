@@ -71,7 +71,7 @@ option {
     display: grid;
     grid-template-areas: "head head head head head"
     "total denom1 denom2 denom3 denom4";
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 3fr 2fr;
     /*Border*/
     border: 1px solid black;
@@ -87,27 +87,27 @@ option {
 
 .currency div.currencyTotal {
     grid-area: total;
-    border: 1px solid black;
+    border-right: 3px solid black;
 }
 
 .currency div.currencyDenom1 {
     grid-area: denom1;
-    border: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .currency div.currencyDenom2 {
     grid-area: denom2;
-    border: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .currency div.currencyDenom3 {
     grid-area: denom3;
-    border: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .currency div.currencyDenom4 {
     grid-area: denom4;
-    border: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .inventory div.supplies {
@@ -305,7 +305,7 @@ option {
     /*Border*/
 }
 
-.tableSummary {
+.eqTableSummary {
     display: grid;
     grid-template-columns: 5fr 1.5fr 3fr 1.5fr 3fr;
     cursor: pointer;

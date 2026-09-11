@@ -208,14 +208,15 @@ export default function background(character:Character,setCharacterData:Function
         <div className="name">
             <input className="nameBox" type="text" placeholder="Character Name" value={character.name} onChange={(e)=>(setCharacterData((prev:Character)=>({...prev, name: e.target.value})))}/>
             <div className="worlds">
+                World Sources:
                 <Combobox
                     multiple
                     autoHighlight
                     items={["Core","Ribean","Zaub"]}
                     defaultValue={["Core"]}
-                    onValueChange={(value)=>(setSourceFilter(value))}>
+                    onValueChange={(value : string[])=>(setSourceFilter(value))}>
 
-                    <ComboboxChips ref={anchor}>
+                    <ComboboxChips ref={anchor} className="h-[60px]">
                         <ComboboxValue>
                         {(values) => (
                             <React.Fragment>

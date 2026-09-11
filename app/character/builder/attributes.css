@@ -5,8 +5,9 @@
     /*Layout*/
     display: grid;
     grid-template-areas: "talent1name talent1name level level talent2name talent2name"
-    "talent1attributes talent1stones talent1stones talent2attributes talent2attributes talent2stones";
-    grid-template-rows: 1fr 9fr;
+    "talent1attributes info info info info talent2attributes"
+    "talent1attributes talent1stones talent1stones talent2stones talent2stones talent2attributes";
+    grid-template-rows: 1fr 2fr 4fr;
     grid-template-columns: 6fr 5fr 1fr 1fr 5fr 6fr;
     text-align: center;
     /*Border*/
@@ -90,6 +91,12 @@
     /*Color and Text Styles*/
     background-color: var(--card);
     font-size: var(--font-xl);
+}
+
+.attributes div.info {
+    grid-area: info;
+    text-align: left;
+    padding: 12px;
 }
 
 .attributes div.talent1attributes {
@@ -251,7 +258,7 @@
 
 .attributeContainer div.attributeSelected:hover {
     /*Color and Text Styles*/
-    background-color: var(--accent);
+    background-color: var(--muted-foreground);
     /*Interactive*/
     cursor: pointer;
 }

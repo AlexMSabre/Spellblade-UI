@@ -237,14 +237,6 @@
     line-height: 1.2;
 }
 
-.equip1:hover {
-    cursor: pointer;
-    border-image: var(--border-select-glow);
-    border-image-slice: 25% 25%;
-    border-image-width: 50px 50px;
-    border-radius: var(--radius);
-}
-
 
 .equip2 {
     grid-area: equip2;
@@ -265,14 +257,6 @@
     padding-left: 12px;
     padding-right: 12px;
     line-height: 1.2;
-}
-
-.equip2:hover {
-    cursor: pointer;
-    border-image: var(--border-select-glow);
-    border-image-slice: 25% 25%;
-    border-image-width: 50px 50px;
-    border-radius: var(--radius);
 }
 
 .weaponName {
@@ -322,6 +306,7 @@
     grid-area: propertyEffect;
     border: 1px solid black;
     font-size: var(--font-xsm);
+    text-align: left;
 }
 
 .weaponSpecial {
@@ -371,14 +356,15 @@
     grid-area: expand;
     text-align: center;
     clip-path: polygon(0% 0%, 100% 0%, calc(100% - 20px) 100%, 20px 100%);
-    background:rgb(210, 230, 173);
+    background:rgb(177, 216, 238);
     margin-left: -18px;
     margin-right: -18px;
     z-index: 3;
 }
 
-.invPanel div.expand:hover {
+.invPanel button.expand:hover {
     cursor: pointer;
+    background:rgb(163, 203, 226);
 }
 
 .invPanel div.itemTable {
@@ -464,9 +450,11 @@
 .lgInput {
     width: calc(var(--font-md) + 6px);
     text-align: right;
+    background-color: var(--chart-1);
 }
 
 .smInput {
     width: calc(var(--font-sm));
     text-align: right;
+    background-color: var(--chart-1);
 }
